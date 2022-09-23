@@ -1,0 +1,33 @@
+extends ../layouts/header.pug
+
+block title
+    title= title
+block cssLink 
+    link(rel="stylesheet", href="/css/login.css")
+block jsScript 
+    script(src="/js/login.js") 
+block bodyContent
+    .login_container
+        .login_wrapper
+            h2 Login 
+            form(action="/login" method="post")
+                
+                label(for="email") 
+                    b Username or Email
+                input(type="text" name="email" id="email" placeholder="Enter your username or email" class="form-control")
+                p(class="error email_error") Username or email is required*
+
+                label(for="password") 
+                    b Password 
+                input(type="password" name="password" id="password" placeholder="Enter your password" class="form-control")
+                p(class="error password_error") Password is required*
+
+      
+                input(type='submit' name="submit" value="Login" id="login" class="form-control my-3" )
+
+                p Don't have an account? 
+                    a(href="/register") Register here
+
+
+            
+    

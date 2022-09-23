@@ -1,0 +1,43 @@
+extends ../layouts/header.pug
+
+block title
+    title= title
+block cssLink 
+    link(rel="stylesheet", href="/css/login.css")
+block jsScript 
+    script(src="/js/login.js") 
+block bodyContent
+    .login_container
+        .login_wrapper
+            h2 Register 
+            form(action="/register" method="post")
+                div(class="d-flex gap-3")
+                    div 
+                        label(for="firstName" ) 
+                            b First Name 
+                        input(type="text" name="firstName" id="firstName" placeholder="Enter your first name" class="form-control" )
+                        p(class="error firstName_error") First name is required*
+                    div    
+                        label(for="lastName") 
+                            b Last Name
+                        input(type="text" name="lastName" id="lastName" placeholder="Enter your last name" class="form-control")  
+                        p(class="error lastName_error") Last name is required*
+
+                label(for="email") 
+                    b Username or Email
+                input(type="text" name="email" id="email" placeholder="Enter your username or email" class="form-control")
+                p(class="error email_error") Username or email is required*
+
+                label(for="password") 
+                    b Password 
+                input(type="password" name="password" id="password" placeholder="Enter your password" class="form-control")
+                p(class="error password_error") Password is required*
+
+                label(for="confirmPassword") 
+                    b Confirm Password
+                input(type="password" name="confirmPassword" id="confirmPassword" placeholder="Enter your confirm password" class="form-control")
+                p(class="error confirmPassword_error") Confirm password is required*
+                input(type='submit' name="submit" value="Register" class="form-control my-3" )
+
+                p Don't have an account? 
+                    a(href="/login") Login here
