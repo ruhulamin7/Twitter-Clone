@@ -12,17 +12,15 @@ function errorHandler(err, req, res, next) {
   const error =
     process.env.NODE_ENV === 'development' ? err : { message: err.message };
 
-
   if (res.headersSent) {
     next(error);
   } else {
     try {
       res.locals.error = error;
       res.status(error.status || 500);
-
       if (res.locals.html) {
         res.render('pages/error.pug', {
-          title: 'Error Occurred', 
+          title: 'Error Occurred',
           error,
         });
       } else {

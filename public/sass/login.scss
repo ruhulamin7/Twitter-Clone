@@ -5,7 +5,7 @@ h2 {
   text-align: center;
 }
 .login_container {
-  width: 400px;
+  width: 420px;
   max-width: 80%;
   margin: 0 auto;
   display: flex;
@@ -19,21 +19,31 @@ h2 {
   border-radius: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
   // background-image: url('/images/theme.png');
-  
 }
-label {
+form label {
   margin-bottom: 3px;
   margin-left: 5px;
   margin-top: 15px;
+  display: none;
 }
 
 .error {
   color: red;
-  margin: 0;
-  display: none;
+  // margin: 0;
+  font-size: 13px;
+  // display: none;
+  // display: block;
 }
 
 input[type='submit'] {
   background-color: #1da1f2;
   color: #fff;
+}
+form input {
+  border: none !important;
+  border-bottom: 2px solid lightgrey !important;
+  margin-top: 20px;
+}
+form p {
+  margin: 0;
 }
