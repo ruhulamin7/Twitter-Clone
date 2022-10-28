@@ -2,9 +2,10 @@ extends ../layouts/header.pug
 
 block title
     title= title
-block cssLink 
+block css
     link(rel="stylesheet", href="/css/login.css")
-block jsScript 
+
+block js 
     script(src="/js/login.js") 
 block bodyContent
     .login_container
@@ -27,12 +28,12 @@ block bodyContent
                             p.error #{error.lastName.msg+"*"}
                         //- p(class="error lastName_error") Last name is required*
 
-                label(for="userName") 
+                label(for="username") 
                     b Username
-                input(type="text" value= user? user.userName: '' name="userName" id="userName" placeholder="Enter your username" class="form-control")
-                if error.userName 
-                    p.error #{error.userName.msg+"*"}
-                //- p(class="error userName_error") Username is required*
+                input(type="text" value= user? user.username: '' name="username" id="username" placeholder="Enter your username" class="form-control")
+                if error.username 
+                    p.error #{error.username.msg+"*"}
+                //- p(class="error username_error") Username is required*
 
                 label(for="email") 
                     b Email
@@ -45,14 +46,14 @@ block bodyContent
                     div
                         label(for="password") 
                             b Password 
-                        input(type="password" value= user? user.password: '' name="password" id="password" placeholder="Enter your password" class="form-control")
+                        input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Enter your password" class="form-control")
                         if error.password 
                             p.error #{error.password.msg+"*"}
                         //- p(class="error password_error") Password is required*
                     div
                         label(for="confirmPassword") 
                             b Confirm Password
-                        input(type="password" value= user? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype your password" class="form-control")
+                        input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype your password" class="form-control")
                         if error.confirmPassword 
                             p.error #{error.confirmPassword.msg+"*"}
                         //- p(class="error confirmPassword_error") Confirm password is required*

@@ -4,21 +4,22 @@ const User = require('../../models/User');
 const signUpDataValidator = () => {
   return [
     // firstName validation
-    check('firstName').trim().notEmpty().withMessage('First name is required'),
+    check('firstName').notEmpty().withMessage('First name is required').trim(),
     // lastName validation
-    check('lastName').trim().notEmpty().withMessage('Last name is required'),
+    check('lastName').notEmpty().withMessage('Last name is required').trim(),
     // username validation
-    check('userName')
-      .trim()
+    check('username')
       .notEmpty()
       .withMessage('Username is required')
+      .trim()
+      .toLowerCase()
       .custom(async (value, { req }) => {
         try {
-          const userName = await User.findOne(
-            { userName: value },
-            { userName: 1 }
+          const username = await User.findOne(
+            { username: value },
+            { username: 1 }
           );
-          if (userName) {
+          if (username) {
             return Promise.reject();
           } else {
             return Promise.resolve();
@@ -30,12 +31,12 @@ const signUpDataValidator = () => {
       .withMessage('Username is already taken'),
     // email validation
     check('email')
-      .trim()
-      .toLowerCase()
       .notEmpty()
       .withMessage('Email is required')
       .isEmail()
       .withMessage('Please enter a valid email address')
+      .trim()
+      .toLowerCase()
       .custom(async (value, { req }) => {
         try {
           const email = await User.findOne({ email: value }, { email: 1 });

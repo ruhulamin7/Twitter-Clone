@@ -2,27 +2,33 @@ extends ../layouts/header.pug
 
 block title
     title= title
-block cssLink 
+block css
     link(rel="stylesheet", href="/css/login.css")
-block jsScript 
+block js
     script(src="/js/login.js") 
 block bodyContent
-    .login_container
+    .login_container(style="max-width:350px")
         .login_wrapper
             h2 Login 
             form(action="/login" method="post")
                 
                 label(for="email") 
                     b Username or Email
-                input(type="text" name="email" id="email" placeholder="Enter your username or email" class="form-control")
-                p(class="error email_error") Username or email is required*
+                input(type="text" name="email" id="email" placeholder="Enter your username or email" class="form-control" value= user? user.email: '')
+                if error && error.email
+                    p(class="error email_error") #{error.email.msg}
+
+                //- if error && error.userError
+                //-     p(class="error email_error") #{error.userError}
 
                 label(for="password") 
                     b Password 
-                input(type="password" name="password" id="password" placeholder="Enter your password" class="form-control")
-                p(class="error password_error") Password is required*
+                input(type="password" name="password" id="password" placeholder="Enter your password" class="form-control" value= user && !error.password? user.password: "")
+                if error && error.password
+                    p(class="error email_error") #{error.password.msg}
+                //- if error && error.passwordError
+                //-     p(class="error email_error") #{error.passwordError}
 
-      
                 input(type='submit' name="submit" value="Login" id="login" class="form-control my-3" )
 
                 p Don't have an account? 

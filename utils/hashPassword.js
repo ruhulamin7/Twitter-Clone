@@ -7,9 +7,5 @@ async function hashPassword(password) {
   return hashedString;
 }
 
-// bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
-//   // result == true
-// });
-
 // export
 module.exports = hashPassword;

@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(urlencoded({ extended: true })); // handle form data with parameters
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // settings
 app.set('view engine', 'pug');

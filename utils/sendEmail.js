@@ -25,7 +25,7 @@ const sendEmail = (receivers, data, callback) => {
     // sending email
     transporter.sendMail(options, callback);
   } catch (error) {
-    next(createError(500, 'Internal Server Error'));
+    throw createError(500, error);
   }
 };
 
