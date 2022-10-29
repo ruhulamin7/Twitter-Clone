@@ -10,6 +10,7 @@ const urlencoded = require('express');
 const cookieParser = require('cookie-parser');
 const authRoute = require('./routes/auth/authRoute');
 const mongoose = require('mongoose');
+const homeRoute = require('./routes/home/homeRoute');
 
 // init app
 const app = express();
@@ -23,23 +24,19 @@ app.use(express.json());
 app.use(urlencoded({ extended: true })); // handle form data with parameters
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SIGN));
 
 // settings
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-// get index
-app.get('/', (req, res) => {
-  res.render('pages/index');
-});
-
 // auth routes
 app.use(authRoute);
+// get home page
+app.use('/', homeRoute);
 
 // not found handler
 app.use(notFoundHandler);
-
 // error handler
 app.use(errorHandler);
 

@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken');
 const loginHandler = async (req, res, next) => {
   try {
     if (req.isValidUser) {
-      console.log(req.userId);
       const token = await jwt.sign(
         {
           username: req.username,
@@ -16,7 +15,7 @@ const loginHandler = async (req, res, next) => {
         },
         process.env.JWT_SECRET,
         {
-          expiresIn: '2days',
+          expiresIn: process.env.JWT_EXPIRE,
         }
       );
       // send cookie

@@ -15,17 +15,15 @@ const loginDataValidator = () => {
       .trim()
       .custom(async (value, { req }) => {
         try {
-          const user = await User.findOne(
-            {
-              $or: [{ email: value }, { username: value }],
-            },
-            { email: 1, username: 1, password: 1 }
-          );
+          const user = await User.findOne({
+            $or: [{ email: value }, { username: value }],
+          });
           if (user) {
             req.email = user.email;
             req.username = user.username;
             req.password = user.password;
             req.userId = user._id;
+
             return Promise.resolve();
           } else {
             return Promise.reject();

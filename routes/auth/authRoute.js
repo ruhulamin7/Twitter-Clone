@@ -15,6 +15,8 @@ const loginDataValidator = require('../../middlewares/auth/loginDataValidator');
 const signUpDataValidator = require('../../middlewares/auth/signUpDataValidator');
 const loginDataVAlidationResult = require('../../middlewares/auth/loginDataVAlidationResult');
 const testLoginHandler = require('../../controllers/auth/testLoginHandler');
+const authChecker = require('../../middlewares/common/authChecker');
+const logout = require('../../controllers/auth/logout');
 const authRoute = express.Router();
 dotenv.config();
 
@@ -22,6 +24,7 @@ dotenv.config();
 authRoute.get(
   '/login',
   decorateHTMLResponse(`Login - ${process.env.APP_NAME}`),
+  authChecker,
   getLoginPage
 );
 
@@ -29,6 +32,7 @@ authRoute.get(
 authRoute.get(
   '/register',
   decorateHTMLResponse(`Register - ${process.env.APP_NAME}`),
+  authChecker,
   getRegisterPage
 );
 
@@ -53,6 +57,9 @@ authRoute.post(
   loginHandler
   // testLoginHandler
 );
+
+// logout current user
+authRoute.get('/logout', logout);
 
 // exports
 module.exports = authRoute;

@@ -1,0 +1,18 @@
+extends ../layouts/header.pug
+
+block title
+    title= title
+block css
+    link(rel="stylesheet", href="/css/home.css")
+    
+block bodyContent
+    img(src="./images/logo.png", alt="twitter logo" width="300")
+    h1 Welcome To Twitter Clone Project
+
+    div
+        if user._id 
+            h2 Name: #{user.firstName}
+            h4 Email: #{user.email}
+            a.btn.btn-danger(href="/logout") Logout
+
+    
