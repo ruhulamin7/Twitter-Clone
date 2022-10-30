@@ -20,12 +20,14 @@ const registerHandler = async (req, res, next) => {
         // userAvatar: req.file.filename,
       });
       const user = await userObj.save();
+
+      // send email to user for email confirmation
       if (user._id) {
         sendEmail(
           [user.email],
           {
             subject: 'Verify your twitter-clone account',
-            template: `Verification link:${process.env.APP_URL}/emailConfirmation/${user._id}`,
+            template: `Verification link:${process.env.APP_URL}/email-confirmation/${user._id}`,
             attachments: [],
           },
           (err, info) => {
@@ -40,7 +42,6 @@ const registerHandler = async (req, res, next) => {
           }
         );
       }
-      //   res.send(user);
     }
   } catch (error) {
     next(error);

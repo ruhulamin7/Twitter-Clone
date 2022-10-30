@@ -7,32 +7,35 @@ block css
 block js
     script(src="/js/login.js") 
 block bodyContent
-    .login_container(style="max-width:350px")
+    .login_container(style="max-width:380px")
         .login_wrapper
             h2 Login 
             form(action="/login" method="post")
                 
                 label(for="email") 
                     b Username or Email
-                input(type="text" name="email" id="email" placeholder="Enter your username or email" class="form-control" value= user? user.email: '')
+                
+                input(type="text" name="email" id="email" placeholder="Username or email" class="form-control" value= user? user.email: '')
+                //- i.fa-solid.fa-user
                 if error && error.email
-                    p(class="error email_error") #{error.email.msg}
+                    p(class="error email_error") #{error.email.msg+"*"}
 
-                //- if error && error.userError
-                //-     p(class="error email_error") #{error.userError}
 
                 label(for="password") 
                     b Password 
-                input(type="password" name="password" id="password" placeholder="Enter your password" class="form-control" value= user && !error.password? user.password: "")
+                input(type="password" name="password" id="password" placeholder="Password" class="form-control" value= user && !error.password? user.password: "")
                 if error && error.password
-                    p(class="error email_error") #{error.password.msg}
+                    p(class="error email_error") #{error.password.msg+"*"}
                 //- if error && error.passwordError
                 //-     p(class="error email_error") #{error.passwordError}
 
-                input(type='submit' name="submit" value="Login" id="login" class="form-control my-3" )
+                input(type='submit' name="submit" value="Login" id="login" class="form-control my-4" )
 
-                p Don't have an account? 
-                    a(href="/register") Register here
+                div.login_bottom_link.px-2 
+                    p New user? 
+                        a(href="/register") Register here
+                    p |
+                    a(href="/reset-password") Forgot password?
 
 
             

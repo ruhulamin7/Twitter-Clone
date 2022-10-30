@@ -6,6 +6,10 @@ h2 {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 .login_container {
   width: 420px;
   max-width: 80%;
@@ -48,4 +52,9 @@ form input {
 
 form p {
   margin: 0;
+}
+
+.login_bottom_link {
+  display: flex;
+  justify-content: space-between;
 }

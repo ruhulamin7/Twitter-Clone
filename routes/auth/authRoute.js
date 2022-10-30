@@ -17,6 +17,7 @@ const loginDataVAlidationResult = require('../../middlewares/auth/loginDataVAlid
 const testLoginHandler = require('../../controllers/auth/testLoginHandler');
 const authChecker = require('../../middlewares/common/authChecker');
 const logout = require('../../controllers/auth/logout');
+const resetPassword = require('../../controllers/auth/resetPassword');
 const authRoute = express.Router();
 dotenv.config();
 
@@ -45,8 +46,12 @@ authRoute.post(
   singUpDataValidationResult,
   registerHandler
 );
+
 // email confirmation handler
-authRoute.get('/emailConfirmation/:id', emailConfirmation);
+authRoute.get('/email-confirmation/:id', emailConfirmation);
+
+// reset password
+authRoute.get('/reset-password', resetPassword);
 
 // sign in handler
 authRoute.post(
