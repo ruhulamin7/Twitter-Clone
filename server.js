@@ -16,6 +16,7 @@ const emailConfirmationRoute = require('./routes/auth/emailConfirmationRoute');
 const resetPasswordRoute = require('./routes/auth/resetPasswordRoute');
 const otpRoute = require('./routes/auth/otpRoute');
 const logoutRoute = require('./routes/auth/logoutRoute');
+const newPasswordRoute = require('./routes/auth/newPasswordRoute');
 
 // init app
 const app = express();
@@ -47,6 +48,8 @@ app.use(resetPasswordRoute);
 app.use(otpRoute);
 // logout routes
 app.use(logoutRoute);
+// create new password routes
+app.use(newPasswordRoute);
 
 // not found handler
 app.use(notFoundHandler);

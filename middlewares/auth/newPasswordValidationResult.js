@@ -3,26 +3,23 @@
 const { validationResult } = require('express-validator');
 const createHttpError = require('http-errors');
 
-const otpValidationResult = (req, res, next) => {
+const newPasswordValidationResult = (req, res, next) => {
   try {
     const errors = validationResult(req);
     const mappedErrors = errors.mapped();
+
     if (Object.keys(mappedErrors).length === 0) {
       next();
     } else {
-      res.render('pages/auth/verifyOTP', {
+      res.render('pages/auth/createNewPassword', {
         error: mappedErrors,
-        otp: {
-          value: req.body.otp,
-          otpId: req.body.otpId,
-          email: req.body.email,
-        },
+        user: req.body,
       });
     }
   } catch (error) {
-    next(createHttpError(500, 'Internal Server Error!'));
+    next(createHttpError(500, error));
   }
 };
 
-// exports
-module.exports = otpValidationResult;
+// export
+module.exports = newPasswordValidationResult;

@@ -9,7 +9,7 @@ const otpRoute = require('express').Router();
 // verify OTP
 otpRoute.post(
   '/verify-otp',
-  decorateHTMLResponse(`Create New Password - ${process.env.APP_NAME}`),
+  decorateHTMLResponse(`Verify OTP - ${process.env.APP_NAME}`),
   otpValidator(),
   otpValidationResult,
   verifyOTPHandler

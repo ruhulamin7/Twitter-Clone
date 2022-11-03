@@ -9,16 +9,16 @@ const otpValidator = () => {
       .withMessage('Please input OTP')
       .trim()
       .custom(async (value, { req }) => {
-        const userOTP = value;
+        const otp = value;
         const email = req.body?.email;
         const otpId = req.body?.otpId;
 
         const otpObj = await OTP.findOne({
-          $and: [{ otpId, email, OTP: userOTP }],
+          $and: [{ otpId, email, OTP: otp }],
         });
         if (
           otpObj.expireIn.getTime() > Date.now() &&
-          otpObj.OTP === Number(userOTP)
+          otpObj.OTP === Number(otp)
         ) {
           const result = await OTP.findOneAndUpdate(
             { _id: otpId },
@@ -26,7 +26,11 @@ const otpValidator = () => {
             { new: true }
           );
           if (result) {
+            // set req data
             req.isValidOtp = true;
+            req.otp = value;
+            req.otpId = otpId;
+            req.email = email;
             return Promise.resolve();
           }
           {
