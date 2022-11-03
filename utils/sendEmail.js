@@ -20,7 +20,7 @@ const sendEmail = (receivers, data, callback) => {
       to: receivers.join(','),
       subject: data.subject,
       html: data.template,
-      attachments: data.attachments,
+      attachments: data?.attachments,
     };
     // sending email
     transporter.sendMail(options, callback);

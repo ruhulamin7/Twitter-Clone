@@ -5,11 +5,11 @@ block title
 block css
     link(rel="stylesheet", href="/css/login.css")
 block js
-    script(src="/js/login.js") 
+    script(src="/js/login.js" defer) 
 block bodyContent
-    .login_container(style="max-width:380px")
+    .login_container
         .login_wrapper
-            h2 Login 
+            h3.text-secondary Login 
             form(action="/login" method="post")
                 
                 label(for="email") 
@@ -26,9 +26,7 @@ block bodyContent
                 input(type="password" name="password" id="password" placeholder="Password" class="form-control" value= user && !error.password? user.password: "")
                 if error && error.password
                     p(class="error email_error") #{error.password.msg+"*"}
-                //- if error && error.passwordError
-                //-     p(class="error email_error") #{error.passwordError}
-
+            
                 input(type='submit' name="submit" value="Login" id="login" class="form-control my-4" )
 
                 div.login_bottom_link.px-2 

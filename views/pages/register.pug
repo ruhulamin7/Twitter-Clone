@@ -10,7 +10,7 @@ block js
 block bodyContent
     .login_container
         .login_wrapper
-            h2 Register 
+            h3.text-secondary Register 
             form(action="/register" method="post" enctype="multipart/form-data")
                 div(class="d-flex gap-3")
                     div 
@@ -19,14 +19,13 @@ block bodyContent
                         input(type="text" value= user? user.firstName : '' name="firstName" id="firstName" placeholder="Enter your first name" class="form-control" )
                         if error.firstName 
                             p.error #{error.firstName.msg+"*"}
-                        //- p(class="error firstName_error") First name is required*
+
                     div    
                         label(for="lastName") 
                             b Last Name
                         input(type="text" value= user? user.lastName: '' name="lastName" id="lastName" placeholder="Enter your last name" class="form-control")  
                         if error.lastName 
                             p.error #{error.lastName.msg+"*"}
-                        //- p(class="error lastName_error") Last name is required*
 
                 label(for="username") 
                     b Username

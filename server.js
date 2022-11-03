@@ -1,16 +1,21 @@
 // dependencies
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
+const urlencoded = require('express');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const {
   notFoundHandler,
   errorHandler,
 } = require('./middlewares/common/errorHandlers');
-const urlencoded = require('express');
-const cookieParser = require('cookie-parser');
+
 const authRoute = require('./routes/auth/authRoute');
-const mongoose = require('mongoose');
 const homeRoute = require('./routes/home/homeRoute');
+const emailConfirmationRoute = require('./routes/auth/emailConfirmationRoute');
+const resetPasswordRoute = require('./routes/auth/resetPasswordRoute');
+const otpRoute = require('./routes/auth/otpRoute');
+const logoutRoute = require('./routes/auth/logoutRoute');
 
 // init app
 const app = express();
@@ -33,7 +38,15 @@ app.set('views', path.join(__dirname, 'views'));
 // auth routes
 app.use(authRoute);
 // get home page
-app.use('/', homeRoute);
+app.use(homeRoute);
+// email confirmation routes
+app.use(emailConfirmationRoute);
+// reset password routes
+app.use(resetPasswordRoute);
+// otp routes
+app.use(otpRoute);
+// logout routes
+app.use(logoutRoute);
 
 // not found handler
 app.use(notFoundHandler);

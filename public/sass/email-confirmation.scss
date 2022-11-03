@@ -1,0 +1,18 @@
+a {
+  text-decoration: none;
+  color: rgb(230, 65, 65);
+}
+p {
+  font-size: 20px;
+  color: white;
+}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/images/email-confirmation-bg.png');
+}
+.confirmation_container {
+  max-width: 600px;
+}

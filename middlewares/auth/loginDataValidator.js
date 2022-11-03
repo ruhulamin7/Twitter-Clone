@@ -23,7 +23,6 @@ const loginDataValidator = () => {
             req.username = user.username;
             req.password = user.password;
             req.userId = user._id;
-
             return Promise.resolve();
           } else {
             return Promise.reject();

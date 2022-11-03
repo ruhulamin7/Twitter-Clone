@@ -7,7 +7,11 @@ const getHomePage = async (req, res, next) => {
   try {
     const user = await User.findOne({ _id: req.userId });
     // console.log( user );
-    return res.render('pages/home', { user: user ? user : {} });
+    return res.render('pages/home', {
+      user: user ? user : {},
+      otp: {},
+      error: {},
+    });
   } catch (error) {
     next(createHttpError(500, error));
   }

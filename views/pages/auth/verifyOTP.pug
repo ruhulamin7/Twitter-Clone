@@ -1,0 +1,61 @@
+extends ../../layouts/header.pug
+
+block title
+    title= title
+block css
+    link(rel="stylesheet", href="/css/login.css")
+block js
+    script(src="js/verifyOTP.js" defer) 
+
+block bodyContent
+
+block bodyContent 
+    .login_container
+        .login_wrapper
+            h3.text-secondary.pb-3 Verify OTP 
+            if otp.email
+                p.text-secondary OTP has been sent to 
+                    a(href="#") #{otp? otp.email: ""} 
+                    span.text-secondary Please check your email inbox or spam box.
+
+            form(action="/verify-otp" method="post")                
+                label(for="number") 
+                    b Username or Email 
+                
+                input(type="number" name="otp" id="otp" maxlength="4" placeholder="Enter your 4 digit OTP" class="form-control" value=otp? otp.value: "")
+                if error.otp
+                    p(class="error email_error") #{error.otp.msg}
+                
+                input(type="hidden", name='otpId' value=otp? otp.otpId: "")
+                input(type="hidden", name='email' value=otp? otp.email: "")
+
+                input(type='submit' name="submit" value="Verify now" id="" class="form-control my-4 btn btn-success bg-success" )
+
+                //- OTP timer
+                h5#countdown.text-center OTP expire in: 
+                    span#minute.text-warning 01 
+                    span.text-warning : 
+                    span#second.text-warning 59
+
+                //- resend OTP form
+            div 
+                form(action="/reset-password" method="post")
+                    input(type="hidden" name="email" id="email" placeholder="Username or email" class="form-control" value= otp? otp.email: '')
+
+                    if error && error.email
+                        p(class="error email_error") #{error.email.msg+"*"}
+                    
+                    input(type='submit' value="Resend OTP" id="" class="form-control btn btn-primary mb-4" ) 
+        
+
+            div.login_bottom_link.px-2 
+                p Need to login? 
+                    a(href="/login") Click here
+                
+              
+
+
+            
+    
+
+

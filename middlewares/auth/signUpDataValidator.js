@@ -12,6 +12,8 @@ const signUpDataValidator = () => {
       .notEmpty()
       .withMessage('Username is required')
       .trim()
+      .isLength({ min: 3 })
+      .withMessage('Username is minimum 3 length required')
       .toLowerCase()
       .custom(async (value, { req }) => {
         try {

@@ -2,7 +2,7 @@ body {
   background-color: #50abf1;
 }
 
-h2 {
+h3 {
   text-align: center;
 }
 
@@ -11,7 +11,7 @@ a {
 }
 
 .login_container {
-  width: 420px;
+  width: 400px;
   max-width: 80%;
   margin: 0 auto;
   display: flex;
