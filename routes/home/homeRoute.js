@@ -1,6 +1,7 @@
 const getHomePage = require('../../controllers/home/getHomePage');
 const authChecker = require('../../middlewares/common/authChecker');
 const decorateHTMLResponse = require('../../middlewares/common/decorateHTMLResponse');
+// require('dotenv').config();
 
 // dependencies
 const homeRoute = require('express').Router();

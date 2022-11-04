@@ -2,9 +2,13 @@ extends ../../layouts/header.pug
 
 block title
     title= title 
+block css 
+    link(rel="stylesheet", href="/css/thankyou.css")
+
 block bodyContent 
-    div.text-center
-        h1 Thank you!
-        p Your account was verified successful ! 
-        p Now you can 
-            a(href="/login") Sign In
+    .thankyou_container
+        div.text-center.thankyou_wrapper.bg-success.bg-opacity-50.rounded
+            h1.text-warning.bg-success.bg-opacity-75.rounded.m-4.p-2 Thank you!!!
+            h4 Your account was verified successful ! 
+            h5.mb-4 Now you can 
+                a(href="/login") Sign In

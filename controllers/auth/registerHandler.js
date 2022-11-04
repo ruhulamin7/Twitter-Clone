@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 const sendEmail = require('../../utils/sendEmail');
+// require('dotenv').config();
 
 // register controller
 const registerHandler = async (req, res, next) => {

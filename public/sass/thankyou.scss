@@ -1,0 +1,22 @@
+body {
+  background-image: url('/images/registration-successful.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-blend-mode: darken;
+  // background-blend-mode: normal;
+
+  /* Two values, one per background */
+  background-blend-mode: darken, luminosity;
+}
+
+.thankyou_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.thankyou_wrapper {
+  min-width: 600px;
+  max-width: 600px;
+}
