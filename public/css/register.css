@@ -1,0 +1,10 @@
+.password_area {
+  position: relative;
+}
+
+.password_area i {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  cursor: pointer;
+}

@@ -4,9 +4,10 @@ block title
     title= title
 block css
     link(rel="stylesheet", href="/css/login.css")
+    link(rel="stylesheet", href="/css/register.css")
 
 block js 
-    script(src="/js/login.js") 
+    script(src="/js/register.js" defer) 
 block bodyContent
     .login_container
         .login_wrapper
@@ -14,55 +15,43 @@ block bodyContent
             form(action="/register" method="post" enctype="multipart/form-data")
                 div(class="d-flex gap-3")
                     div 
-                        label(for="firstName" ) 
-                            b First Name 
-                        input(type="text" value= user? user.firstName : '' name="firstName" id="firstName" placeholder="Enter your first name" class="form-control" )
+                        input(type="text" value= user? user.firstName : '' name="firstName" id="firstName" placeholder="First name" class="form-control" )
                         if error.firstName 
                             p.error #{error.firstName.msg+"*"}
 
-                    div    
-                        label(for="lastName") 
-                            b Last Name
-                        input(type="text" value= user? user.lastName: '' name="lastName" id="lastName" placeholder="Enter your last name" class="form-control")  
+                    div
+                        input(type="text" value= user? user.lastName: '' name="lastName" id="lastName" placeholder="Last name" class="form-control")  
                         if error.lastName 
                             p.error #{error.lastName.msg+"*"}
 
-                label(for="username") 
-                    b Username
-                input(type="text" value= user? user.username: '' name="username" id="username" placeholder="Enter your username" class="form-control")
+                
+                input(type="text" value= user? user.username: '' name="username" id="username" placeholder="Username" class="form-control")
                 if error.username 
                     p.error #{error.username.msg+"*"}
-                //- p(class="error username_error") Username is required*
 
-                label(for="email") 
-                    b Email
-                input(type="text" value= user? user.email: '' name="email" id="email" placeholder="Enter your email" class="form-control")
+
+                input(type="text" value= user? user.email: '' name="email" id="email" placeholder="Email" class="form-control")
                 if error.email 
                     p.error #{error.email.msg+"*"}
-                //- p(class="error email_error") Email is required*
-
+                
                 div.d-flex.gap-3
-                    div
-                        label(for="password") 
-                            b Password 
-                        input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Enter your password" class="form-control")
+                    div.password_area
+                        input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Password" class="form-control")
                         if error.password 
                             p.error #{error.password.msg+"*"}
-                        //- p(class="error password_error") Password is required*
-                    div
-                        label(for="confirmPassword") 
-                            b Confirm Password
-                        input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype your password" class="form-control")
+                        i#passwordEyeIcon(class="fa-regular fa-eye")
+                        //- <i class="fa-regular fa-eye-slash"></i>
+
+                    div.password_area
+                        input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype password" class="form-control")
                         if error.confirmPassword 
                             p.error #{error.confirmPassword.msg+"*"}
-                        //- p(class="error confirmPassword_error") Confirm password is required*
+                        i#confirmPasswordEyeIcon(class="fa-regular fa-eye")
+                        
 
-                label(for="profileAvatar") 
-                    b Profile Avatar
                 input(type="file" accept=".jpg, .png, .jpeg, .svg" name="profileAvatar" id="profileAvatar" class="form-control")
                 if error.profileAvatar 
                     p.error #{error.profileAvatar.msg+"*"}
-                //- p(class="error profileAvatar_error") Profile Avatar is required*
 
                 input(type='submit' name="submit" value="Register" class="form-control my-3" )
 
