@@ -10,8 +10,8 @@ const registerHandler = async (req, res, next) => {
       res.render('pages/register', { user: req.body, error: req.error });
     } else {
       const userObj = new User({
-        lastName: req.body.lastName,
         firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
@@ -25,7 +25,7 @@ const registerHandler = async (req, res, next) => {
         sendEmail(
           [user.email],
           {
-            subject: 'Verify your twitter-clone account',
+            subject: 'Verify your twitty account',
             template: `Verification link:${process.env.APP_URL}/email-confirmation/${user._id}`,
             attachments: [],
           },

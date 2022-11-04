@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const OTP = require('../../models/OTP');
 
 const createNewPassword = async (req, res, next) => {
-  console.log(req.body);
   try {
     const otp = req.body.otp;
     const otpId = req.body.otpId;
