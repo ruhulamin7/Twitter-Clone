@@ -41,14 +41,17 @@ block bodyContent
                             p.error #{error.password.msg+"*"}
                         i#passwordEyeIcon(class="fa-regular fa-eye")
                         //- <i class="fa-regular fa-eye-slash"></i>
+                        //- <i class="fa-regular fa-face-pensive"></i>
 
                     div.password_area
                         input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype password" class="form-control")
                         if error.confirmPassword 
                             p.error #{error.confirmPassword.msg+"*"}
                         i#confirmPasswordEyeIcon(class="fa-regular fa-eye")
-                        
+                        p#confirmPassErrors.error
 
+                        
+                p#passErrors.error
                 input(type="file" accept=".jpg, .png, .jpeg, .svg" name="profileAvatar" id="profileAvatar" class="form-control")
                 if error.profileAvatar 
                     p.error #{error.profileAvatar.msg+"*"}

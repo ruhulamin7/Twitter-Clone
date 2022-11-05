@@ -40,6 +40,10 @@ input[type='submit'] {
   background-color: #1da1f2;
   color: #fff;
 }
+input[type='file'] {
+  background-color: #e9ecef;
+  color: inherit;
+}
 form input {
   border: none !important;
   border-bottom: 2px solid lightgrey !important;

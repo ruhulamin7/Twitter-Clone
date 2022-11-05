@@ -8,3 +8,9 @@
   top: 30px;
   cursor: pointer;
 }
+
+#passErrors,
+#confirmPassErrors {
+  color: red;
+  margin-top: 5px;
+}

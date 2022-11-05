@@ -53,9 +53,11 @@ const signUpDataValidator = () => {
       })
       .withMessage('Email is already in use'),
     // password validation
-    check('password').notEmpty().withMessage('Password is required'),
-    // .isStrongPassword()
-    // .withMessage('Password should be strong'),
+    check('password')
+      .notEmpty()
+      .withMessage('Password is required')
+      .isStrongPassword()
+      .withMessage('Password should be strong'),
 
     // confirm password validation
     check('confirmPassword')
