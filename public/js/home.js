@@ -2,7 +2,7 @@
 const tweetInputField = document.querySelector('textarea#create_tweet');
 const tweetBtn = document.querySelector('button#tweet_btn');
 
-// tweet button disable/enable
+// tweet button disable/enable function
 tweetInputField.addEventListener('input', function (e) {
   const value = this.value;
   console.log(value);
