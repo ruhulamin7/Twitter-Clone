@@ -51,6 +51,10 @@ app.use(logoutRoute);
 // create new password routes
 app.use(newPasswordRoute);
 
+app.use('/check', (req, res) => {
+  res.send('Hello Twitty!!');
+});
+
 // not found handler
 app.use(notFoundHandler);
 // error handler
