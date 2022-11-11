@@ -17,7 +17,7 @@ const emailConfirmation = async (req, res, next) => {
       next(createError(500, 'Internal Server Error'));
     }
   } catch (error) {
-    next(createError(500, error));
+    next(createError(500, 'Internal Server Error'));
   }
 };
 
