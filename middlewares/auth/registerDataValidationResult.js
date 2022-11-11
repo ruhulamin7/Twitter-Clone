@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const singUpDataValidationResult = (req, res, next) => {
+const registerDataValidationResult = (req, res, next) => {
   const errors = validationResult(req);
   const mappedErrors = errors.mapped();
 
@@ -14,4 +14,4 @@ const singUpDataValidationResult = (req, res, next) => {
 };
 
 // exports
-module.exports = singUpDataValidationResult;
+module.exports = registerDataValidationResult;

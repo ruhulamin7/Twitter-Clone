@@ -1,7 +1,7 @@
 const { check } = require('express-validator');
 const User = require('../../models/User');
 
-const signUpDataValidator = () => {
+const registerDataValidator = () => {
   return [
     // firstName validation
     check('firstName').notEmpty().withMessage('First name is required').trim(),
@@ -77,4 +77,4 @@ const signUpDataValidator = () => {
 };
 
 // exports
-module.exports = signUpDataValidator;
+module.exports = registerDataValidator;
