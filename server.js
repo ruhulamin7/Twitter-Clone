@@ -17,10 +17,10 @@ const resetPasswordRoute = require('./routes/auth/resetPasswordRoute');
 const otpRoute = require('./routes/auth/otpRoute');
 const logoutRoute = require('./routes/auth/logoutRoute');
 const newPasswordRoute = require('./routes/auth/newPasswordRoute');
-require('dotenv').config();
+
 // init app
 const app = express();
-// dotenv.config();
+dotenv.config();
 
 // PORT
 const PORT = process.env.PORT || 3000;
