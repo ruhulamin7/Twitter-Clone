@@ -9,19 +9,12 @@ const registerHandler = require('../../controllers/auth/registerHandler');
 const loginHandler = require('../../controllers/auth/loginHandler');
 const loginDataValidator = require('../../middlewares/auth/loginDataValidator');
 const signUpDataValidator = require('../../middlewares/auth/signUpDataValidator');
-const loginDataVAlidationResult = require('../../middlewares/auth/loginDataVAlidationResult');
+const loginDataValidationResult = require('../../middlewares/auth/loginDataValidationResult');
 const authChecker = require('../../middlewares/common/authChecker');
-const logout = require('../../controllers/auth/logout');
+
+require('dotenv').config();
 
 const authRoute = express.Router();
-
-// get login page
-authRoute.get(
-  '/login',
-  decorateHTMLResponse(`Login - ${process.env.APP_NAME}`),
-  authChecker,
-  getLoginPage
-);
 
 // get register page
 authRoute.get(
@@ -29,6 +22,14 @@ authRoute.get(
   decorateHTMLResponse(`Register - ${process.env.APP_NAME}`),
   authChecker,
   getRegisterPage
+);
+
+// get login page
+authRoute.get(
+  '/login',
+  decorateHTMLResponse(`Login - ${process.env.APP_NAME}`),
+  authChecker,
+  getLoginPage
 );
 
 // register handler
@@ -46,7 +47,7 @@ authRoute.post(
   '/login',
   decorateHTMLResponse(`Login - ${process.env.APP_NAME}`),
   loginDataValidator(),
-  loginDataVAlidationResult,
+  loginDataValidationResult,
   loginHandler
   // testLoginHandler
 );

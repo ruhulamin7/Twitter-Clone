@@ -6,14 +6,94 @@ block css
     link(rel="stylesheet", href="/css/home.css")
     
 block bodyContent
-    img(src="./images/logo.png", alt="twitter logo" width="300")
-    h1 Welcome To Twitty
-    
+    .main_container 
+        .left_container
+            .left_top 
+                .logo_area                    
+                        a.logo(href="/home")
+                            i.fab.fa-twitter 
+                                
+                .menu_area
+                    nav.nav     
+                        a.nav_link(href="/home")
+                            span 
+                                i.fas.fa-home
+                                span.notify_box 2
+                            |Home
+                        a.nav_link(href="/explore") 
+                            span 
+                                i.fas.fa-hashtag
+                                span.notify_box 2
+                            |Explore
+                        a.nav_link(href="/notifications")
+                            span 
+                                i.fas.fa-bell
+                                span.notify_box 2
+                            |Notifications
+                        a.nav_link(href="/messages") 
+                            span
+                                i.fas.fa-envelope
+                                span.notify_box 2 
+                            |Messages
+                        a.nav_link(href="/bookmarks")
+                            span 
+                                i.fas.fa-bookmark
+                            |Bookmarks
+                        a.nav_link(href="/lists") 
+                            span 
+                                i.fas.fa-list 
+                            |Lists
+                        a.nav_link(href="/profile") 
+                            span 
+                                i.fas.fa-user  
+                            |Profile
+                        a.nav_link
+                            span.more 
+                                i.fas.fa-ellipsis-h
+                            |More               
+                    .tweet_btn
+                        a(href="/tweet") 
+                            button Tweet 
+            //- left bottom
+            .left_bottom
+                .user_area
+                    .user_avatar
+                        img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar") 
+                    .user_name
+                        h6 #{user.firstName} #{user.lastName}
+                        p @#{user.username}
+                    .user_dot_btn
+                        i.fas.fa-ellipsis-h 
+                                
+        .middle_container
+            .tweet_heading_wrapper
+                .heading_text
+                    h4 Home 
+                .heading_icon
+                    i.fas.fa-star
 
-    div
-        if user._id 
-            h2 Name: #{user.firstName}
-            h4 Email: #{user.email}
-            a.btn.btn-danger(href="/logout") Logout
+            .create_tweet_wrapper
+                .avatar_area
+                    img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar")
+                .tweet_area
+                    .post_visibility 
+                        button Everyone
+                            i.fas.fa-angle-down
+                    .create_tweet 
+                        textarea#create_tweet(name="tweet",  placeholder="What's happening?" )
+                    .replay_tweet 
+                        I.fas.fa-globe
+                        span Everyone can reply
+                    .tweet_options_wrapper
+                        .tweet_options
+                        .tweet_btn 
+                            button#tweet_btn.dis_btn(disabled="") Tweet 
 
+
+            .show_all_tweet
+                button Show 77 Tweets
+                
+        .right_container 
+
+    script(src="/js/home.js")
     

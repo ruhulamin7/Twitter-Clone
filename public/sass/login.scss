@@ -52,6 +52,15 @@ form input {
 form p {
   margin: 0;
 }
+
+.password_area {
+  position: relative;
+}
+#passEyeIcon {
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
 .login_bottom_link {
   display: flex;
   justify-content: space-between;

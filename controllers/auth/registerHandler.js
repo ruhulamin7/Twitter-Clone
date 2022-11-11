@@ -37,7 +37,7 @@ const registerHandler = async (req, res, next) => {
                 title: `Confirmation - ${process.env.APP_NAME}`,
               });
             } else {
-              next(createError(500, 'Internal Server Error!'));
+              next(createError(500, err));
             }
           }
         );

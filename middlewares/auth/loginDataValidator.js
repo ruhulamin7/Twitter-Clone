@@ -31,14 +31,30 @@ const loginDataValidator = () => {
           throw createError(500, error);
         }
       })
-      .withMessage('User was not found!'),
+      .withMessage('User was not found!')
+      .custom(async (value, { req }) => {
+        try {
+          const user = await User.findOne({
+            $or: [{ email: value }, { username: value }],
+          });
+          if (user.status === 'verified') {
+            req.status = user.status;
+            return Promise.resolve();
+          } else {
+            return Promise.reject();
+          }
+        } catch (error) {
+          throw createError(500, error);
+        }
+      })
+      .withMessage('Email is not verified!'),
 
     //check password
     check('password')
       .notEmpty()
       .withMessage('Password is required')
       .custom(async (password, { req }) => {
-        if (!req.password) return true;
+        if (!req.password || !req.status) return true;
         try {
           //check password is valid or not
           const isValidPassword = await bcrypt.compare(password, req.password);

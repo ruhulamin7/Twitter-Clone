@@ -1,4 +1,264 @@
-body {
-  background-color: #50abf1;
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.main_container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.left_container {
+  flex-basis: 250px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.left_container .left_top {
+  flex: 1;
+}
+.left_container .left_top .logo_area {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.left_container .left_top .logo_area a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.left_container .left_top .logo_area a i {
+  color: #50abf1;
+  font-size: 30px;
+  padding: 10px;
+}
+.left_container .left_top .logo_area a:hover {
+  background-color: #eff1f1;
+}
+.left_container .left_top .menu_area {
+  width: 100%;
+}
+.left_container .left_top .menu_area nav.nav {
+  display: inline-block;
+}
+.left_container .left_top .menu_area nav.nav a.nav_link {
+  display: flex;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 25px;
+  color: #000;
+  transition: 0.1s;
+}
+.left_container .left_top .menu_area nav.nav a.nav_link span.more i {
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 0 1px;
+}
+.left_container .left_top .menu_area nav.nav a.nav_link > span {
+  margin-right: 12px;
+  position: relative;
+}
+.left_container .left_top .menu_area nav.nav a.nav_link > span span {
+  position: absolute;
+  left: 12px;
+  top: -3px;
+  height: 16px;
+  width: 16px;
   text-align: center;
+  line-height: 16px;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: #50abf1;
+  color: #ffffff;
+}
+.left_container .left_top .menu_area nav.nav a.nav_link:hover {
+  background-color: #eff1f1;
+}
+.left_container .left_top .tweet_btn a button {
+  background-color: #50abf1;
+  margin-top: 10px;
+  color: #ffffff;
+  padding: 10px;
+  width: 150px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+}
+.left_container .left_bottom {
+  flex-basis: 100px;
+  display: flex;
+  align-items: center;
+}
+.left_container .left_bottom .user_area {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  padding: 10px 15px;
+  transition: 0.1s;
+}
+.left_container .left_bottom .user_area:hover {
+  background-color: #eff1f1;
+}
+.left_container .left_bottom .user_area .user_avatar {
+  flex-basis: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.left_container .left_bottom .user_area .user_avatar img {
+  width: 100%;
+}
+.left_container .left_bottom .user_area .user_name {
+  flex: 1;
+  margin: 0 10px;
+}
+.left_container .left_bottom .user_area .user_name h6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.left_container .left_bottom .user_area .user_dot_btn {
+  display: flex;
+}
+
+.middle_container {
+  flex-grow: 1;
+  height: 100vh;
+  border: 2px solid #eff1f1;
+}
+.middle_container .tweet_heading_wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  padding: 12px;
+}
+.middle_container .tweet_heading_wrapper .heading_icon {
+  min-width: 50px;
+  text-align: right;
+}
+.middle_container .create_tweet_wrapper {
+  display: flex;
+  width: 100%;
+  padding: 12px;
+}
+.middle_container .create_tweet_wrapper .avatar_area {
+  flex-basis: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+}
+.middle_container .create_tweet_wrapper .avatar_area img {
+  width: 100%;
+}
+.middle_container .create_tweet_wrapper .tweet_area {
+  flex-grow: 1;
+}
+.middle_container .create_tweet_wrapper .tweet_area .post_visibility {
+  display: flex;
+  padding-bottom: 12px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .post_visibility button {
+  border: 1px solid black;
+  padding: 2px 10px;
+  outline: none;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: unset;
+}
+.middle_container .create_tweet_wrapper .tweet_area .post_visibility button i {
+  margin-left: 5px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet {
+  padding: 12px 0;
+}
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet textarea {
+  width: 100%;
+  outline: 0;
+  border: 0;
+  padding: 5px;
+  font-size: 20px;
+  height: 50px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .replay_tweet {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #eff1f1;
+}
+.middle_container .create_tweet_wrapper .tweet_area .replay_tweet i {
+  margin-right: 6px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .replay_tweet span {
+  font-weight: 600;
+}
+.middle_container .create_tweet_wrapper .tweet_area .tweet_options_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .tweet_options_wrapper .tweet_btn button {
+  border: none;
+  outline: none;
+  background-color: #50abf1;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 7px 18px;
+  border-radius: 25px;
+}
+.middle_container .create_tweet_wrapper .tweet_area .tweet_options_wrapper .tweet_btn .dis_btn {
+  background-color: #a3cff0;
+  cursor: not-allowed;
+}
+.middle_container .show_all_tweet {
+  text-align: center;
+  border-top: 2px solid #eff1f1;
+  border-bottom: 2px solid #eff1f1;
+}
+.middle_container .show_all_tweet button {
+  padding: 12px;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background-color: unset;
+}
+
+.right_container {
+  flex-basis: 350px;
+  width: 100px;
+  height: 100vh;
+  background-color: rgb(69, 150, 69);
 }

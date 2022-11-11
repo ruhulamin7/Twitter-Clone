@@ -7,7 +7,7 @@ block css
     link(rel="stylesheet", href="/css/register.css")
 
 block js 
-    script(src="/js/register.js" defer) 
+    script(src="/js/register.js" type="module" defer ) 
 block bodyContent
     .login_container
         .login_wrapper
@@ -28,12 +28,13 @@ block bodyContent
                 input(type="text" value= user? user.username: '' name="username" id="username" placeholder="Username" class="form-control")
                 if error.username 
                     p.error #{error.username.msg+"*"}
-
+                p#username_error
 
                 input(type="text" value= user? user.email: '' name="email" id="email" placeholder="Email" class="form-control")
                 if error.email 
                     p.error #{error.email.msg+"*"}
-                
+                p#email_error
+
                 div.d-flex.gap-3
                     div.password_area
                         input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Password" class="form-control")

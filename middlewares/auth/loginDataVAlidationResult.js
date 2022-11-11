@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 const createError = require('http-errors');
 
 // login data validation result
-const loginDataVAlidationResult = (req, res, next) => {
+const loginDataValidationResult = (req, res, next) => {
   const errors = validationResult(req);
   // error formatting to object
   const mappedErrors = errors.mapped();
@@ -24,4 +24,4 @@ const loginDataVAlidationResult = (req, res, next) => {
 };
 
 // export
-module.exports = loginDataVAlidationResult;
+module.exports = loginDataValidationResult;

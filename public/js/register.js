@@ -1,3 +1,7 @@
+// import User from '../models/User';
+
+// const User = require('../../models/User');
+
 // select elements
 const passwordEl = document.querySelector('#password');
 const passwordEyeIcon = document.querySelector('#passwordEyeIcon');
@@ -5,6 +9,11 @@ const confirmPasswordEl = document.querySelector('#confirmPassword');
 const confirmPasswordEyeIcon = document.querySelector(
   '#confirmPasswordEyeIcon'
 );
+
+const usernameEl = document.getElementById('username');
+const emailEl = document.getElementById('email');
+const usernameErrorEl = document.getElementById('username_error');
+const emailErrorEl = document.getElementById('email_error');
 
 let passErrorsEl = document.querySelector('#passErrors');
 passErrorsEl.hidden = true;
@@ -76,11 +85,6 @@ passwordEl.addEventListener('keyup', function () {
   }
 });
 
-// key down clear timer
-// passwordEl.addEventListener('keydown', function () {
-//   clearTimeout(typingTimer);
-// });
-
 // check confirm password
 function checkConfirmPassword() {
   if (passwordEl.value !== confirmPasswordEl.value) {
@@ -92,6 +96,16 @@ function checkConfirmPassword() {
     confirmPassErrorsEl.hidden = true;
   }
 }
+
+// key down clear timer
+passwordEl.addEventListener('keydown', function () {
+  clearTimeout(typingTimer);
+});
+
+// key down clear timer
+confirmPasswordEl.addEventListener('keydown', function () {
+  clearTimeout(typingTimer);
+});
 
 // confirm password match validation
 confirmPasswordEl.addEventListener('keyup', function () {
@@ -106,7 +120,22 @@ confirmPasswordEl.addEventListener('keyup', function () {
   }
 });
 
-// key down clear timer
-// confirmPasswordEl.addEventListener('keydown', function () {
-//   clearTimeout(typingTimer);
+// username realtime validation
+const usernameValidator = () => {
+  let username = usernameEl.value;
+  if (username) {
+    usernameErrorEl.innerText = 'Username already in use';
+    // const user = User.findOne({ username: username }, { username: 1 });
+    // if (user) {
+    //   usernameErrorEl.innerText = 'Username already in use';
+    // } else {
+    //   usernameErrorEl.innerText = '';
+    // }
+  } else {
+    usernameErrorEl.innerText = '';
+  }
+};
+
+// usernameEl.addEventListener('keyup', function () {
+//   usernameValidator();
 // });
