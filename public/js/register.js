@@ -1,7 +1,3 @@
-// import User from '../models/User';
-
-// const User = require('../../models/User');
-
 // select elements
 const passwordEl = document.querySelector('#password');
 const passwordEyeIcon = document.querySelector('#passwordEyeIcon');
@@ -11,8 +7,8 @@ const confirmPasswordEyeIcon = document.querySelector(
 );
 
 const usernameEl = document.getElementById('username');
-const emailEl = document.getElementById('email');
 const usernameErrorEl = document.getElementById('username_error');
+const emailEl = document.getElementById('email');
 const emailErrorEl = document.getElementById('email_error');
 
 let passErrorsEl = document.querySelector('#passErrors');
@@ -35,10 +31,11 @@ function passwordHideAndShow(icon, field) {
 
 // password handler
 passwordHideAndShow(passwordEyeIcon, passwordEl);
+
 // confirm password handler
 passwordHideAndShow(confirmPasswordEyeIcon, confirmPasswordEl);
 
-// password validation handler
+// realtime password validation handler
 function passwordValidator(pass) {
   let errors = [];
   if (pass.length < 8) {
@@ -59,7 +56,7 @@ function passwordValidator(pass) {
   return errors;
 }
 
-// check password
+// check realtime password
 function checkPassword(pass) {
   let validationResult = passwordValidator(pass);
   if (validationResult.length > 0) {
@@ -67,6 +64,8 @@ function checkPassword(pass) {
       'Your password must contain at least ' + validationResult.join(', ');
     confirmPassErrorsEl.hidden = true;
     passErrorsEl.hidden = false;
+    // document.getElementById('pass_err').hidden = true;
+    // document.getElementById('confirm_pass_err').hidden = true;
     passErrorsEl.textContent = errorMsg;
   }
 }
@@ -77,7 +76,6 @@ passwordEl.addEventListener('keyup', function () {
   const passInput = passwordEl.value;
   clearTimeout(typingTimer);
   passErrorsEl.hidden = true;
-
   if (passInput) {
     typingTimer = setTimeout(() => {
       checkPassword(passInput);
@@ -121,21 +119,75 @@ confirmPasswordEl.addEventListener('keyup', function () {
 });
 
 // username realtime validation
-const usernameValidator = () => {
-  let username = usernameEl.value;
-  if (username) {
-    usernameErrorEl.innerText = 'Username already in use';
-    // const user = User.findOne({ username: username }, { username: 1 });
-    // if (user) {
-    //   usernameErrorEl.innerText = 'Username already in use';
-    // } else {
-    //   usernameErrorEl.innerText = '';
-    // }
-  } else {
-    usernameErrorEl.innerText = '';
+let userName;
+const usernameValidator = (username) => {
+  try {
+    fetch(`http://localhost:3000/username/${username}`)
+      .then((res) => res.json())
+      .then((data) => {
+        userName = data[0];
+        if (!username) {
+          usernameErrorEl.hidden = true;
+          return;
+        }
+        if (username?.length < 3) {
+          usernameErrorEl.hidden = false;
+          usernameErrorEl.innerText =
+            'Username should be at least 3 characters';
+          // document.getElementById('username_err').hidden = true;
+          return;
+        }
+        if (userName?.username) {
+          usernameErrorEl.hidden = false;
+          usernameErrorEl.innerText = 'Username is already taken';
+          // document.getElementById('username_err').hidden = true;
+        } else {
+          usernameErrorEl.hidden = true;
+        }
+      });
+  } catch (error) {
+    console.log(error);
   }
 };
 
-// usernameEl.addEventListener('keyup', function () {
-//   usernameValidator();
-// });
+// username realtime validation
+let userEmail;
+const emailValidator = (email) => {
+  try {
+    fetch(`http://localhost:3000/email/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        userEmail = data[0];
+        if (!email) {
+          emailErrorEl.hidden = true;
+          return;
+        }
+        if (userEmail?.email) {
+          emailErrorEl.hidden = false;
+          emailErrorEl.innerText = 'Email is already in use';
+        } else {
+          emailErrorEl.hidden = true;
+        }
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// username validation
+usernameEl.addEventListener('keyup', function () {
+  usernameErrorEl.hidden = true;
+  const username = usernameEl.value.trim();
+  setTimeout(() => {
+    usernameValidator(username);
+  }, 500);
+});
+
+// email validation
+emailEl.addEventListener('keyup', function () {
+  const email = emailEl.value.trim();
+  emailErrorEl.hidden = true;
+  setTimeout(() => {
+    emailValidator(email);
+  }, 500);
+});

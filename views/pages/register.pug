@@ -27,19 +27,19 @@ block bodyContent
                 
                 input(type="text" value= user? user.username: '' name="username" id="username" placeholder="Username" class="form-control")
                 if error.username 
-                    p.error #{error.username.msg+"*"}
-                p#username_error
+                    p.error#username_err #{error.username.msg+"*"}
+                p#username_error.error
 
                 input(type="text" value= user? user.email: '' name="email" id="email" placeholder="Email" class="form-control")
                 if error.email 
-                    p.error #{error.email.msg+"*"}
-                p#email_error
+                    p.error#email_err #{error.email.msg+"*"}
+                p#email_error.error
 
                 div.d-flex.gap-3
                     div.password_area
                         input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Password" class="form-control")
                         if error.password 
-                            p.error #{error.password.msg+"*"}
+                            p.error#pass_err #{error.password.msg+"*"}
                         i#passwordEyeIcon(class="fa-regular fa-eye")
                         //- <i class="fa-regular fa-eye-slash"></i>
                         //- <i class="fa-regular fa-face-pensive"></i>
@@ -47,11 +47,10 @@ block bodyContent
                     div.password_area
                         input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype password" class="form-control")
                         if error.confirmPassword 
-                            p.error #{error.confirmPassword.msg+"*"}
+                            p.error#confirm_pass_err #{error.confirmPassword.msg+"*"}
                         i#confirmPasswordEyeIcon(class="fa-regular fa-eye")
                         p#confirmPassErrors.error
 
-                        
                 p#passErrors.error
                 input(type="file" accept=".jpg, .png, .jpeg, .svg" name="profileAvatar" id="profileAvatar" class="form-control")
                 if error.profileAvatar 

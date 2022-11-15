@@ -81,11 +81,19 @@ block bodyContent
                             i.fas.fa-angle-down
                     .create_tweet 
                         textarea#create_tweet(name="tweet",  placeholder="What's happening?" )
+                        .output_image_container
+                            //- img(src="", width="200" alt="")
+                            
+                       
                     .replay_tweet 
                         I.fas.fa-globe
                         span Everyone can reply
                     .tweet_options_wrapper
                         .tweet_options
+                            label(for="tweet_img")
+                                i.fas.fa-images   
+                                |Upload Image
+                            input(type="file", multiple id="tweet_img" alt="tweet" style="display: none")
                         .tweet_btn 
                             button#tweet_btn.dis_btn(disabled="") Tweet 
 

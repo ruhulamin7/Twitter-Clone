@@ -13,6 +13,8 @@ const authChecker = require('../../middlewares/common/authChecker');
 const loginDataValidationResult = require('../../middlewares/auth/loginDataValidationResult');
 const registerDataValidator = require('../../middlewares/auth/registerDataValidator');
 const registerDataValidationResult = require('../../middlewares/auth/registerDataValidationResult');
+const usernameValidator = require('../../controllers/auth/usernameValidator');
+const emailValidator = require('../../controllers/auth/emailValidator');
 
 require('dotenv').config();
 
@@ -53,6 +55,10 @@ authRoute.post(
   loginHandler
   // testLoginHandler
 );
+// username validation
+authRoute.get(`/username/:username`, usernameValidator);
+// email validation
+authRoute.get(`/email/:email`, emailValidator);
 
 // exports
 module.exports = authRoute;
