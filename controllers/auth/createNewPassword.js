@@ -25,6 +25,7 @@ const createNewPassword = async (req, res, next) => {
         {
           username: result.username,
           userId: result._id,
+          email: result.email,
         },
         process.env.JWT_SECRET,
         {

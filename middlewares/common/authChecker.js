@@ -8,9 +8,10 @@ const authChecker = async (req, res, next) => {
     if (req?.signedCookies?.access_token) {
       const token = req.signedCookies.access_token.split(' ')[1];
       const decode = await jwt.verify(token, process.env.JWT_SECRET);
-      const { username, userId } = decode;
+      const { username, userId, email } = decode;
       req.username = username;
       req.userId = userId;
+      req.email = email;
       if (req.originalUrl === '/login' || req.originalUrl === '/register') {
         return res.redirect('/');
       }

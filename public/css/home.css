@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 p,
 h1,
 h2,
@@ -153,9 +157,10 @@ a {
 }
 
 .middle_container {
-  flex-grow: 1;
+  flex-basis: 700px;
   height: 100vh;
   overflow: scroll;
+  overflow-x: hidden;
   border: 2px solid #eff1f1;
 }
 .middle_container .tweet_heading_wrapper {
@@ -163,7 +168,7 @@ a {
   justify-content: space-between;
   height: 50px;
   align-items: center;
-  padding: 12px;
+  padding: 15px;
 }
 .middle_container .tweet_heading_wrapper .heading_icon {
   min-width: 50px;
@@ -172,16 +177,16 @@ a {
 .middle_container .create_tweet_wrapper {
   display: flex;
   width: 100%;
-  padding: 12px;
+  padding: 15px;
 }
-.middle_container .create_tweet_wrapper .avatar_area {
-  flex-basis: 40px;
+.middle_container .create_tweet_wrapper .avatar_area .img {
+  width: 40px;
   height: 40px;
+  margin-right: 15px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 12px;
 }
-.middle_container .create_tweet_wrapper .avatar_area img {
+.middle_container .create_tweet_wrapper .avatar_area .img img {
   width: 100%;
 }
 .middle_container .create_tweet_wrapper .tweet_area {
@@ -217,14 +222,16 @@ a {
 }
 .middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container {
   width: 100%;
+}
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .output_image_inner_container {
   display: grid;
   grid-template-columns: auto auto;
   gap: 10px;
 }
-.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .img_div {
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .output_image_inner_container .img_div {
   position: relative;
 }
-.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .img_div span {
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .output_image_inner_container .img_div span {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -237,13 +244,13 @@ a {
   align-items: center;
   cursor: pointer;
 }
-.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .img_div span i {
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .output_image_inner_container .img_div span i {
   color: white;
   pointer-events: none;
 }
-.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container img {
+.middle_container .create_tweet_wrapper .tweet_area .create_tweet .output_image_container .output_image_inner_container img {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -278,6 +285,50 @@ a {
   background-color: #a3cff0;
   cursor: not-allowed;
 }
+.middle_container .tweet_container {
+  border-top: 1px solid #eff1f1;
+  padding: 15px;
+  display: flex;
+}
+.middle_container .tweet_container .tweet_profile_img .img {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.middle_container .tweet_container .tweet_profile_img .img img {
+  width: 100%;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_user {
+  display: flex;
+  justify-content: space-between;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_user .username,
+.middle_container .tweet_container .tweet_content_wrapper .tweet_user .time {
+  color: gray;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_content {
+  margin-bottom: 15px;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_images_wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+  border-radius: 10px;
+  gap: 5px;
+  overflow: hidden;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_images_wrapper img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.middle_container .tweet_container .tweet_content_wrapper .tweet_activities {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
 .middle_container .show_all_tweet {
   text-align: center;
   border-top: 2px solid #eff1f1;
@@ -292,7 +343,7 @@ a {
 }
 
 .right_container {
-  flex-basis: 350px;
+  flex-basis: 250px;
   width: 100px;
   min-height: 100vh;
   background-color: rgb(56, 56, 56);

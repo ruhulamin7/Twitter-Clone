@@ -6,7 +6,6 @@ const User = require('../../models/User');
 const getHomePage = async (req, res, next) => {
   try {
     const user = await User.findOne({ _id: req.userId });
-    // console.log( user );
     return res.render('pages/home', {
       user: user ? user : {},
       otp: {},

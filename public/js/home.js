@@ -3,7 +3,9 @@ const tweetInputEl = document.querySelector('textarea#create_tweet');
 const tweetBtn = document.querySelector('button#tweet_btn');
 
 const tweetImgInputEl = document.querySelector('#tweet_img');
-const outputImageContainer = document.querySelector('.output_image_container');
+const outputImageContainer = document.querySelector(
+  '.output_image_inner_container'
+);
 const postImages = [];
 
 // tweet button disable/enable function
@@ -18,22 +20,6 @@ tweetInputEl.addEventListener('input', function (e) {
   }
 });
 
-// // handle image upload
-// tweetImgInputEl.addEventListener('change', function (e) {
-//   const files = this.files;
-//   [...files].map((file) => {
-//     const imgTag = document.createElement('img');
-//     imgTag.src = URL.createObjectURL(file);
-//     imgTag.style.width = '200px';
-//     imgTag.style.marginRight = '10px';
-//     imgTag.style.marginBottom = '10px';
-//     outputImageContainer.appendChild(imgTag);
-//     imgTag.addEventListener('click', function () {
-//       this.remove();
-//     });
-//   });
-// });
-
 // handle image upload
 tweetImgInputEl.addEventListener('change', function (e) {
   const files = this.files;
@@ -41,8 +27,12 @@ tweetImgInputEl.addEventListener('change', function (e) {
     [...files].forEach((file) => {
       const fr = new FileReader();
       fr.onload = function () {
-        if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
-          alert('Only image files are allowed');
+        if (
+          !['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'].includes(
+            file.type
+          )
+        ) {
+          alert('Only jpg, png, jpeg, and svg image files are allowed');
           return;
         }
 
@@ -91,4 +81,28 @@ outputImageContainer.addEventListener('click', function (e) {
       }
     });
   }
+});
+
+// post the tweet
+tweetBtn.addEventListener('click', function () {
+  const content = tweetInputEl.value;
+  if (!(postImages.length || content)) return;
+
+  const formData = new FormData();
+  formData.append('content', content);
+  postImages.forEach((file) => {
+    formData.append(file.name, file);
+  });
+
+  // const url = window.location.protocol + '//' + window.location.host;
+  const url = `${window.location.origin}/tweet`;
+  fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => {
+      console.log(err);
+    });
 });

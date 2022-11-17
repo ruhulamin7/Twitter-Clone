@@ -16,6 +16,7 @@ passErrorsEl.hidden = true;
 let confirmPassErrorsEl = document.querySelector('#confirmPassErrors');
 confirmPassErrorsEl.hidden = true;
 
+// const usernameErr = document.getElementById('username_err');
 // password hide and show handler
 function passwordHideAndShow(icon, field) {
   icon.addEventListener('click', function (e) {
@@ -135,6 +136,7 @@ const usernameValidator = (username) => {
           usernameErrorEl.innerText =
             'Username should be at least 3 characters';
           // document.getElementById('username_err').hidden = true;
+
           return;
         }
         if (userName?.username) {

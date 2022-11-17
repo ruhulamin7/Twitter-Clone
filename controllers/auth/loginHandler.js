@@ -12,6 +12,7 @@ const loginHandler = async (req, res, next) => {
         {
           username: req.username,
           userId: req.userId,
+          email: req.email,
         },
         process.env.JWT_SECRET,
         {

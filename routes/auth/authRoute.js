@@ -24,7 +24,7 @@ const authRoute = express.Router();
 authRoute.get(
   '/register',
   decorateHTMLResponse(`Register - ${process.env.APP_NAME}`),
-  authChecker,
+  // authChecker,
   getRegisterPage
 );
 
@@ -32,7 +32,7 @@ authRoute.get(
 authRoute.get(
   '/login',
   decorateHTMLResponse(`Login - ${process.env.APP_NAME}`),
-  authChecker,
+  // authChecker,
   getLoginPage
 );
 
@@ -53,7 +53,6 @@ authRoute.post(
   loginDataValidator(),
   loginDataValidationResult,
   loginHandler
-  // testLoginHandler
 );
 // username validation
 authRoute.get(`/username/:username`, usernameValidator);
