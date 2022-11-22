@@ -1,17 +1,20 @@
 // select elements
-const tweetInputEl = document.querySelector('textarea#create_tweet');
-const tweetBtn = document.querySelector('button#tweet_btn');
+let tweetInputEl = document.querySelector('textarea#create_tweet');
+let tweetBtn = document.querySelector('button#tweet_btn');
 
-const tweetImgInputEl = document.querySelector('#tweet_img');
-const outputImageContainer = document.querySelector(
+let tweetImgInputEl = document.querySelector('#tweet_img');
+let outputImageContainer = document.querySelector(
   '.output_image_inner_container'
 );
-const postImages = [];
+let tweetContainer = document.querySelector('.tweet_container');
+let tweetImages = [];
+
+//
 
 // tweet button disable/enable function
 tweetInputEl.addEventListener('input', function (e) {
   const value = this.value.trim();
-  if (value || postImages.length) {
+  if (value || tweetImages.length) {
     tweetBtn.removeAttribute('disabled');
     tweetBtn.classList.remove('dis_btn');
   } else {
@@ -19,6 +22,27 @@ tweetInputEl.addEventListener('input', function (e) {
     tweetBtn.classList.add('dis_btn');
   }
 });
+
+// show tweets to UI
+async function loadTweets() {
+  try {
+    const result = await fetch(`${window.location.origin}/tweet`);
+    const tweets = await result.json();
+    if (!tweets.length) {
+      return (tweetContainer.innerHTML =
+        '<h3 class="nothing text-center mt-3">No tweets :(</h3>');
+    }
+
+    tweets.forEach((tweet) => {
+      const tweetEl = showTweetUI(tweet);
+      tweetContainer.insertAdjacentElement('afterbegin', tweetEl);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+loadTweets();
 
 // handle image upload
 tweetImgInputEl.addEventListener('change', function (e) {
@@ -37,7 +61,7 @@ tweetImgInputEl.addEventListener('change', function (e) {
         }
 
         // collect image for store
-        postImages.push(file);
+        tweetImages.push(file);
         // remove disable style
         tweetBtn.removeAttribute('disabled');
         tweetBtn.classList.remove('dis_btn');
@@ -70,11 +94,11 @@ outputImageContainer.addEventListener('click', function (e) {
   } else {
     const imgEl = closeBtn.parentElement;
     const fileName = imgEl.dataset.name;
-    postImages.forEach((img, i) => {
+    tweetImages.forEach((img, i) => {
       if (img.name === fileName) {
-        postImages.splice(i, 1);
+        tweetImages.splice(i, 1);
         imgEl.remove();
-        if (!postImages.length && !tweetInputEl.value.trim()) {
+        if (!tweetImages.length && !tweetInputEl.value.trim()) {
           tweetBtn.setAttribute('disabled', true);
           tweetBtn.classList.add('dis_btn');
         }
@@ -83,14 +107,14 @@ outputImageContainer.addEventListener('click', function (e) {
   }
 });
 
-// post the tweet
+// post tweet data
 tweetBtn.addEventListener('click', function () {
   const content = tweetInputEl.value;
-  if (!(postImages.length || content)) return;
+  if (!(tweetImages.length || content)) return;
 
   const formData = new FormData();
   formData.append('content', content);
-  postImages.forEach((file) => {
+  tweetImages.forEach((file) => {
     formData.append(file.name, file);
   });
 
@@ -101,8 +125,123 @@ tweetBtn.addEventListener('click', function () {
     body: formData,
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      const tweetEl = showTweetUI(data);
+      tweetContainer.insertAdjacentElement('afterbegin', tweetEl);
+      clearTweetField();
+    })
     .catch((err) => {
       console.log(err);
     });
 });
+
+// show tweet data to UI
+function showTweetUI(data) {
+  const {
+    content,
+    createdAt,
+    images: tweetImages,
+    tweetedBy: { _id, firstName, lastName, email, username, userAvatar },
+  } = data;
+
+  const cratedTime = new Date(createdAt).getTime();
+  const time = timeSince(cratedTime);
+
+  const div = document.createElement('div');
+  div.classList.add('tweet');
+
+  div.innerHTML = `
+  <div class="tweet_profile_img">
+  <div class="img">
+      <img src="${
+        window.location.origin
+      }/uploads/profile/${userAvatar}" , alt="avatar" class="avatar">
+  </div>
+</div>
+
+<div class="tweet_content_wrapper">
+  <div class="tweet_user">
+      <div>
+          <a href="/profile/${username}" class="name">${
+    firstName + ' ' + lastName
+  }</a>
+          <span class="username">@${username + ' ' + '.' + ' '}</span> 
+          <span class="time">${time}</span>
+      </div>
+      <i class="fas fa-ellipsis-h"></i>
+  </div>
+  <div class="tweet_content">
+      ${content}
+  </div>
+  <div class="tweet_images_wrapper">
+
+  </div>
+  <div class="tweet_activities">
+      <span data-tag="Replay">
+        <i class="fas fa-comment"></i> 12
+      </span>
+      <span data-tag="Retweet">
+        <i class="fas fa-retweet"></i> 23
+      </span>
+      <span data-tag="Love">
+        <i class="fas fa-heart"></i> 322
+      </span>
+      <span data-tag="Share">
+        <i class="fas fa-share"></i> 3
+      </span>
+  </div>
+</div>
+  `;
+  // append tweet
+  tweetContainer.appendChild(div);
+  // append tweet images
+  const tweetImagesWrapper = div.querySelector('.tweet_images_wrapper');
+  if (tweetImages.length) {
+    tweetImages.forEach((img) => {
+      const imgDiv = document.createElement('div');
+      imgDiv.classList.add('img');
+      imgDiv.innerHTML = `<img src="${window.location.origin}/uploads/${_id}/tweets/${img}" att=""/>`;
+      tweetImagesWrapper.appendChild(imgDiv);
+    });
+  } else {
+    tweetImagesWrapper.hidden = true;
+  }
+  return div;
+}
+
+// show realtime at tweet
+function timeSince(date) {
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = seconds / 31536000;
+
+  if (interval > 1) {
+    return Math.floor(interval) + ' years ago';
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + ' months ago';
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + ' days ago';
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + ' hours ago';
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + ' minutes ago';
+  }
+  return 'Just now';
+}
+
+// clear tweet field
+function clearTweetField() {
+  tweetInputEl.value = '';
+  outputImageContainer.innerHTML = '';
+  tweetImages = [];
+  tweetBtn.setAttribute('disabled', true);
+  tweetBtn.classList.add('dis_btn');
+}

@@ -28,8 +28,8 @@ function uploadTweetImage(req, res, next) {
         //     msg: err.message,
         //   },
         // };
-        // req.error = error;
-        next(err);
+        // return res.render('pages/home', error);
+        console.log(err);
       } else {
         next();
       }

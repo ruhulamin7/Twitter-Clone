@@ -84,6 +84,8 @@ block bodyContent
                         textarea#create_tweet(name="tweet",  placeholder="What's happening?" )
                         .output_image_container
                             .output_image_inner_container
+                            if error.multerError
+                                span.error #{error.multerError.msg}
 
                             //- img(src="", width="200" alt="")
                             
@@ -95,39 +97,18 @@ block bodyContent
                         .tweet_options
                             label(for="tweet_img")
                                 i.fas.fa-images   
-                                |Upload Image
+                                
                             input(type="file", multiple id="tweet_img" alt="tweet" style="display: none")
                         .tweet_btn 
                             button#tweet_btn.dis_btn(disabled="") Tweet 
                 
             .show_all_tweet
                 button Show 77 Tweets
+                
             .tweet_container 
-                .tweet_profile_img
-                    .img
-                        img(src="./images/avatar.png", alt="")
-                .tweet_content_wrapper
-                    .tweet_user 
-                        div
-                            strong.name Ruhul Amin 
-                            span.username @ruhul . 
-                            span.time Just Now
-                        i.fas.fa-ellipsis-h
-                    .tweet_content  
-                        |Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid assumenda fugiat necessitatibus dolore, dolorem sapiente doloremque consequatur 
-                    .tweet_images_wrapper 
-                        img(src="./images/logo.png", alt="") 
-                        img(src="./images/logo.png", alt="") 
-                        img(src="./images/logo.png", alt="") 
-                        img(src="./images/logo.png", alt="") 
-                    .tweet_activities 
-                        span comment 125
-                        span retweet 67
-                        span love 
-                        span share 
                 
         .right_container 
-            //- h1 hello bangladesh 
+
 
     script(src="/js/home.js")
     

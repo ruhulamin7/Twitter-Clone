@@ -4,10 +4,6 @@ const User = require('../../models/User');
 
 const createTweet = async (req, res, next) => {
   try {
-    // console.log(req.body);
-    // console.log(req.files);
-    // console.log(req.error);
-    // console.log(req.userId);
     const tweetObj = {
       content: req.body.content,
       images: [],
@@ -28,8 +24,7 @@ const createTweet = async (req, res, next) => {
 
     res.send(result);
   } catch (error) {
-    console.log(error);
-    next(error);
+    next(createHttpError(500, error));
   }
 };
 
