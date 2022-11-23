@@ -314,6 +314,9 @@ a {
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper {
   width: 100%;
+  background-color: #eff1f1;
+  padding: 15px;
+  border-radius: 5px;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_user {
   width: 100%;
@@ -356,12 +359,11 @@ a {
   min-height: 100%;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_images_wrapper div.img img:hover {
-  opacity: 0.8;
   cursor: pointer;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
@@ -369,7 +371,6 @@ a {
   position: relative;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span i {
-  margin-right: 10px;
   color: gray;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span::after {

@@ -1,6 +1,7 @@
 // dependencies
 const { validationResult } = require('express-validator');
 const createError = require('http-errors');
+const { updateCacheData } = require('../../utils/cacheManager');
 
 // login data validation result
 const loginDataValidationResult = (req, res, next) => {

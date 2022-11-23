@@ -1,11 +1,16 @@
 // dependencies
 const createHttpError = require('http-errors');
 const User = require('../../models/User');
+const { cacheSetAndGet } = require('../../utils/cacheManager');
 
 // get home page
 const getHomePage = async (req, res, next) => {
   try {
-    const user = await User.findOne({ _id: req.userId });
+    const user = await cacheSetAndGet(`users:${req.userId}`, async () => {
+      const user = await User.findOne({ _id: req.userId });
+      return user;
+    });
+
     return res.render('pages/home', {
       user: user ? user : {},
       otp: {},

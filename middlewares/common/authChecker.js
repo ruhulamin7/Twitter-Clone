@@ -7,7 +7,7 @@ const authChecker = async (req, res, next) => {
   try {
     if (req?.signedCookies?.access_token) {
       const token = req.signedCookies.access_token.split(' ')[1];
-      const decode = await jwt.verify(token, process.env.JWT_SECRET);
+      const decode = jwt.verify(token, process.env.JWT_SECRET);
       const { username, userId, email } = decode;
       req.username = username;
       req.userId = userId;

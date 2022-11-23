@@ -18,6 +18,8 @@ const otpRoute = require('./routes/auth/otpRoute');
 const logoutRoute = require('./routes/auth/logoutRoute');
 const newPasswordRoute = require('./routes/auth/newPasswordRoute');
 const tweetRoute = require('./routes/APIs/tweetRoute');
+const { redisClient } = require('./utils/cacheManager');
+const connectDb = require('./config/connectDb');
 
 // init app
 const app = express();
@@ -65,18 +67,9 @@ app.use(notFoundHandler);
 // error handler
 app.use(errorHandler);
 
-// listening
-mongoose
-  .connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log('DB connection established');
-      console.log(`Server listening at http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// server listening
+app.listen(PORT, async () => {
+  //connect db
+  await connectDb();
+  console.log(`Server listening at http://localhost:${PORT}`);
+});

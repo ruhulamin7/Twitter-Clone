@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const createError = require('http-errors');
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
+const { updateCacheData } = require('../../utils/cacheManager');
 
 // sign in data validation
 const loginDataValidator = () => {
@@ -18,7 +19,9 @@ const loginDataValidator = () => {
           const user = await User.findOne({
             $or: [{ email: value }, { username: value }],
           });
+
           if (user) {
+            req.user = user;
             req.email = user.email;
             req.username = user.username;
             req.password = user.password;
@@ -31,7 +34,7 @@ const loginDataValidator = () => {
           throw createError(500, error);
         }
       })
-      .withMessage('User was not found!')
+      .withMessage('User not found!')
       .custom(async (value, { req }) => {
         try {
           const user = await User.findOne({

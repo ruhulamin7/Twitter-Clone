@@ -346,6 +346,9 @@ a {
       }
       .tweet_content_wrapper {
         width: 100%;
+        background-color: $lightColor;
+        padding: 15px;
+        border-radius: 5px;
 
         .tweet_user {
           width: 100%;
@@ -385,7 +388,6 @@ a {
               min-width: 100%;
               min-height: 100%;
               &:hover {
-                opacity: 0.8;
                 cursor: pointer;
               }
             }
@@ -393,13 +395,12 @@ a {
         }
         .tweet_activities {
           display: flex;
-          justify-content: space-around;
+          justify-content: space-between;
           align-items: center;
           cursor: pointer;
           span {
             position: relative;
             i {
-              margin-right: 10px;
               color: $grayColor;
             }
             &::after {

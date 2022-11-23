@@ -3,12 +3,13 @@ const createError = require('http-errors');
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { updateCacheData } = require('../../utils/cacheManager');
 
 // login handler
 const loginHandler = async (req, res, next) => {
   try {
     if (req.isValidUser) {
-      const token = await jwt.sign(
+      const token = jwt.sign(
         {
           username: req.username,
           userId: req.userId,
@@ -19,6 +20,7 @@ const loginHandler = async (req, res, next) => {
           expiresIn: process.env.JWT_EXPIRE,
         }
       );
+
       // send cookie
       res.status(200);
       res.cookie('access_token', 'Bearer ' + token, { signed: true });
