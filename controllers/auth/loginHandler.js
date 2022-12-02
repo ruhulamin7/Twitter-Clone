@@ -1,9 +1,6 @@
 // dependencies
 const createError = require('http-errors');
-const User = require('../../models/User');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { updateCacheData } = require('../../utils/cacheManager');
 
 // login handler
 const loginHandler = async (req, res, next) => {

@@ -5,15 +5,15 @@ const { cacheSetAndGet } = require('../../utils/cacheManager');
 
 const getAllTweets = async (req, res, next) => {
   try {
-    const tweets = await cacheSetAndGet(`tweets`, async () => {
-      const result = await Tweet.find({});
-      const data = await User.populate(result, {
-        path: 'tweetedBy',
-        select: '-password',
-      });
-      return data;
-    });
-    res.send(tweets);
+    // const tweets = await cacheSetAndGet(`tweets`, async () => {
+    //   return data;
+    // });
+    const result = await Tweet.find({}).populate({ path: 'tweetedBy' });
+    // await User.populate(result, {
+    //   path: 'tweetedBy',
+    //   select: '-password',
+    // });
+    res.send(result);
   } catch (error) {
     next(createHttpError(500, error));
   }

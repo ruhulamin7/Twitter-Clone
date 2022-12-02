@@ -50,6 +50,12 @@ const userSchema = new Schema(
       enum: ['unverified', 'verified', 'suspended'],
       default: 'unverified',
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweet',
+      },
+    ],
   },
   {
     timestamps: true,

@@ -17,8 +17,13 @@ const tweetSchema = new Schema(
       type: mongoose.Types.ObjectId,
       required: true,
       ref: 'User',
-      // type: String,
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
   {
     timestamps: true,

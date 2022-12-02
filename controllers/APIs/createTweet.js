@@ -1,6 +1,7 @@
 const createHttpError = require('http-errors');
 const Tweet = require('../../models/Tweet');
 const User = require('../../models/User');
+const { updateCacheData, cacheSetAndGet } = require('../../utils/cacheManager');
 
 const createTweet = async (req, res, next) => {
   try {
@@ -8,6 +9,7 @@ const createTweet = async (req, res, next) => {
       content: req.body.content,
       images: [],
       tweetedBy: req.userId,
+      likes: [],
     };
 
     [...req.files].forEach((file) => {
@@ -22,6 +24,10 @@ const createTweet = async (req, res, next) => {
       select: '-password',
     });
 
+    // update cache data
+    updateCacheData(`tweets:${result._id}`, result);
+
+    // will add more logic later
     res.send(result);
   } catch (error) {
     next(createHttpError(500, error));

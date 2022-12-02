@@ -4,6 +4,12 @@ block title
     title= title
 block css
     link(rel="stylesheet", href="/css/home.css")
+
+block js 
+    script(src="/js/home.js" defer)
+    script.
+        console.log('hello')
+
     
 block bodyContent
     .main_container 
@@ -109,5 +115,5 @@ block bodyContent
         .right_container 
 
 
-    script(src="/js/home.js")
+    //- script(src="/js/home.js")
     

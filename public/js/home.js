@@ -9,8 +9,6 @@ let outputImageContainer = document.querySelector(
 let tweetContainer = document.querySelector('.tweet_container');
 let tweetImages = [];
 
-//
-
 // tweet button disable/enable function
 tweetInputEl.addEventListener('input', function (e) {
   const value = this.value.trim();
@@ -31,17 +29,17 @@ async function loadTweets() {
     if (!tweets.length) {
       return (tweetContainer.innerHTML =
         '<h3 class="nothing text-center mt-3">No tweets :(</h3>');
+    } else {
+      tweets.forEach((tweet) => {
+        const tweetEl = showTweetUI(tweet);
+        tweetContainer.insertAdjacentElement('afterbegin', tweetEl);
+      });
     }
-
-    tweets.forEach((tweet) => {
-      const tweetEl = showTweetUI(tweet);
-      tweetContainer.insertAdjacentElement('afterbegin', tweetEl);
-    });
   } catch (error) {
     console.log(error);
   }
 }
-
+// load all the tweets
 loadTweets();
 
 // handle image upload
@@ -117,7 +115,6 @@ tweetBtn.addEventListener('click', function () {
   tweetImages.forEach((file) => {
     formData.append(file.name, file);
   });
-
   // const url = window.location.protocol + '//' + window.location.host;
   const url = `${window.location.origin}/tweet`;
   fetch(url, {
@@ -138,10 +135,12 @@ tweetBtn.addEventListener('click', function () {
 // show tweet data to UI
 function showTweetUI(data) {
   const {
+    _id: tweetId,
     content,
     createdAt,
     images: tweetImages,
     tweetedBy: { _id, firstName, lastName, email, username, userAvatar },
+    likes,
   } = data;
 
   const cratedTime = new Date(createdAt).getTime();
@@ -177,18 +176,21 @@ function showTweetUI(data) {
 
   </div>
   <div class="tweet_activities">
-      <span data-tag="Replay">
-        <i class="fas fa-comment"></i> 12
-      </span>
-      <span data-tag="Retweet">
-        <i class="fas fa-retweet"></i> 23
-      </span>
-      <span data-tag="Love">
-        <i class="fas fa-heart"></i> 322
-      </span>
-      <span data-tag="Share">
-        <i class="fas fa-share"></i> 3
-      </span>
+      <button data-tag="Replay">
+        <i class="fas fa-comment"></i> 
+        <span>12</span>
+      </button>
+      <button data-tag="Retweet">
+        <i class="fas fa-retweet"></i> 
+        <span>121</span>
+      </button>
+      <button onclick="likeHandler(event, '${tweetId}')" data-tag="Like">
+        <i class="fas fa-heart" ></i> 
+        <span>${likes.length ? likes.length : ''}</span>
+      </button>
+      <button data-tag="Share">
+        <i class="fas fa-share"></i> <span>2</span>
+      </button>
   </div>
 </div>
   `;
@@ -244,4 +246,17 @@ function clearTweetField() {
   tweetImages = [];
   tweetBtn.setAttribute('disabled', true);
   tweetBtn.classList.add('dis_btn');
+}
+
+// tweet like handler
+function likeHandler(event, tweetId) {
+  const likeBtn = event.target;
+  const url = `${window.location.origin}/tweet/like/${tweetId}`;
+  fetch(url, {
+    method: 'PUT',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      window.location.reload();
+    });
 }

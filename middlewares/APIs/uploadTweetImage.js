@@ -8,7 +8,7 @@ function uploadTweetImage(req, res, next) {
       __dirname,
       `../../public/uploads/${req.userId}/tweets`
     );
-    const maxFileSize = 1000000;
+    const maxFileSize = 10000000;
     const allowedMimeTypes = [
       'image/jpg',
       'image/jpeg',

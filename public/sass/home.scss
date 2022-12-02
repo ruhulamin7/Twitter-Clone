@@ -146,12 +146,13 @@ a {
         background-color: $lightColor;
       }
       .user_avatar {
-        flex-basis: 40px;
+        width: 40px;
         height: 40px;
         border-radius: 50%;
         overflow: hidden;
         img {
           width: 100%;
+          height: 100%;
         }
       }
       .user_name {
@@ -209,6 +210,7 @@ a {
         overflow: hidden;
         img {
           width: 100%;
+          height: 100%;
         }
       }
     }
@@ -341,6 +343,7 @@ a {
           overflow: hidden;
           img {
             width: 100%;
+            height: 100%;
           }
         }
       }
@@ -398,11 +401,18 @@ a {
           justify-content: space-between;
           align-items: center;
           cursor: pointer;
-          span {
+          button {
             position: relative;
+            border: none;
+            outline: none;
             i {
               color: $grayColor;
+              pointer-events: none;
             }
+            span {
+              pointer-events: none;
+            }
+
             &::after {
               content: attr(data-tag);
               display: none;
@@ -411,7 +421,7 @@ a {
               border-radius: 5px;
               position: absolute;
               left: 0px;
-              top: 25px;
+              top: 39px;
               color: $whiteColor;
             }
             &:hover::after {

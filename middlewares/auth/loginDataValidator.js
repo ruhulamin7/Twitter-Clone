@@ -26,6 +26,7 @@ const loginDataValidator = () => {
             req.username = user.username;
             req.password = user.password;
             req.userId = user._id;
+            updateCacheData(`users:${req.userId}`, user);
             return Promise.resolve();
           } else {
             return Promise.reject();

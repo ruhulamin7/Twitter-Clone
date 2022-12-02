@@ -133,13 +133,14 @@ a {
   background-color: #eff1f1;
 }
 .left_container .left_bottom .user_area .user_avatar {
-  flex-basis: 40px;
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
 }
 .left_container .left_bottom .user_area .user_avatar img {
   width: 100%;
+  height: 100%;
 }
 .left_container .left_bottom .user_area .user_name {
   flex: 1;
@@ -184,6 +185,7 @@ a {
 }
 .middle_container .create_tweet_wrapper .avatar_area .img img {
   width: 100%;
+  height: 100%;
 }
 .middle_container .create_tweet_wrapper .tweet_area {
   flex-grow: 1;
@@ -311,6 +313,7 @@ a {
 }
 .middle_container .tweet_container .tweet .tweet_profile_img .img img {
   width: 100%;
+  height: 100%;
 }
 .middle_container .tweet_container .tweet .tweet_content_wrapper {
   width: 100%;
@@ -367,13 +370,19 @@ a {
   align-items: center;
   cursor: pointer;
 }
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span {
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button {
   position: relative;
+  border: none;
+  outline: none;
 }
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span i {
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button i {
   color: gray;
+  pointer-events: none;
 }
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span::after {
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button span {
+  pointer-events: none;
+}
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button::after {
   content: attr(data-tag);
   display: none;
   padding: 1px 5px;
@@ -381,10 +390,10 @@ a {
   border-radius: 5px;
   position: absolute;
   left: 0px;
-  top: 25px;
+  top: 39px;
   color: #ffffff;
 }
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities span:hover::after {
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button:hover::after {
   display: block;
 }
 .middle_container .show_all_tweet {

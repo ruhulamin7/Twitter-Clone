@@ -17,7 +17,8 @@ const registerHandler = async (req, res, next) => {
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
         userAvatar: req.file?.filename ? req.file.filename : 'avatar.png',
-        // userAvatar: req.file.filename,
+        status: 'unverified',
+        likes: [],
       });
       const user = await userObj.save();
 

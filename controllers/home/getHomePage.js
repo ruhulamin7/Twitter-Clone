@@ -7,7 +7,7 @@ const { cacheSetAndGet } = require('../../utils/cacheManager');
 const getHomePage = async (req, res, next) => {
   try {
     const user = await cacheSetAndGet(`users:${req.userId}`, async () => {
-      const user = await User.findOne({ _id: req.userId });
+      const user = await User.findOne({ _id: req.userId }, { password: 0 });
       return user;
     });
 
