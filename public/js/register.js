@@ -16,7 +16,6 @@ passErrorsEl.hidden = true;
 let confirmPassErrorsEl = document.querySelector('#confirmPassErrors');
 confirmPassErrorsEl.hidden = true;
 
-// const usernameErr = document.getElementById('username_err');
 // password hide and show handler
 function passwordHideAndShow(icon, field) {
   icon.addEventListener('click', function (e) {
@@ -65,24 +64,9 @@ function checkPassword(pass) {
       'Your password must contain at least ' + validationResult.join(', ');
     confirmPassErrorsEl.hidden = true;
     passErrorsEl.hidden = false;
-    // document.getElementById('pass_err').hidden = true;
-    // document.getElementById('confirm_pass_err').hidden = true;
     passErrorsEl.textContent = errorMsg;
   }
 }
-
-// key press timer
-let typingTimer;
-passwordEl.addEventListener('keyup', function () {
-  const passInput = passwordEl.value;
-  clearTimeout(typingTimer);
-  passErrorsEl.hidden = true;
-  if (passInput) {
-    typingTimer = setTimeout(() => {
-      checkPassword(passInput);
-    }, 500);
-  }
-});
 
 // check confirm password
 function checkConfirmPassword() {
@@ -96,20 +80,23 @@ function checkConfirmPassword() {
   }
 }
 
-// key down clear timer
-passwordEl.addEventListener('keydown', function () {
-  clearTimeout(typingTimer);
-});
+// key press setTimeout timer
+let typingTimer;
 
-// key down clear timer
-confirmPasswordEl.addEventListener('keydown', function () {
-  clearTimeout(typingTimer);
+// password validation
+passwordEl.addEventListener('keyup', function () {
+  const passInput = passwordEl.value;
+  passErrorsEl.hidden = true;
+  if (passInput) {
+    typingTimer = setTimeout(() => {
+      checkPassword(passInput);
+    }, 500);
+  }
 });
 
 // confirm password match validation
 confirmPasswordEl.addEventListener('keyup', function () {
-  clearTimeout(typingTimer);
-
+  confirmPassErrorsEl.hidden = true;
   if (confirmPasswordEl.value) {
     typingTimer = setTimeout(() => {
       checkConfirmPassword();
@@ -117,6 +104,18 @@ confirmPasswordEl.addEventListener('keyup', function () {
   } else {
     confirmPassErrorsEl.hidden = true;
   }
+});
+
+// key down clear timer for password
+passwordEl.addEventListener('keydown', function () {
+  clearTimeout(typingTimer);
+  passErrorsEl.hidden = true;
+});
+
+// key down clear timer for confirm password
+confirmPasswordEl.addEventListener('keydown', function () {
+  clearTimeout(typingTimer);
+  confirmPassErrorsEl.hidden = true;
 });
 
 // username realtime validation
@@ -136,7 +135,6 @@ const usernameValidator = (username) => {
           usernameErrorEl.innerText =
             'Username should be at least 3 characters';
           // document.getElementById('username_err').hidden = true;
-
           return;
         }
         if (userName?.username) {
