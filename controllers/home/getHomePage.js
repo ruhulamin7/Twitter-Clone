@@ -11,10 +11,14 @@ const getHomePage = async (req, res, next) => {
       return user;
     });
 
+    // user send to frontend js
+    const userJs = JSON.stringify(user);
+
     return res.render('pages/home', {
       user: user ? user : {},
       otp: {},
       error: {},
+      userJs,
     });
   } catch (error) {
     next(createHttpError(500, error));

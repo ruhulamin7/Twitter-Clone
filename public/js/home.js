@@ -184,7 +184,10 @@ function showTweetUI(data) {
         <i class="fas fa-retweet"></i> 
         <span>121</span>
       </button>
-      <button onclick="likeHandler(event, '${tweetId}')" data-tag="Like">
+      
+      <button onclick="likeHandler(event, '${tweetId}')" data-tag="Like" class="like ${
+    user.likes.includes(tweetId) ? 'active' : ''
+  }">
         <i class="fas fa-heart" ></i> 
         <span>${likes.length ? likes.length : ''}</span>
       </button>
@@ -251,12 +254,19 @@ function clearTweetField() {
 // tweet like handler
 function likeHandler(event, tweetId) {
   const likeBtn = event.target;
+  const span = likeBtn.querySelector('span');
+
   const url = `${window.location.origin}/tweet/like/${tweetId}`;
   fetch(url, {
     method: 'PUT',
   })
     .then((res) => res.json())
     .then((data) => {
-      window.location.reload();
+      if (data.likes.includes(user._id)) {
+        likeBtn.classList.add('active');
+      } else {
+        likeBtn.classList.remove('active');
+      }
+      span.innerText = data.likes.length ? data.likes.length : '';
     });
 }

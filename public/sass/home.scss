@@ -427,6 +427,13 @@ a {
             &:hover::after {
               display: block;
             }
+
+            &.active {
+              i,
+              span {
+                color: red;
+              }
+            }
           }
         }
       }

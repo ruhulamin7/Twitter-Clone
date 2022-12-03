@@ -396,6 +396,10 @@ a {
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button:hover::after {
   display: block;
 }
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.active i,
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.active span {
+  color: red;
+}
 .middle_container .show_all_tweet {
   text-align: center;
   border-top: 2px solid #eff1f1;

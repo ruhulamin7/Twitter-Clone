@@ -15,8 +15,6 @@ async function likeController(req, res, next) {
     const isLiked = user.likes.includes(tweetId);
     const option = isLiked ? '$pull' : '$addToSet';
 
-    console.log(isLiked, option);
-
     // update tweet like
     const tweet = await Tweet.findOneAndUpdate(
       { _id: tweetId },
@@ -34,7 +32,6 @@ async function likeController(req, res, next) {
       { new: true }
     );
 
-    console.log({ updatedUser: updatedUser });
     // update user cache data
     updateCacheData(`users:${userId}`, updatedUser);
 
