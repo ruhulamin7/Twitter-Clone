@@ -10,8 +10,12 @@ const createTweet = async (req, res, next) => {
       images: [],
       tweetedBy: req.userId,
       likes: [],
+
+      retweetedBy: [],
+      originalTweet: null,
     };
 
+    // insert images into tweet
     [...req.files].forEach((file) => {
       tweetObj.images.push(file.filename);
     });

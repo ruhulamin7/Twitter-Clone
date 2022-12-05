@@ -2,17 +2,14 @@ const createHttpError = require('http-errors');
 const Tweet = require('../../models/Tweet');
 const User = require('../../models/User');
 const { cacheSetAndGet } = require('../../utils/cacheManager');
+const createTweet = require('./createTweet');
 
 const getAllTweets = async (req, res, next) => {
   try {
-    // const tweets = await cacheSetAndGet(`tweets`, async () => {
-    //   return data;
-    // });
-    const result = await Tweet.find({}).populate({ path: 'tweetedBy' });
-    // await User.populate(result, {
-    //   path: 'tweetedBy',
-    //   select: '-password',
-    // });
+    const result = await Tweet.find({});
+    await User.populate(result, { path: 'tweetedBy' });
+    await Tweet.populate(result, { path: 'originalTweet' });
+    await Tweet.populate(result, { path: 'originalTweet.tweetedBy' });
     res.send(result);
   } catch (error) {
     next(createHttpError(500, error));

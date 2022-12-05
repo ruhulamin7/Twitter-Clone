@@ -56,6 +56,12 @@ const userSchema = new Schema(
         ref: 'Tweet',
       },
     ],
+    retweets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweet',
+      },
+    ],
   },
   {
     timestamps: true,

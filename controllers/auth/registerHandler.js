@@ -19,6 +19,7 @@ const registerHandler = async (req, res, next) => {
         userAvatar: req.file?.filename ? req.file.filename : 'avatar.png',
         status: 'unverified',
         likes: [],
+        retweets: [],
       });
       const user = await userObj.save();
 

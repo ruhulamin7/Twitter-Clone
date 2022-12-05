@@ -134,22 +134,40 @@ tweetBtn.addEventListener('click', function () {
 
 // show tweet data to UI
 function showTweetUI(data) {
+  let newData = data;
+  let retweetedHtml = '';
+  if (data.originalTweet) {
+    newData = data.originalTweet;
+    retweetedHtml = `
+    <P class="retweet_tag">
+    <i class="fas fa-retweet"></i>
+    ${
+      data.tweetedBy.username === user.username
+        ? `<a href=/profile/${data.tweetedBy.username}> You </a>retweeted`
+        : `Retweeted by @<a href='/profile/${data.tweetedBy.username}'>${data.tweetedBy.username}</a>`
+    }
+    </P>
+    `;
+  }
   const {
     _id: tweetId,
     content,
     createdAt,
     images: tweetImages,
-    tweetedBy: { _id, firstName, lastName, email, username, userAvatar },
+    tweetedBy: { _id, firstName, lastName, username, userAvatar },
     likes,
-  } = data;
+    retweetedBy,
+  } = newData;
 
   const cratedTime = new Date(createdAt).getTime();
   const time = timeSince(cratedTime);
 
   const div = document.createElement('div');
-  div.classList.add('tweet');
+  // div.classList.add('tweet');
 
   div.innerHTML = `
+  ${retweetedHtml}
+  <div class='tweet'>
   <div class="tweet_profile_img">
   <div class="img">
       <img src="${
@@ -180,9 +198,11 @@ function showTweetUI(data) {
         <i class="fas fa-comment"></i> 
         <span>12</span>
       </button>
-      <button data-tag="Retweet">
+      <button onclick="retweetHandler(event, '${tweetId}')" data-tag="Retweet" class="retweet ${
+    retweetedBy.includes(user._id) ? 'active' : ''
+  }">
         <i class="fas fa-retweet"></i> 
-        <span>121</span>
+        <span>${retweetedBy.length || ''}</span>
       </button>
       
       <button onclick="likeHandler(event, '${tweetId}')" data-tag="Like" class="like ${
@@ -195,6 +215,7 @@ function showTweetUI(data) {
         <i class="fas fa-share"></i> <span>2</span>
       </button>
   </div>
+</div>
 </div>
   `;
   // append tweet
@@ -268,5 +289,25 @@ function likeHandler(event, tweetId) {
         likeBtn.classList.remove('active');
       }
       span.innerText = data.likes.length ? data.likes.length : '';
+    });
+}
+
+// retweet handler
+function retweetHandler(event, tweetId) {
+  const retweetBtn = event.target;
+  const span = retweetBtn.querySelector('span');
+
+  const url = `${window.location.origin}/tweet/retweet/${tweetId}`;
+  fetch(url, {
+    method: 'POST',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.retweetedBy.includes(user._id)) {
+        retweetBtn.classList.add('active');
+      } else {
+        retweetBtn.classList.remove('active');
+      }
+      span.innerText = data.retweetedBy.length || '';
     });
 }

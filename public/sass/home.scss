@@ -329,11 +329,15 @@ a {
 
   .tweet_container {
     width: 100%;
+    .retweet_tag {
+      margin-top: 10px;
+      margin-left: 5px;
+    }
     .tweet {
-      border-top: 1px solid $lightColor;
+      border-bottom: 1px solid $lightColor;
       padding: 15px;
       display: flex;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       .tweet_profile_img {
         .img {
           width: 40px;
@@ -428,10 +432,16 @@ a {
               display: block;
             }
 
-            &.active {
+            &.like.active {
               i,
               span {
                 color: red;
+              }
+            }
+            &.retweet.active {
+              i,
+              span {
+                color: rgb(16, 125, 48);
               }
             }
           }

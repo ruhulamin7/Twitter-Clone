@@ -298,11 +298,15 @@ a {
 .middle_container .tweet_container {
   width: 100%;
 }
+.middle_container .tweet_container .retweet_tag {
+  margin-top: 10px;
+  margin-left: 5px;
+}
 .middle_container .tweet_container .tweet {
-  border-top: 1px solid #eff1f1;
+  border-bottom: 1px solid #eff1f1;
   padding: 15px;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .middle_container .tweet_container .tweet .tweet_profile_img .img {
   width: 40px;
@@ -396,9 +400,13 @@ a {
 .middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button:hover::after {
   display: block;
 }
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.active i,
-.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.active span {
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.like.active i,
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.like.active span {
   color: red;
+}
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.retweet.active i,
+.middle_container .tweet_container .tweet .tweet_content_wrapper .tweet_activities button.retweet.active span {
+  color: rgb(16, 125, 48);
 }
 .middle_container .show_all_tweet {
   text-align: center;
