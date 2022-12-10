@@ -333,122 +333,8 @@ a {
       margin-top: 10px;
       margin-left: 5px;
     }
-    .tweet {
-      border-bottom: 1px solid $lightColor;
-      padding: 15px;
-      display: flex;
-      margin-bottom: 10px;
-      .tweet_profile_img {
-        .img {
-          width: 40px;
-          height: 40px;
-          margin-right: 15px;
-          border-radius: 50%;
-          overflow: hidden;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-      .tweet_content_wrapper {
-        width: 100%;
-        background-color: $lightColor;
-        padding: 15px;
-        border-radius: 5px;
-
-        .tweet_user {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          a.name {
-            color: rgb(86, 85, 85);
-            font-weight: bold;
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-          .username,
-          .time {
-            color: gray;
-          }
-        }
-        .tweet_content {
-          margin-bottom: 15px;
-          font-size: 18px;
-        }
-        .tweet_images_wrapper {
-          width: 100%;
-          display: grid;
-          grid-template-columns: auto auto;
-          gap: 3px;
-          border-radius: 10px;
-          overflow: hidden;
-          margin-bottom: 15px;
-          div.img {
-            width: 100%;
-            img {
-              width: 100%;
-              object-fit: cover;
-              min-width: 100%;
-              min-height: 100%;
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-        }
-        .tweet_activities {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          cursor: pointer;
-          button {
-            position: relative;
-            border: none;
-            outline: none;
-            i {
-              color: $grayColor;
-              pointer-events: none;
-            }
-            span {
-              pointer-events: none;
-            }
-
-            &::after {
-              content: attr(data-tag);
-              display: none;
-              padding: 1px 5px;
-              background-color: $grayColor;
-              border-radius: 5px;
-              position: absolute;
-              left: 0px;
-              top: 39px;
-              color: $whiteColor;
-            }
-            &:hover::after {
-              display: block;
-            }
-
-            &.like.active {
-              i,
-              span {
-                color: red;
-              }
-            }
-            &.retweet.active {
-              i,
-              span {
-                color: rgb(16, 125, 48);
-              }
-            }
-          }
-        }
-      }
-    }
   }
+
   .show_all_tweet {
     text-align: center;
     border-top: 2px solid $lightColor;
@@ -462,6 +348,122 @@ a {
     }
   }
 }
+.tweet {
+  border-bottom: 1px solid $lightColor;
+  padding: 15px;
+  display: flex;
+  margin-bottom: 10px;
+  .tweet_profile_img {
+    .img {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .tweet_content_wrapper {
+    width: 100%;
+    background-color: $lightColor;
+    padding: 15px;
+    border-radius: 5px;
+
+    .tweet_user {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a.name {
+        color: rgb(86, 85, 85);
+        font-weight: bold;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .username,
+      .time {
+        color: gray;
+      }
+    }
+    .tweet_content {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .tweet_images_wrapper {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 3px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      div.img {
+        width: 100%;
+        img {
+          width: 100%;
+          object-fit: cover;
+          min-width: 100%;
+          min-height: 100%;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .tweet_activities {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      button {
+        position: relative;
+        border: none;
+        outline: none;
+        i {
+          color: $grayColor;
+          pointer-events: none;
+        }
+        span {
+          pointer-events: none;
+        }
+
+        &::after {
+          content: attr(data-tag);
+          display: none;
+          padding: 1px 5px;
+          background-color: $grayColor;
+          border-radius: 5px;
+          position: absolute;
+          left: 0px;
+          top: 39px;
+          color: $whiteColor;
+        }
+        &:hover::after {
+          display: block;
+        }
+
+        &.like.active {
+          i,
+          span {
+            color: red;
+          }
+        }
+        &.retweet.active {
+          i,
+          span {
+            color: rgb(16, 125, 48);
+          }
+        }
+      }
+    }
+  }
+}
 
 // right container
 .right_container {
@@ -469,4 +471,109 @@ a {
   width: 100px;
   min-height: 100vh;
   // background-color: rgb(56, 56, 56);
+}
+
+// .modal-footer {
+.create_replay_wrapper {
+  padding: 0 15px 15px;
+  display: flex;
+  .replay_area {
+    flex: 1;
+  }
+
+  .avatar_area {
+    margin-right: 10px;
+    .img {
+      width: 25px;
+      height: 25px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .replay_area {
+    .create_replay {
+      textarea {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 5px;
+        font-size: 16px;
+        resize: unset;
+        height: 40px;
+        border-bottom: 1px solid #eee;
+      }
+    }
+    .replay_options_wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px 0 15px;
+      .replay_btn {
+        button {
+          border: none;
+          outline: none;
+          background-color: $primaryColor;
+          color: $whiteColor;
+          font-weight: 500;
+          padding: 3px 10px;
+          border-radius: 25px;
+        }
+        .dis_btn {
+          background-color: #a3cff0;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+// }
+
+// modal image container
+.replay_image_container {
+  width: 100%;
+  .replay_image_inner_container {
+    display: flex;
+    // grid-template-columns: auto auto;
+    gap: 10px;
+    width: 100%;
+    .img_div {
+      position: relative;
+      span {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        height: 20px;
+        width: 20px;
+        background-color: rgba(0, 0, 0, 0.372);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.1s;
+        cursor: pointer;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.42);
+        }
+        i {
+          color: $whiteColor;
+          pointer-events: none;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      min-width: 100%;
+      min-height: 100%;
+      max-height: 100px;
+    }
+  }
+}
+
+// replayingFlag
+.replayingFlag {
+  border-bottom: 1px solid rgb(188, 188, 188);
+  padding-bottom: 5px;
 }

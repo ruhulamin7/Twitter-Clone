@@ -30,7 +30,7 @@ async function retweetController(req, res, next) {
     // update retweet user
     const tweet = await Tweet.findOneAndUpdate(
       { _id: tweetId },
-      { [option]: { retweetedBy: userId } },
+      { [option]: { retweetedUsers: userId } },
       { new: true }
     );
 

@@ -10,8 +10,7 @@ const createTweet = async (req, res, next) => {
       images: [],
       tweetedBy: req.userId,
       likes: [],
-
-      retweetedBy: [],
+      retweetedUsers: [],
       originalTweet: null,
     };
 
