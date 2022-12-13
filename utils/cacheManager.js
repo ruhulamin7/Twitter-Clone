@@ -5,10 +5,10 @@ const redisClient = redis.createClient(); //'http://localhost:6379'
 async function cacheSetAndGet(key, callback) {
   const data = await redisClient.get(key);
   if (data) {
-    // console.log('cache found');
+    console.log('cache found');
     return JSON.parse(data);
   } else {
-    // console.log('cache not found');
+    console.log('cache not found');
     const data = await callback();
     redisClient.setEx(key, 3600, JSON.stringify(data));
     return data;

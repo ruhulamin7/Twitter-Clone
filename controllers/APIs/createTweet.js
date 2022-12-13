@@ -2,6 +2,7 @@ const createHttpError = require('http-errors');
 const Tweet = require('../../models/Tweet');
 const User = require('../../models/User');
 const { updateCacheData, cacheSetAndGet } = require('../../utils/cacheManager');
+const { tweetPopulate } = require('../../utils/populator');
 
 const createTweet = async (req, res, next) => {
   try {
@@ -22,10 +23,12 @@ const createTweet = async (req, res, next) => {
     const tweet = new Tweet(tweetObj);
     const result = await tweet.save();
 
-    await User.populate(result, {
-      path: 'tweetedBy',
-      select: '-password',
-    });
+    // await User.populate(result, {
+    //   path: 'tweetedBy',
+    //   select: '-password',
+    // });
+
+    await tweetPopulate(result);
 
     // update cache data
     updateCacheData(`tweets:${result._id}`, result);

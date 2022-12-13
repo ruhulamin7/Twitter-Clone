@@ -18,7 +18,6 @@ const otpRoute = require('./routes/auth/otpRoute');
 const logoutRoute = require('./routes/auth/logoutRoute');
 const newPasswordRoute = require('./routes/auth/newPasswordRoute');
 const tweetRoute = require('./routes/APIs/tweetRoute');
-const { redisClient } = require('./utils/cacheManager');
 const connectDb = require('./config/connectDb');
 
 // init app

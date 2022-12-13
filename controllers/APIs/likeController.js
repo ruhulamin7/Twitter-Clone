@@ -1,6 +1,7 @@
 const Tweet = require('../../models/Tweet');
 const User = require('../../models/User');
 const { cacheSetAndGet, updateCacheData } = require('../../utils/cacheManager');
+const { tweetPopulate } = require('../../utils/populator');
 
 async function likeController(req, res, next) {
   try {
@@ -22,9 +23,10 @@ async function likeController(req, res, next) {
       { new: true }
     );
 
+    // populate data
+    await tweetPopulate(tweet);
     // update tweet cache data
     updateCacheData(`tweets:${tweetId}`, tweet);
-
     // update user like
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },

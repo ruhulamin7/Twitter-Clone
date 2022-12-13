@@ -337,6 +337,7 @@ a {
   background-color: #eff1f1;
   padding: 15px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .tweet .tweet_content_wrapper .tweet_user {
   width: 100%;

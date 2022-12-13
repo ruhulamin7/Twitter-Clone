@@ -1,0 +1,125 @@
+extends ../layouts/header.pug
+
+block title
+    title= title
+block css
+    link(rel="stylesheet", href="/css/home.css")
+
+block js 
+    script(src="/js/singleTweet.js" defer)
+    
+block bodyContent
+    .main_container 
+        .left_container
+            .left_top 
+                .logo_area                    
+                    a.logo(href="/home")
+                        i.fab.fa-twitter 
+                //-  menu area
+                .menu_area
+                    nav.nav     
+                        a.nav_link(href="/home")
+                            span 
+                                i.fas.fa-home
+                                span.notify_box 2
+                            |Home
+                        a.nav_link(href="/explore") 
+                            span 
+                                i.fas.fa-hashtag
+                                span.notify_box 2
+                            |Explore
+                        a.nav_link(href="/notifications")
+                            span 
+                                i.fas.fa-bell
+                                span.notify_box 2
+                            |Notifications
+                        a.nav_link(href="/messages") 
+                            span
+                                i.fas.fa-envelope
+                                span.notify_box 2 
+                            |Messages
+                        a.nav_link(href="/bookmarks")
+                            span 
+                                i.fas.fa-bookmark
+                            |Bookmarks
+                        a.nav_link(href="/lists") 
+                            span 
+                                i.fas.fa-list 
+                            |Lists
+                        a.nav_link(href="/profile") 
+                            span 
+                                i.fas.fa-user  
+                            |Profile
+                        a.nav_link
+                            span.more 
+                                i.fas.fa-ellipsis-h
+                            |More               
+                    .tweet_btn
+                        a(href="/tweet") 
+                            button Tweet 
+            //- left bottom
+            .left_bottom
+                .user_area
+                    .user_avatar
+                        img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar") 
+                    .user_name
+                        h6 #{user.firstName} #{user.lastName}
+                        p @#{user.username}
+                    .user_dot_btn
+                        i.fas.fa-ellipsis-h 
+                                
+        .middle_container
+            .tweet_heading_wrapper
+                .heading_text
+                    h4 
+                        button.btn.btn-light.me-2(onclick="history.back()" title="Back"  ) 
+                            i.fas.fa-angle-left
+                        | View tweet 
+                .heading_icon
+                    i.fas.fa-star
+
+            .tweet_container 
+                
+        .right_container
+            
+
+
+    //- Replay Modal
+    #replayModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#replayModalTitle.modal-title.fs-5 Replay
+                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close' onclick='clearReplayField()')
+                        span(aria-hidden='true') &times;
+
+                .modal-body.p-0
+                //- .modal-footer
+                .create_replay_wrapper
+                    .avatar_area
+                        .img
+                            img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar")
+                    .replay_area
+                        .create_replay 
+                            textarea#replay_text(name="replay",  placeholder="What's happening?" )
+                            .replay_image_container
+                                .replay_image_inner_container
+                                if error.multerError
+                                    span.error #{error.multerError.msg}
+                
+                        .replay_options_wrapper
+                            .replay_options
+                                label(for="replay_img")
+                                    i.fas.fa-images   
+                                    
+                                input#replay_img(type="file", multiple alt="replay" style="display: none")
+                            .replay_btn 
+                                button.dis_btn(disabled="" id="replay_btn") Replay 
+                                
+    script.
+       const user = !{userJs};
+       const tweetId = "!{tweetId}";
+
+
+    //- script(src="/js/home.js")
+    

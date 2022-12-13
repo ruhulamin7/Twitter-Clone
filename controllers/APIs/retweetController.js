@@ -1,6 +1,7 @@
 const Tweet = require('../../models/Tweet');
 const User = require('../../models/User');
-const { cacheSetAndGet, updateCacheData } = require('../../utils/cacheManager');
+const { updateCacheData } = require('../../utils/cacheManager');
+const { tweetPopulate } = require('../../utils/populator');
 
 async function retweetController(req, res, next) {
   try {
@@ -20,9 +21,11 @@ async function retweetController(req, res, next) {
         originalTweet: tweetId,
       });
       retweetObj = await tweet.save();
-
-      updateCacheData(`tweets:${retweetObj._id}`, retweetObj);
     }
+
+    // populate data
+    await tweetPopulate(retweetObj);
+    updateCacheData(`tweets:${retweetObj._id}`, retweetObj);
 
     // option retweet or not
     const option = deletedTweet ? '$pull' : '$addToSet';
@@ -34,6 +37,18 @@ async function retweetController(req, res, next) {
       { new: true }
     );
 
+    // populate data
+    // await User.populate(tweet, { path: 'tweetedBy' });
+    // await Tweet.populate(tweet, { path: 'replayedTweets' });
+    // await User.populate(tweet, { path: 'replayedTweets.tweetedBy' });
+    // await User.populate(tweet, { path: 'replayedTweets.replayTo' });
+    // await User.populate(tweet, {
+    //   path: 'replayedTweets.replayTo.tweetedBy',
+    // });
+    // await Tweet.populate(tweet, { path: 'replayTo' });
+    // await User.populate(tweet, { path: 'replayTo.tweetedBy' });
+
+    await tweetPopulate(tweet);
     // update retweet cache data
     updateCacheData(`tweets:${tweetId}`, tweet);
 
