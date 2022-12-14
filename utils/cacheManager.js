@@ -25,4 +25,13 @@ function updateCacheData(key, value) {
   }
 }
 
-module.exports = { redisClient, cacheSetAndGet, updateCacheData };
+// delete cache
+async function deleteCache(key) {
+  try {
+    await redisClient.del(key);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { redisClient, cacheSetAndGet, updateCacheData, deleteCache };

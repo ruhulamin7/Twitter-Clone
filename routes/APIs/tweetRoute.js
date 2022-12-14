@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const createTweet = require('../../controllers/APIs/createTweet');
+const deleteTweet = require('../../controllers/APIs/deleteTweet');
 const getAllTweets = require('../../controllers/APIs/getAllTweets');
 const likeController = require('../../controllers/APIs/likeController');
 const replayController = require('../../controllers/APIs/replayController');
@@ -26,6 +27,8 @@ tweetRoute.post('/replay/:id', authChecker, uploadTweetImage, replayController);
 tweetRoute.get('/:id', authChecker, getSingleTweetPage);
 // get single tweet
 tweetRoute.get('/single/:id', authChecker, getSingleTweet);
+// delete tweet
+tweetRoute.delete('/:id', authChecker, deleteTweet);
 
 // exports
 module.exports = tweetRoute;
