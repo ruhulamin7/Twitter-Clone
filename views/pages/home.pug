@@ -66,7 +66,11 @@ block bodyContent
                         h6 #{user.firstName} #{user.lastName}
                         p @#{user.username}
                     .user_dot_btn
-                        i.fas.fa-ellipsis-h 
+                        i.fas.fa-ellipsis-h
+            a.btn.btn-light.m-2(href="/logout")
+                |Logout  
+                 
+               
                                 
         .middle_container
             .tweet_heading_wrapper
@@ -157,4 +161,3 @@ block bodyContent
 
 
     //- script(src="/js/home.js")
-    
