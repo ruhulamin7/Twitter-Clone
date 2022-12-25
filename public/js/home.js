@@ -45,11 +45,11 @@ replayText.addEventListener('input', function (e) {
 // show tweets to UI
 async function loadTweets() {
   try {
-    const result = await fetch(`${window.location.origin}/tweet`);
+    const result = await fetch(`${window.location.origin}/tweets`);
     const tweets = await result.json();
     if (!tweets.length) {
       return (tweetContainer.innerHTML =
-        '<h3 class="nothing text-center mt-3">No tweets :(</h3>');
+        '<h3 class="nothing text-center mt-3">Nothing to show :(</h3>');
     } else {
       tweets.forEach((tweet) => {
         const tweetEl = createTweet(tweet);
@@ -203,7 +203,7 @@ tweetBtn.addEventListener('click', function () {
     formData.append(file.name, file);
   });
   // const url = window.location.protocol + '//' + window.location.host;
-  const url = `${window.location.origin}/tweet`;
+  const url = `${window.location.origin}/tweets`;
   fetch(url, {
     method: 'POST',
     body: formData,

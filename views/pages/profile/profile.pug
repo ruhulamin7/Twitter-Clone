@@ -1,12 +1,17 @@
-extends ../layouts/header.pug
+extends ../../layouts/header.pug
 
 block title
     title= title
+
+
 block css
     link(rel="stylesheet", href="/css/home.css")
+    link(rel="stylesheet", href="/css/profile.css")
+
 
 block js 
-    script(src="/js/home.js" defer)
+    script(src="/js/app.js" defer)
+    script(src="/js/profile.js" defer)
     
 block bodyContent
     .main_container 
@@ -46,7 +51,7 @@ block bodyContent
                             span 
                                 i.fas.fa-list 
                             |Lists
-                        a.nav_link(href="/profile/" + user.username) 
+                        a.nav_link(href="/profile/"+ user.username) 
                             span 
                                 i.fas.fa-user  
                             |Profile
@@ -75,50 +80,49 @@ block bodyContent
         .middle_container
             .tweet_heading_wrapper
                 .heading_text
-                    h4 Home 
+                    h4 Profile 
                 .heading_icon
                     i.fas.fa-star
+            if userProfile !== null       
+                .profile_container 
+                    .cover 
+                        img(src="" alt="")
+                    .avatar
+                        img(src="/uploads/profile/"+ userProfile.userAvatar, alt="avatar")
 
-            .create_tweet_wrapper
-                .avatar_area
-                    .img
-                        img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar")
-                .tweet_area
-                    .post_visibility 
-                        button Everyone
-                            i.fas.fa-angle-down
-                    .create_tweet 
-                        textarea#create_tweet(name="tweet",  placeholder="What's happening?" )
-                        .output_image_container
-                            .output_image_inner_container
-                            if error.multerError
-                                span.error #{error.multerError.msg}
 
-                            //- img(src="", width="200" alt="")
-                            
-                    .replay_tweet 
-                        I.fas.fa-globe
-                        span Everyone can reply
-                    .tweet_options_wrapper
-                        .tweet_options
-                            label(for="tweet_img")
-                                i.fas.fa-images   
-                                
-                            input(type="file", multiple id="tweet_img" alt="tweet" style="display: none")
-                        .tweet_btn 
-                            button#tweet_btn.dis_btn(disabled="") Tweet 
+                .action_btns 
+                    if user.username !== userProfile.username
+                        a.msg_btn(href="")
+                            i.fas.fa-envelope
+                        - isFollowing = userProfile.followers && userProfile.followers.includes(user._id.toString())
                 
-            .show_all_tweet
-                button Show 77 Tweets
+                        button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, userProfile._id)`) #{isFollowing ? 'Following' : 'Follow'}
+                        
+                .user_details 
+                    h4 #{userProfile.firstName} #{userProfile.lastName}
+                    p @#{userProfile.username}
+
+                .follow_container
+                    a.following(href=`/profile/${userProfile.username}/following`) 
+                        span 0 
+                        |Following
+                    a.followers(href=`/profile/${userProfile.username}/followers`) 
+                        span 0 
+                        |Followers
+                
+                .tabs_container
+                    a.tweets_tab(class= tab === "tweets" ? "active" : "" href=`/profile/${userProfile.username}`) Tweets
+                    a.replies_tab(class= tab === "replies" ? "active" : "" href=`/profile/${userProfile.username}/replies`) Replies
+            else 
+                h4.text-center.bg-danger.p-2.text-white User not found !
+            
+         
                 
             .tweet_container 
                 
         .right_container
             
-
-
-
-
 
 
     //- Replay Modal
@@ -153,11 +157,10 @@ block bodyContent
                             .replay_btn 
                                 button.dis_btn(disabled="" id="replay_btn") Replay 
                                 
-                                    
-           
- 
+                                     
     script.
        const user = !{userJs};
+       const tab = '!{tab}';
+       const userProfile = !{userProfileJs};
 
 
-    //- script(src="/js/home.js")

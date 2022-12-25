@@ -175,7 +175,7 @@ function likeHandler(event, tweetId) {
   const likeBtn = event.target;
   const span = likeBtn.querySelector('span');
 
-  const url = `${window.location.origin}/tweet/like/${tweetId}`;
+  const url = `${window.location.origin}/tweets/like/${tweetId}`;
   fetch(url, {
     method: 'PUT',
   })
@@ -195,7 +195,7 @@ function retweetHandler(event, tweetId) {
   const retweetBtn = event.target;
   const span = retweetBtn.querySelector('span');
 
-  const url = `${window.location.origin}/tweet/retweet/${tweetId}`;
+  const url = `${window.location.origin}/tweets/retweet/${tweetId}`;
   fetch(url, {
     method: 'POST',
   })
@@ -233,7 +233,7 @@ function replayTweet(event, tweetId) {
       formData.append(file.name, file);
     });
 
-    const url = `${window.location.origin}/tweet/replay/${tweetId}`;
+    const url = `${window.location.origin}/tweets/replay/${tweetId}`;
     fetch(url, {
       method: 'POST',
       body: formData,
@@ -256,7 +256,7 @@ function replayTweet(event, tweetId) {
 function viewSingleTweet(event, tweetId) {
   // console.log(event.target.localName, tweetId);
   if (event.target.localName === 'div') {
-    window.location.href = `${window.location.origin}/tweet/${tweetId}`;
+    window.location.href = `${window.location.origin}/tweets/${tweetId}`;
   }
 }
 // delete tweet
@@ -271,7 +271,7 @@ function deleteTweet(tweetId) {
     confirmButtonText: 'Yes, delete it!',
   }).then((result) => {
     if (result.isConfirmed) {
-      const url = `${window.location.origin}/tweet/${tweetId}`;
+      const url = `${window.location.origin}/tweets/${tweetId}`;
       fetch(url, {
         method: 'DELETE',
       })

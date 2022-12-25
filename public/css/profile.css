@@ -1,0 +1,113 @@
+.profile_container {
+  position: relative;
+}
+.profile_container .cover {
+  background-color: #50abf1;
+  height: 150px;
+  width: 100%;
+}
+.profile_container .avatar {
+  height: 100px;
+  width: 100px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -50px;
+  left: 15px;
+  overflow: hidden;
+}
+.profile_container .avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.action_btns {
+  text-align: right;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px;
+}
+.action_btns i {
+  color: #50abf1;
+  font-size: 20px;
+  border: 1px solid #50abf1;
+  padding: 5px 15px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+.action_btns i:hover {
+  background-color: rgba(80, 171, 241, 0.2509803922);
+}
+
+.follow_btn {
+  border: 1px solid #50abf1;
+  height: 38px;
+  width: 110px;
+  border-radius: 25px;
+  margin-left: 20px;
+  font-weight: 500;
+  color: #50abf1;
+  background-color: unset;
+  transition: 0.3s;
+}
+
+.follow_container {
+  padding: 15px;
+}
+.follow_container span {
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.user_details {
+  padding: 0px 15px;
+}
+.user_details p {
+  color: gray;
+  font-weight: 300;
+}
+
+.follow_container a {
+  color: gray;
+}
+
+.following,
+.followers {
+  margin-right: 10px;
+  font-weight: 300;
+}
+.following:hover,
+.followers:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tabs_container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.tweets_tab,
+.replies_tab {
+  width: 50%;
+  padding: 5px 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.tweets_tab:hover,
+.replies_tab:hover {
+  background-color: rgba(102, 184, 247, 0.2745098039);
+}
+
+.active {
+  border-bottom: 4px solid #50abf1;
+}
+
+.following_btn {
+  background-color: #50abf1;
+  color: #ffffff;
+}

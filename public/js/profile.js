@@ -1,4 +1,5 @@
-const tweetContainer = document.querySelector('.tweet_container');
+// select elements
+let tweetContainer = document.querySelector('.tweet_container');
 const replayBtn = document.querySelector('#replay_btn');
 const replayText = document.querySelector('#replay_text');
 const replayImgInput = document.querySelector('#replay_img');
@@ -6,37 +7,7 @@ const replayImageContainer = document.querySelector(
   '.replay_image_inner_container'
 );
 
-let tweetImages = [];
 let replayImages = [];
-// show tweets to UI
-async function loadTweets() {
-  try {
-    const result = await fetch(
-      `${window.location.origin}/tweets/single/${tweetId}`
-    );
-    const tweet = await result.json();
-
-    if (tweet === null) {
-      return (location.href = '/');
-    }
-
-    const tweetEl = createTweet(tweet);
-    tweetContainer.appendChild(tweetEl);
-
-    tweet.replayedTweets.forEach(async (tweetId) => {
-      const result = await fetch(
-        `${window.location.origin}/tweets/single/${tweetId}`
-      );
-      const tweet = await result.json();
-      const tweetEl = createTweet(tweet);
-      tweetContainer.appendChild(tweetEl);
-    });
-  } catch (error) {
-    location.href = '/';
-  }
-}
-// load all the tweets
-loadTweets();
 
 // reply button disable/enable function
 replayText.addEventListener('input', function (e) {
@@ -117,3 +88,81 @@ replayImageContainer.addEventListener('click', function (e) {
     });
   }
 });
+
+// show tweets to UI
+async function loadTweets() {
+  try {
+    const result = await fetch(
+      `${window.location.origin}/tweets?tweetedBy=${userProfile._id}&replayTo=${
+        tab === 'replies'
+      }`
+    );
+
+    const tweets = await result.json();
+    if (!tweets.length) {
+      return (tweetContainer.innerHTML =
+        '<h3 class="nothing text-center mt-3">Nothing to show :(</h3>');
+    } else {
+      tweets.forEach((tweet) => {
+        const tweetEl = createTweet(tweet);
+        tweetContainer.insertAdjacentElement('afterbegin', tweetEl);
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// load all the tweets
+loadTweets();
+
+// following functions
+function followHandler(event, userId) {
+  // document.querySelector('.follow_btn)
+  const followBtn = event.target;
+
+  const url = `${window.location.origin}/profile/${userId}/follow`;
+  fetch(url, {
+    method: 'PUT',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const followBtn = event.target;
+      const isFollowing = data.followers.includes(user._id);
+
+      const following = document.querySelector('a.following span');
+      const followers = document.querySelector('a.followers span');
+
+      if (isFollowing) {
+        followBtn.textContent = 'Following';
+        followBtn.classList.add('following_btn');
+        following.textContent = data.following.length;
+        followers.textContent = data.followers.length;
+      } else {
+        followBtn.textContent = 'Follow';
+        followBtn.classList.remove('following_btn');
+        following.textContent = data.following.length;
+        followers.textContent = data.followers.length;
+      }
+
+      // location.reload();
+    });
+}
+
+// document
+//   .querySelector('.following_btn')
+//   .addEventListener('mouseover', function () {
+//     this.innerHTML = 'Unfollow';
+//     this.style.border = '1px solid red';
+//     this.style.backgroundColor = 'unset';
+//     this.style.color = '#50abf1';
+//   });
+
+// document
+//   .querySelector('.following_btn')
+//   .addEventListener('mouseout', function () {
+//     this.innerHTML = 'Following';
+//     this.style.border = '1px solid #50abf1';
+//     this.style.backgroundColor = '#50abf1';
+//     this.style.color = 'white';
+//   });

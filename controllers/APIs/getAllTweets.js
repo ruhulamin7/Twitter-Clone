@@ -4,7 +4,17 @@ const User = require('../../models/User');
 
 const getAllTweets = async (req, res, next) => {
   try {
-    const result = await Tweet.find({});
+    console.log(req.query);
+    const filterObj = {};
+    req.query.tweetedBy && (filterObj.tweetedBy = req.query?.tweetedBy);
+    req.query.replayTo &&
+      (filterObj.replayTo =
+        req.query?.replayTo === 'false'
+          ? { $exists: false }
+          : { $exists: true });
+
+    const result = await Tweet.find(filterObj);
+
     await User.populate(result, { path: 'tweetedBy' });
     await Tweet.populate(result, { path: 'originalTweet' });
     await User.populate(result, { path: 'originalTweet.tweetedBy' });

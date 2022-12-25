@@ -1,0 +1,130 @@
+$lightColor: #eff1f1;
+$primaryColor: #50abf1;
+$whiteColor: #ffffff;
+$grayColor: gray;
+
+.profile_container {
+  position: relative;
+  .cover {
+    background-color: $primaryColor;
+    height: 150px;
+    width: 100%;
+  }
+  .avatar {
+    height: 100px;
+    width: 100px;
+    border: 2px solid $whiteColor;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -50px;
+    left: 15px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.action_btns {
+  text-align: right;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px;
+  i {
+    color: $primaryColor;
+
+    font-size: 20px;
+    border: 1px solid $primaryColor;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: 0.3s;
+    &:hover {
+      background-color: #50abf140;
+    }
+  }
+}
+
+.follow_btn {
+  border: 1px solid $primaryColor;
+
+  // padding: 3px 15px;
+  height: 38px;
+  width: 110px;
+  border-radius: 25px;
+  margin-left: 20px;
+  font-weight: 500;
+  color: $primaryColor;
+  background-color: unset;
+  transition: 0.3s;
+
+  // &:hover {
+  //   background-color: #50abf140;
+  // }
+}
+
+.follow_container {
+  padding: 15px;
+
+  span {
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+
+.user_details {
+  padding: 0px 15px;
+
+  p {
+    color: $grayColor;
+    font-weight: 300;
+  }
+}
+
+.follow_container {
+  a {
+    color: $grayColor;
+  }
+}
+
+.following,
+.followers {
+  margin-right: 10px;
+  font-weight: 300;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.tabs_container {
+  display: flex;
+  justify-content: space-between;
+  //   text-align: center;
+  margin-bottom: 5px;
+}
+
+.tweets_tab,
+.replies_tab {
+  width: 50%;
+  padding: 5px 15px;
+  font-weight: 600;
+  transition: 0.3s;
+  &:hover {
+    background-color: #66b8f746;
+  }
+}
+
+.active {
+  //   background-color: #66b8f746;
+
+  border-bottom: 4px solid $primaryColor;
+}
+
+.following_btn {
+  background-color: $primaryColor;
+  color: $whiteColor;
+}

@@ -19,6 +19,7 @@ const logoutRoute = require('./routes/auth/logoutRoute');
 const newPasswordRoute = require('./routes/auth/newPasswordRoute');
 const tweetRoute = require('./routes/APIs/tweetRoute');
 const connectDb = require('./config/connectDb');
+const profileRoute = require('./routes/profile/profileRoute');
 
 // init app
 const app = express();
@@ -54,7 +55,9 @@ app.use(logoutRoute);
 app.use(newPasswordRoute);
 
 // post tweet
-app.use('/tweet', tweetRoute);
+app.use('/tweets', tweetRoute);
+// profile route
+app.use('/profile', profileRoute);
 
 // check router
 app.use('/check', (req, res) => {

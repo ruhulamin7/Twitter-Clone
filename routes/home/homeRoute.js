@@ -12,6 +12,12 @@ homeRoute.get(
   authChecker,
   getHomePage
 );
+homeRoute.get(
+  '/home',
+  decorateHTMLResponse(`Home - ${process.env.APP_NAME}`),
+  authChecker,
+  getHomePage
+);
 
 // exports
 module.exports = homeRoute;
