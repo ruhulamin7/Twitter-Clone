@@ -118,9 +118,6 @@ loadTweets();
 
 // following functions
 function followHandler(event, userId) {
-  // document.querySelector('.follow_btn)
-  const followBtn = event.target;
-
   const url = `${window.location.origin}/profile/${userId}/follow`;
   fetch(url, {
     method: 'PUT',
@@ -129,7 +126,6 @@ function followHandler(event, userId) {
     .then((data) => {
       const followBtn = event.target;
       const isFollowing = data.followers.includes(user._id);
-
       const following = document.querySelector('a.following span');
       const followers = document.querySelector('a.followers span');
 
@@ -143,9 +139,9 @@ function followHandler(event, userId) {
         followBtn.classList.remove('following_btn');
         following.textContent = data.following.length;
         followers.textContent = data.followers.length;
-      }
 
-      // location.reload();
+        // following.addEventListner
+      }
     });
 }
 

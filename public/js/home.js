@@ -45,7 +45,9 @@ replayText.addEventListener('input', function (e) {
 // show tweets to UI
 async function loadTweets() {
   try {
-    const result = await fetch(`${window.location.origin}/tweets`);
+    const result = await fetch(
+      `${window.location.origin}/tweets?followingOnly=true`
+    );
     const tweets = await result.json();
     if (!tweets.length) {
       return (tweetContainer.innerHTML =

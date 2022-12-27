@@ -6,6 +6,7 @@ block title
 
 block css
     link(rel="stylesheet", href="/css/home.css")
+    link(rel="stylesheet", href="/css/profile.css")
     link(rel="stylesheet", href="/css/follow.css")
 
 
@@ -83,47 +84,46 @@ block bodyContent
                     h4 Profile 
                 .heading_icon
                     i.fas.fa-star
-            if userProfile !== null       
-                .profile_container 
-                    .cover 
-                        img(src="" alt="")
-                    .avatar
-                        img(src="/uploads/profile/"+ userProfile.userAvatar, alt="avatar")
+                  
+            .profile_container 
+                .cover 
+                    img(src="" alt="")
+                .avatar
+                    img(src="/uploads/profile/"+ userProfile.userAvatar, alt="avatar")
 
 
-                .action_btns 
-                    if user.username !== userProfile.username
-                        a.msg_btn(href="")
-                            i.fas.fa-envelope
-                        - isFollowing = userProfile.followers && userProfile.followers.includes(user._id.toString())
-                
-                        button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, userProfile._id)`) #{isFollowing ? 'Following' : 'Follow'}
-                        
-                .user_details 
-                    h4 #{userProfile.firstName} #{userProfile.lastName}
-                    p @#{userProfile.username}
-                    - following =  userProfile.following && userProfile.following.length || 0;
-                    - followers =  userProfile.followers && userProfile.followers.length || 0;
-
-                .follow_container
-                    a.following(href=`/profile/${userProfile.username}/following`) 
-                        span 0 
-                        |Following
-                    a.followers(href=`/profile/${userProfile.username}/followers`) 
-                        span 0 
-                        |Followers
-                
-                .tabs_container
-                    a.tweets_tab(class= tab === "following" ? "active" : "" href=`/profile/${userProfile.username}/following`) Following
-                    a.replies_tab(class= tab === "followers" ? "active" : "" href=`/profile/${userProfile.username}/followers`) Followers
-            else 
-                h4.text-center.bg-danger.p-2.text-white User not found !
+            .action_btns 
+                if user.username !== userProfile.username
+                    a.msg_btn(href="")
+                        i.fas.fa-envelope
+                    - isFollowing = userProfile.followers && userProfile.followers.includes(user._id.toString())
             
-         
-            .follow_container 
+                    button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, userProfile._id)`) #{isFollowing ? 'Following' : 'Follow'}
+                    
+            .user_details 
+                h4 #{userProfile.firstName} #{userProfile.lastName}
+                p @#{userProfile.username}
+                - following =  userProfile.following && userProfile.following.length || 0;
+                - followers =  userProfile.followers && userProfile.followers.length || 0;
+
+            .follow_container
+                a.following(href=`/profile/${userProfile.username}/following`) 
+                    span 0 
+                    |Following
+                a.followers(href=`/profile/${userProfile.username}/followers`) 
+                    span 0 
+                    |Followers
+            
+            .tabs_container
+                a.tweets_tab(class= tab === "following" ? "active" : "" href=`/profile/${userProfile.username}/following`) Following
+                a.replies_tab(class= tab === "followers" ? "active" : "" href=`/profile/${userProfile.username}/followers`) Followers
+        
+            .follow_list_container 
                 
         .right_container
             
+
+
 
     script.
        const user = !{userJs};

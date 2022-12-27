@@ -1,4 +1,6 @@
 const followController = require('../../controllers/APIs/followController');
+const getFollowers = require('../../controllers/follow/getFollowers');
+const getFollowing = require('../../controllers/follow/getFollowing');
 const getReplies = require('../../controllers/profile/getReplies');
 const getTweets = require('../../controllers/profile/getTweets');
 const authChecker = require('../../middlewares/common/authChecker');
@@ -27,6 +29,19 @@ profileRoute.put(
   decorateHTMLResponse(`Profile - ${process.env.APP_NAME}`),
   authChecker,
   followController
+);
+
+profileRoute.get(
+  '/:username/following',
+  decorateHTMLResponse(`Profile - ${process.env.APP_NAME}`),
+  authChecker,
+  getFollowing
+);
+profileRoute.get(
+  '/:username/followers',
+  decorateHTMLResponse(`Profile - ${process.env.APP_NAME}`),
+  authChecker,
+  getFollowers
 );
 
 // exports

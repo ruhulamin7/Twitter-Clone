@@ -1,0 +1,57 @@
+$lightColor: #eff1f1;
+$primaryColor: #50abf1;
+$whiteColor: #ffffff;
+$grayColor: gray;
+
+.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.follow_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.follow_profile {
+  display: flex;
+  align-items: center;
+}
+
+.follow_list {
+  border-top: 1px solid rgb(213, 211, 211);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.follow_name {
+  margin-left: 10px;
+  a {
+    color: black;
+  }
+  span {
+    color: gray;
+  }
+}
+
+.fl_btn {
+  border: 1px solid $primaryColor;
+  height: 30px;
+  width: 100px;
+  border-radius: 25px;
+  color: $primaryColor;
+  background-color: unset;
+  transition: 0.3s;
+}
+
+.following_btn {
+  background-color: $primaryColor;
+  color: $whiteColor;
+}
