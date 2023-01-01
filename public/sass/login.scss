@@ -53,14 +53,36 @@ form p {
   margin: 0;
 }
 
+.username_area .login_username {
+  padding-left: 30px;
+}
+.password_area .login_password {
+  padding-left: 30px;
+}
+
+.username_area {
+  position: relative;
+}
+
+#userIcon {
+  position: absolute;
+  left: 5px;
+  top: 12px;
+}
 .password_area {
   position: relative;
 }
-#passEyeIcon {
+#passIcon {
   position: absolute;
-  right: 0;
+  left: 5px;
   top: 12px;
 }
+#passEyeIcon {
+  position: absolute;
+  right: 5px;
+  top: 12px;
+}
+
 .login_bottom_link {
   display: flex;
   justify-content: space-between;

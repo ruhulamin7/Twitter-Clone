@@ -19,11 +19,11 @@ confirmPassErrorsEl.hidden = true;
 // password hide and show handler
 function passwordHideAndShow(icon, field) {
   icon.addEventListener('click', function (e) {
-    if (icon.className === 'fa-regular fa-eye') {
-      icon.className = 'fa-regular fa-eye-slash';
+    if (icon.className === 'fas fa-eye') {
+      icon.className = 'fas fa-eye-slash';
       field.type = 'text';
     } else {
-      icon.className = 'fa-regular fa-eye';
+      icon.className = 'fas fa-eye';
       field.type = 'password';
     }
   });

@@ -55,7 +55,7 @@ block bodyContent
                             span 
                                 i.fas.fa-user  
                             |Profile
-                        a.nav_link
+                        a.nav_link(class="see_more")
                             span.more 
                                 i.fas.fa-ellipsis-h
                             |More               
@@ -97,18 +97,21 @@ block bodyContent
                             i.fas.fa-envelope
                         - isFollowing = userProfile.followers && userProfile.followers.includes(user._id.toString())
                 
-                        button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, userProfile._id)`) #{isFollowing ? 'Following' : 'Follow'}
+                        button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, "${userProfile._id}")`) #{isFollowing ? 'Following' : 'Follow'}
                         
                 .user_details 
                     h4 #{userProfile.firstName} #{userProfile.lastName}
                     p @#{userProfile.username}
+                    
 
                 .follow_container
+                    - following =  userProfile.following && userProfile.following.length || 0;
+                    - followers =  userProfile.followers && userProfile.followers.length || 0;
                     a.following(href=`/profile/${userProfile.username}/following`) 
-                        span 0 
+                        span #{following} 
                         |Following
-                    a.followers(href=`/profile/${userProfile.username}/followers`) 
-                        span 0 
+                    a.followers(href=`/profile/${userProfile.username}/followers`)
+                        span #{followers} 
                         |Followers
                 
                 .tabs_container
@@ -161,6 +164,7 @@ block bodyContent
     script.
        const user = !{userJs};
        const tab = '!{tab}';
-       const userProfile = !{userProfileJs};
+       const profileUser = !{profileUserJs};
+
 
 

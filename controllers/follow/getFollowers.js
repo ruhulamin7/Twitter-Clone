@@ -21,7 +21,7 @@ const getFollowers = async (req, res, next) => {
 
     // user send to frontend js
     const userJs = JSON.stringify(user);
-    const userProfileJs = JSON.stringify(userProfile);
+    const profileUserJs = JSON.stringify(userProfile);
 
     return res.render('pages/follow/follow', {
       user: user ? user : {},
@@ -29,7 +29,7 @@ const getFollowers = async (req, res, next) => {
       error: {},
       userJs,
       userProfile,
-      userProfileJs,
+      profileUserJs,
       tab: 'followers',
     });
   } catch (error) {

@@ -106,6 +106,9 @@ a {
 .left_container .left_top .menu_area nav.nav a.nav_link:hover {
   background-color: #eff1f1;
 }
+.left_container .left_top .see_more {
+  cursor: pointer;
+}
 .left_container .left_top .tweet_btn a button {
   background-color: #50abf1;
   margin-top: 10px;

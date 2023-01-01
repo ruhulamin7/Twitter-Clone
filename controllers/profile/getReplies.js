@@ -18,7 +18,7 @@ const getReplies = async (req, res, next) => {
 
     // user send to frontend js
     const userJs = JSON.stringify(user);
-    const userProfileJs = JSON.stringify(userProfile);
+    const profileUserJs = JSON.stringify(userProfile);
 
     return res.render('pages/profile/profile', {
       user: user ? user : {},
@@ -26,7 +26,7 @@ const getReplies = async (req, res, next) => {
       error: {},
       userJs,
       userProfile,
-      userProfileJs,
+      profileUserJs,
       tab: 'replies',
     });
   } catch (error) {

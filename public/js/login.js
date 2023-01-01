@@ -3,11 +3,11 @@ let passEyeIcon = document.getElementById('passEyeIcon');
 
 // password hide and show
 passEyeIcon.addEventListener('click', function (e) {
-  if (passEyeIcon.className === 'fa-regular fa-eye') {
-    passEyeIcon.className = 'fa-regular fa-eye-slash';
+  if (passEyeIcon.className === 'fas fa-eye') {
+    passEyeIcon.className = 'fas fas fa-eye-slash';
     passwordEl.type = 'text';
   } else {
-    passEyeIcon.className = 'fa-regular fa-eye';
+    passEyeIcon.className = 'fas fa-eye';
     passwordEl.type = 'password';
   }
 });

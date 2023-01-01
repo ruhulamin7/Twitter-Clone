@@ -16,7 +16,7 @@ const registerHandler = async (req, res, next) => {
         username: req.body.username,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
-        userAvatar: req.file?.filename ? req.file.filename : 'avatar.png',
+        userAvatar: req.file?.filename ? req.file.filename : '',
         status: 'unverified',
         likes: [],
         retweets: [],

@@ -14,16 +14,18 @@ block bodyContent
         .login_wrapper
             h3.text-secondary Login 
             form(action="/login" method="post")
-                
-                
+            
                 //- email field
-                input(type="text" name="email" id="email" placeholder="Username or email" class="form-control" value= user? user.email: '')
-                if error && error.email
-                    p(class="error email_error") #{error.email.msg+"*"}
+                .username_area 
+                    input(type="text" name="email" id="email" placeholder="Username or email" class="form-control login_username" value= user? user.email: '') 
+                    i#userIcon(class="fas fa-user-large")
+                    if error && error.email
+                        p(class="error email_error") #{error.email.msg+"*"}
                     //- password field
                 .password_area
-                    input(type="password" name="password" id="password" placeholder="Password" class="form-control" value= user && !error.password? user.password: "")
-                    i#passEyeIcon(class="fa-regular fa-eye")
+                    input(type="password" name="password" id="password" placeholder="Password" class="form-control login_password" value= user && !error.password? user.password: "")
+                    i#passIcon(class="fas fa-lock")
+                    i#passEyeIcon(class="fas fa-eye")
                 if error && error.password
                     p(class="error email_error") #{error.password.msg+"*"}
                 //- submit field

@@ -40,15 +40,13 @@ block bodyContent
                         input(type="password" value= user && !error.password && !error.confirmPassword? user.password: '' name="password" id="password" placeholder="Password" class="form-control")
                         if error.password 
                             p.error#pass_err #{error.password.msg+"*"}
-                        i#passwordEyeIcon(class="fa-regular fa-eye")
-                        //- <i class="fa-regular fa-eye-slash"></i>
-                        //- <i class="fa-regular fa-face-pensive"></i>
+                        i#passwordEyeIcon(class="fas fa-eye")
 
                     div.password_area
                         input(type="password" value= user && !error.confirmPassword? user.confirmPassword: '' name="confirmPassword" id="confirmPassword" placeholder="Retype password" class="form-control")
                         if error.confirmPassword 
                             p.error#confirm_pass_err #{error.confirmPassword.msg+"*"}
-                        i#confirmPasswordEyeIcon(class="fa-regular fa-eye")
+                        i#confirmPasswordEyeIcon(class="fas fa-eye")
                         p#confirmPassErrors.error
 
                 p#passErrors.error

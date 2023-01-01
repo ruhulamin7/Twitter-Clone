@@ -12,46 +12,46 @@ function followHandler(event, userId) {
       const followers = document.querySelector('a.followers span');
 
       if (isFollowing) {
-        if (userProfile._id === user._id) {
-          following.textContent = parseInt(following.textContent) + 1;
+        if (profileUser._id === user._id) {
+          following.textContent = parseInt(following.textContent) + 1 + ' ';
         }
         followBtn.textContent = 'Following';
         followBtn.classList.add('following_btn');
       } else {
-        if (userProfile._id === user._id) {
-          following.textContent = parseInt(following.textContent) - 1;
+        if (profileUser._id === user._id) {
+          following.textContent = parseInt(following.textContent) - 1 + ' ';
         }
         followBtn.textContent = 'Follow';
         followBtn.classList.remove('following_btn');
       }
 
-      if (data._id === userProfile._id) {
-        following.textContent = data.following.length;
-        followers.textContent = data.followers.length;
+      if (data._id === profileUser._id) {
+        following.textContent = data.following.length + ' ';
+        followers.textContent = data.followers.length + ' ';
       }
     });
 }
 
-const following = (userProfile && userProfile.following) || [];
-const followers = (userProfile && userProfile.followers) || [];
+const following = (profileUser && profileUser.following) || [];
+const followers = (profileUser && profileUser.followers) || [];
 
-const followContainer = document.querySelector('.follow_list_container');
+const followListContainer = document.querySelector('.follow_list_container');
 
 if (tab === 'following') {
   following.forEach((followingUser) => {
     const html = createFollowingElement(followingUser);
-    followContainer.appendChild(html);
+    followListContainer.appendChild(html);
   });
 } else {
   followers.forEach((follower) => {
     const html = createFollowingElement(follower);
-    followContainer.appendChild(html);
+    followListContainer.appendChild(html);
   });
 }
 
 function createFollowingElement(data) {
   const name = data.firstName + ' ' + data.lastName;
-  const isFollowing = data?.following?.includes(user._id);
+  const isFollowing = data?.followers?.includes(user._id);
 
   let followDiv = '';
   if (data._id !== user._id) {
@@ -82,7 +82,6 @@ function createFollowingElement(data) {
     <div>
       ${followDiv}
     </div>
-  
   `;
 
   return div;

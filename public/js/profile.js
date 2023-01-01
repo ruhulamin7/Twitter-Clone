@@ -93,7 +93,7 @@ replayImageContainer.addEventListener('click', function (e) {
 async function loadTweets() {
   try {
     const result = await fetch(
-      `${window.location.origin}/tweets?tweetedBy=${userProfile._id}&replayTo=${
+      `${window.location.origin}/tweets?tweetedBy=${profileUser._id}&replayTo=${
         tab === 'replies'
       }`
     );
@@ -132,15 +132,13 @@ function followHandler(event, userId) {
       if (isFollowing) {
         followBtn.textContent = 'Following';
         followBtn.classList.add('following_btn');
-        following.textContent = data.following.length;
-        followers.textContent = data.followers.length;
+        following.textContent = data.following.length + ' ';
+        followers.textContent = data.followers.length + ' ';
       } else {
         followBtn.textContent = 'Follow';
         followBtn.classList.remove('following_btn');
-        following.textContent = data.following.length;
-        followers.textContent = data.followers.length;
-
-        // following.addEventListner
+        following.textContent = data.following.length + ' ';
+        followers.textContent = data.followers.length + ' ';
       }
     });
 }
