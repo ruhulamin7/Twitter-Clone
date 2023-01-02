@@ -290,21 +290,23 @@ function deleteTweet(tweetId) {
   });
 }
 
-const user_dot_btn = document.querySelector('.user_dot_btn');
-user_dot_btn.addEventListener('click', () => {
-  const logout_btn = document.querySelector('#logout_btn');
-  // console.log(...logout_btn.classList);
-  if ([...logout_btn.classList].includes('d-none')) {
-    logout_btn.classList.remove('d-none');
+// logout functionality
+const userThreeDotBtn = document.querySelector('.user_dot_btn');
+
+userThreeDotBtn.addEventListener('click', () => {
+  const logoutBtn = document.querySelector('#logout_btn');
+  // console.log(...logoutBtn.classList);
+  if ([...logoutBtn.classList].includes('d-none')) {
+    logoutBtn.classList.remove('d-none');
   } else {
-    logout_btn.classList.add('d-none');
+    logoutBtn.classList.add('d-none');
   }
 });
 
 document.addEventListener('click', function (e) {
-  const logout_btn = document.querySelector('#logout_btn');
+  const logoutBtn = document.querySelector('#logout_btn');
   // console.log(e.target.localName);
   if (e.target.localName !== 'i') {
-    logout_btn.classList.add('d-none');
+    logoutBtn.classList.add('d-none');
   }
 });

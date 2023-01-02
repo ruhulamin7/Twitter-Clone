@@ -1,9 +1,7 @@
 const createHttpError = require('http-errors');
 const Tweet = require('../../models/Tweet');
-const User = require('../../models/User');
 const { cacheSetAndGet } = require('../../utils/cacheManager');
 const { tweetPopulate } = require('../../utils/populator');
-const createTweet = require('./createTweet');
 
 const getSingleTweet = async (req, res, next) => {
   try {

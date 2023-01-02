@@ -111,3 +111,28 @@
   background-color: #50abf1;
   color: #ffffff;
 }
+
+.avatar {
+  position: relative;
+  transition: 0.3s;
+}
+
+.updateAvatar {
+  position: absolute;
+  left: 37px;
+  top: 40px;
+  border: none;
+  outline: none;
+  display: none;
+}
+.updateAvatar i {
+  font-size: 24px;
+}
+
+.avatar:hover .updateAvatar {
+  display: block;
+}
+
+#avatarPreview {
+  width: 100%;
+}

@@ -8,6 +8,7 @@ const replayImageContainer = document.querySelector(
 );
 
 let replayImages = [];
+let cropper;
 
 // reply button disable/enable function
 replayText.addEventListener('input', function (e) {
@@ -160,3 +161,68 @@ function followHandler(event, userId) {
 //     this.style.backgroundColor = '#50abf1';
 //     this.style.color = 'white';
 //   });
+
+// update avatar
+const updateAvatarInput = document.querySelector('input#updateAvatarInput');
+const avatarPreviewContainer = document.querySelector(
+  'div#avatarPreviewContainer'
+);
+const avatarPreview = document.querySelector('img#avatarPreview');
+const updateAvatarBtn = document.querySelector('button#updateAvatarBtn');
+
+// collect avatar for store
+
+updateAvatarInput.addEventListener('change', function () {
+  // console.log(this.files[0]);
+  const files = this.files;
+  if (files.length) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      if (
+        !['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'].includes(
+          files[0].type
+        )
+      ) {
+        alert('Only jpg, png, jpeg, and svg image files are allowed');
+        return;
+      }
+      // for preview avatar
+      avatarPreview.src = reader.result;
+      // avatarPreview.src = e.target.result;
+
+      cropper = new Cropper(avatarPreview, {
+        aspectRatio: 1 / 1,
+        background: false,
+      });
+    };
+    reader.readAsDataURL(files[0]);
+  } else {
+    console.log('Avatar file not found!');
+  }
+});
+
+// save avatar
+updateAvatarBtn.addEventListener('click', function (e) {
+  const canvas = cropper?.getCroppedCanvas();
+  if (canvas) {
+    canvas.toBlob((blob) => {
+      const fileName = updateAvatarInput?.files[0]?.name || 'avatar.png';
+      const formData = new FormData();
+      formData.append('userAvatar', blob, fileName);
+      const url = `${window.location.origin}/profile/avatar`;
+      fetch(url, {
+        method: 'PUT',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data._id) {
+            location.reload();
+          }
+        });
+    });
+  } else {
+    alert('Please select an image to load');
+  }
+});

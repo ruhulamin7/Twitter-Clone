@@ -7,6 +7,7 @@ block title
 block css
     link(rel="stylesheet", href="/css/home.css")
     link(rel="stylesheet", href="/css/profile.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css ")
 
 
 block js 
@@ -93,9 +94,11 @@ block bodyContent
                         img(src="" alt="")
                     .avatar
                         img(src=profileAvatarURL, alt="avatar")
+                        if userProfile._id == user._id 
+                            button.updateAvatar(data-bs-toggle="modal" data-bs-target="#updateAvatarModal" class="") 
+                                i.fas.fa-camera
 
-
-                .action_btns 
+                .action_btns
                     if user.username !== userProfile.username
                         a.msg_btn(href="")
                             i.fas.fa-envelope
@@ -123,9 +126,8 @@ block bodyContent
                     a.replies_tab(class= tab === "replies" ? "active" : "" href=`/profile/${userProfile.username}/replies`) Replies
             else 
                 h4.text-center.bg-danger.p-2.text-white User not found !
-            
-         
-                
+
+
             .tweet_container 
                 
         .right_container
@@ -163,8 +165,27 @@ block bodyContent
                                 input#replay_img(type="file", multiple alt="replay" style="display: none")
                             .replay_btn 
                                 button.dis_btn(disabled="" id="replay_btn") Replay 
-                                
-                                     
+
+    //- update avatar Modal
+    #updateAvatarModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#updateAvatarModalTitle.modal-title.fs-6 Update Profile Avatar
+                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+
+                .modal-body.p-0
+                    input#updateAvatarInput(type='file')
+                    div#avatarPreviewContainer
+                        img#avatarPreview
+                .modal-footer
+                    button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Close
+                    button#updateAvatarBtn.btn.btn-primary(type="button") Save
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js") 
+         
+             
     script.
        const user = !{userJs};
        const tab = '!{tab}';

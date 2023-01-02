@@ -125,3 +125,31 @@ $grayColor: gray;
   background-color: $primaryColor;
   color: $whiteColor;
 }
+
+.avatar {
+  position: relative;
+  transition: 0.3s;
+}
+.updateAvatar {
+  position: absolute;
+  left: 37px;
+  top: 40px;
+  border: none;
+  outline: none;
+  display: none;
+
+  i {
+    font-size: 24px;
+  }
+}
+
+.avatar:hover .updateAvatar {
+  display: block;
+}
+
+#avatarPreviewContainer {
+  // width: 100%;
+}
+#avatarPreview {
+  width: 100%;
+}
