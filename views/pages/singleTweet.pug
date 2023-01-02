@@ -58,16 +58,19 @@ block bodyContent
                         a(href="/tweets") 
                             button Tweet 
             //- left bottom
+            - avatarURL = user.userAvatar? `/uploads/${user._id}/profile/${user.userAvatar}`: `/uploads/profile/avatar.png`
+
             .left_bottom
                 .user_area
                     .user_avatar
-                        img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar") 
+                        img(src=avatarURL, alt="user avatar") 
                     .user_name
                         h6 #{user.firstName} #{user.lastName}
                         p @#{user.username}
                     .user_dot_btn
                         i.fas.fa-ellipsis-h 
-                                
+                a#logout_btn.btn.btn-light.m-2.d-none(href="/logout")
+                    |Logout                 
         .middle_container
             .tweet_heading_wrapper
                 .heading_text

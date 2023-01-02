@@ -2,7 +2,7 @@ const upload = require('multer-uploader');
 const path = require('path');
 
 function avatarUpload(req, res, next) {
-  const uploadDir = path.join(__dirname, '../../temp');
+  const uploadDir = path.join(__dirname, '../../temp/');
   const maxFileSize = 1000000;
   const allowedMimeTypes = [
     'image/jpg',

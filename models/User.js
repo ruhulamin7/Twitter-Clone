@@ -43,7 +43,6 @@ const userSchema = new Schema(
     },
     userAvatar: {
       type: String,
-      required: true,
     },
     status: {
       type: String,

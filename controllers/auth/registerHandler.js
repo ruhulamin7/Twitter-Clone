@@ -2,6 +2,8 @@ const createError = require('http-errors');
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 const sendEmail = require('../../utils/sendEmail');
+const fs = require('fs');
+const path = require('path');
 // require('dotenv').config();
 
 // register controller
@@ -22,6 +24,15 @@ const registerHandler = async (req, res, next) => {
         retweets: [],
       });
       const user = await userObj.save();
+      if (user.userAvatar) {
+        fs.renameSync(
+          path.join(__dirname, `../../temp/${user.userAvatar}`),
+          path.join(
+            __dirname,
+            `../../public/uploads/${user._id}/profile/${user.userAvatar}`
+          )
+        );
+      }
 
       // send email to user for email confirmation
       if (user._id) {

@@ -528,3 +528,14 @@ a {
   border-bottom: 1px solid rgb(188, 188, 188);
   padding-bottom: 5px;
 }
+
+.left_bottom {
+  position: relative;
+}
+
+#logout_btn {
+  position: absolute;
+  right: 0;
+  top: -25px;
+  background-color: rgb(243, 101, 101);
+}
