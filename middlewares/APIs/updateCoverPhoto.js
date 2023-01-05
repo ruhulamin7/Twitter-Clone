@@ -2,11 +2,11 @@ const createHttpError = require('http-errors');
 const upload = require('multer-uploader');
 const path = require('path');
 
-function updateProfileAvatar(req, res, next) {
+function updateCoverPhoto(req, res, next) {
   try {
     const uploadDir = path.join(
       __dirname,
-      `../../public/uploads/${req.userId}/profile/`
+      `../../public/uploads/${req.userId}/cover/`
     );
     const maxFileSize = 10000000;
     const allowedMimeTypes = [
@@ -34,4 +34,4 @@ function updateProfileAvatar(req, res, next) {
 }
 
 // exports
-module.exports = updateProfileAvatar;
+module.exports = updateCoverPhoto;

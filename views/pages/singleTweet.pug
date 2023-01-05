@@ -46,7 +46,7 @@ block bodyContent
                             span 
                                 i.fas.fa-list 
                             |Lists
-                        a.nav_link(href="/profile") 
+                        a.nav_link(href="/profile/"+user.username) 
                             span 
                                 i.fas.fa-user  
                             |Profile
@@ -101,7 +101,7 @@ block bodyContent
                 .create_replay_wrapper
                     .avatar_area
                         .img
-                            img(src="/uploads/profile/"+ user.userAvatar, alt="user avatar")
+                            img(src=avatarURL, alt="user avatar")
                     .replay_area
                         .create_replay 
                             textarea#replay_text(name="replay",  placeholder="What's happening?" )

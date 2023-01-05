@@ -124,6 +124,7 @@
   border: none;
   outline: none;
   display: none;
+  background-color: unset;
 }
 .updateAvatar i {
   font-size: 24px;
@@ -134,5 +135,39 @@
 }
 
 #avatarPreview {
+  width: 100%;
+}
+
+.cover {
+  position: relative;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.updateCover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: none;
+  outline: none;
+  display: none;
+  background-color: unset;
+  font-size: 24px;
+  padding: 5px;
+  background-color: rgba(35, 34, 34, 0.2509803922);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.cover:hover .updateCover {
+  display: block;
+}
+
+#coverPreview {
   width: 100%;
 }

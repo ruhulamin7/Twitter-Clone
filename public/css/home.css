@@ -387,7 +387,7 @@ a {
 }
 .tweet .tweet_content_wrapper .tweet_activities {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   cursor: pointer;
 }

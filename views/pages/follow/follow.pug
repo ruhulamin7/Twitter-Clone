@@ -67,6 +67,9 @@ block bodyContent
                     - avatarURL = user.userAvatar? `/uploads/${user._id}/profile/${user.userAvatar}`: `/uploads/profile/avatar.png`
 
                     - profileAvatarURL = userProfile.userAvatar? `/uploads/${userProfile._id}/profile/${userProfile.userAvatar}`: `/uploads/profile/avatar.png`
+
+                    - coverURL = userProfile.coverPhoto? `/uploads/${userProfile._id}/cover/${userProfile.coverPhoto}`: `/uploads/cover/avatar.png`
+
             //- left bottom
             .left_bottom
                 .user_area
@@ -91,7 +94,7 @@ block bodyContent
                   
             .profile_container 
                 .cover 
-                    img(src="" alt="")
+                    img(src=coverURL alt="")
                 .avatar
                     img(src=profileAvatarURL, alt="avatar")
 

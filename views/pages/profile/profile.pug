@@ -68,6 +68,10 @@ block bodyContent
 
             - profileAvatarURL = userProfile.userAvatar? `/uploads/${userProfile._id}/profile/${userProfile.userAvatar}`: `/uploads/profile/avatar.png`
 
+           
+
+            - profileCoverURL = userProfile.coverPhoto? `/uploads/${userProfile._id}/cover/${userProfile.coverPhoto}`: `/uploads/cover/avatar.png`
+
             .left_bottom
                 .user_area
                     .user_avatar
@@ -91,7 +95,10 @@ block bodyContent
             if userProfile !== null       
                 .profile_container 
                     .cover 
-                        img(src="" alt="")
+                        img(src=profileCoverURL alt="cover photo")
+                        if userProfile._id == user._id 
+                            button.updateCover(data-bs-toggle="modal" data-bs-target="#updateCoverModal" class="") 
+                                i.fas.fa-camera
                     .avatar
                         img(src=profileAvatarURL, alt="avatar")
                         if userProfile._id == user._id 
@@ -182,6 +189,25 @@ block bodyContent
                 .modal-footer
                     button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Close
                     button#updateAvatarBtn.btn.btn-primary(type="button") Save
+
+
+                    //- update avatar Modal
+    #updateCoverModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#updateCoverModalTitle.modal-title.fs-6 Update Cover Photo
+                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+
+                .modal-body.p-0
+                    input#updateCoverInput(type='file')
+                    div#coverPreviewContainer
+                        img#coverPreview
+                .modal-footer
+                    button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Close
+                    button#updateCoverBtn.btn.btn-primary(type="button") Save
+
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js") 
          

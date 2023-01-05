@@ -99,9 +99,7 @@ function createTweet(data) {
           <i class="fas fa-heart" ></i> 
           <span>${likes.length ? likes.length : ''}</span>
         </button>
-        <button data-tag="Share">
-          <i class="fas fa-share"></i> <span>2</span>
-        </button>
+        
     </div>
   
   </div>

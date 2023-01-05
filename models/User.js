@@ -44,6 +44,9 @@ const userSchema = new Schema(
     userAvatar: {
       type: String,
     },
+    coverPhoto: {
+      type: String,
+    },
     status: {
       type: String,
       enum: ['unverified', 'verified', 'suspended'],
