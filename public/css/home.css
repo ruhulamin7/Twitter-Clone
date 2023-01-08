@@ -263,16 +263,16 @@ a {
   min-height: 100%;
   max-height: 200px;
 }
-.middle_container .create_tweet_wrapper .tweet_area .replay_tweet {
+.middle_container .create_tweet_wrapper .tweet_area .reply_tweet {
   display: flex;
   align-items: center;
   padding-bottom: 12px;
   border-bottom: 2px solid #eff1f1;
 }
-.middle_container .create_tweet_wrapper .tweet_area .replay_tweet i {
+.middle_container .create_tweet_wrapper .tweet_area .reply_tweet i {
   margin-right: 6px;
 }
-.middle_container .create_tweet_wrapper .tweet_area .replay_tweet span {
+.middle_container .create_tweet_wrapper .tweet_area .reply_tweet span {
   font-weight: 600;
 }
 .middle_container .create_tweet_wrapper .tweet_area .tweet_options_wrapper {
@@ -432,27 +432,27 @@ a {
   min-height: 100vh;
 }
 
-.create_replay_wrapper {
+.create_reply_wrapper {
   padding: 0 15px 15px;
   display: flex;
 }
-.create_replay_wrapper .replay_area {
+.create_reply_wrapper .reply_area {
   flex: 1;
 }
-.create_replay_wrapper .avatar_area {
+.create_reply_wrapper .avatar_area {
   margin-right: 10px;
 }
-.create_replay_wrapper .avatar_area .img {
+.create_reply_wrapper .avatar_area .img {
   width: 27px;
   height: 27px;
   overflow: hidden;
   border-radius: 50%;
 }
-.create_replay_wrapper .avatar_area .img img {
+.create_reply_wrapper .avatar_area .img img {
   width: 100%;
   height: 100%;
 }
-.create_replay_wrapper .replay_area .create_replay textarea {
+.create_reply_wrapper .reply_area .create_reply textarea {
   width: 100%;
   border: 0;
   outline: 0;
@@ -462,13 +462,13 @@ a {
   height: 40px;
   border-bottom: 1px solid #eee;
 }
-.create_replay_wrapper .replay_area .replay_options_wrapper {
+.create_reply_wrapper .reply_area .reply_options_wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px 0 15px;
 }
-.create_replay_wrapper .replay_area .replay_options_wrapper .replay_btn button {
+.create_reply_wrapper .reply_area .reply_options_wrapper .reply_btn button {
   border: none;
   outline: none;
   background-color: #50abf1;
@@ -477,23 +477,23 @@ a {
   padding: 3px 10px;
   border-radius: 25px;
 }
-.create_replay_wrapper .replay_area .replay_options_wrapper .replay_btn .dis_btn {
+.create_reply_wrapper .reply_area .reply_options_wrapper .reply_btn .dis_btn {
   background-color: #a3cff0;
   cursor: not-allowed;
 }
 
-.replay_image_container {
+.reply_image_container {
   width: 100%;
 }
-.replay_image_container .replay_image_inner_container {
+.reply_image_container .reply_image_inner_container {
   display: flex;
   gap: 10px;
   width: 100%;
 }
-.replay_image_container .replay_image_inner_container .img_div {
+.reply_image_container .reply_image_inner_container .img_div {
   position: relative;
 }
-.replay_image_container .replay_image_inner_container .img_div span {
+.reply_image_container .reply_image_inner_container .img_div span {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -507,14 +507,14 @@ a {
   transition: 0.1s;
   cursor: pointer;
 }
-.replay_image_container .replay_image_inner_container .img_div span:hover {
+.reply_image_container .reply_image_inner_container .img_div span:hover {
   background-color: rgba(0, 0, 0, 0.42);
 }
-.replay_image_container .replay_image_inner_container .img_div span i {
+.reply_image_container .reply_image_inner_container .img_div span i {
   color: #ffffff;
   pointer-events: none;
 }
-.replay_image_container .replay_image_inner_container img {
+.reply_image_container .reply_image_inner_container img {
   width: 100%;
   border-radius: 10px;
   -o-object-fit: cover;
@@ -524,7 +524,7 @@ a {
   max-height: 100px;
 }
 
-.replayingFlag {
+.replyingFlag {
   border-bottom: 1px solid rgb(188, 188, 188);
   padding-bottom: 5px;
 }

@@ -39,14 +39,14 @@ async function retweetController(req, res, next) {
 
     // populate data
     // await User.populate(tweet, { path: 'tweetedBy' });
-    // await Tweet.populate(tweet, { path: 'replayedTweets' });
-    // await User.populate(tweet, { path: 'replayedTweets.tweetedBy' });
-    // await User.populate(tweet, { path: 'replayedTweets.replayTo' });
+    // await Tweet.populate(tweet, { path: 'repliedTweets' });
+    // await User.populate(tweet, { path: 'repliedTweets.tweetedBy' });
+    // await User.populate(tweet, { path: 'repliedTweets.replyTo' });
     // await User.populate(tweet, {
-    //   path: 'replayedTweets.replayTo.tweetedBy',
+    //   path: 'repliedTweets.replyTo.tweetedBy',
     // });
-    // await Tweet.populate(tweet, { path: 'replayTo' });
-    // await User.populate(tweet, { path: 'replayTo.tweetedBy' });
+    // await Tweet.populate(tweet, { path: 'replyTo' });
+    // await User.populate(tweet, { path: 'replyTo.tweetedBy' });
 
     await tweetPopulate(tweet);
     // update retweet cache data

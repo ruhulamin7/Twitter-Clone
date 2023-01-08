@@ -21,12 +21,12 @@ async function deleteTweet(req, res, next) {
       return next(createHttpError(500, error));
     }
 
-    // remove form replayed data form main tweet if it exists
-    if (deletedTweet?.replayTo) {
+    // remove form replyed data form main tweet if it exists
+    if (deletedTweet?.replyTo) {
       const updatedTweet = await Tweet.findOneAndUpdate(
-        { _id: deletedTweet.replayTo },
+        { _id: deletedTweet.replyTo },
         {
-          $pull: { replayedTweets: tweetId },
+          $pull: { repliedTweets: tweetId },
         },
         { new: true }
       );

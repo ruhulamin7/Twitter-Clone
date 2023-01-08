@@ -1,26 +1,45 @@
 // create tweet and show on UI
-function createTweet(data) {
+function createTweet(data, pinned) {
   let newData = data;
   let retweetedHtml = '';
-  let replayToHtml = '';
+  let replyToHtml = '';
   let deleteButton = '';
+  let pinButton = '';
+
+  if (data.tweetedBy?._id === user._id) {
+    deleteButton = `<button class="deleteButton btn btn-light" onclick="deleteTweet('${data._id}')">
+       <i class="fas fa-xmark"></i>
+       </button>`;
+
+    // check current page is profile page or home page
+    const path = window.location.pathname;
+    let p = path.split('/').includes('profile');
+    if (p && !data.replyTo) {
+      pinButton = `<button class="pinButton btn btn-light ${
+        data.pinned ? 'pin_active' : ''
+      }" onclick="pinTweet('${data._id}', ${data.pinned})">
+         <i class="fas fa-thumbtack"></i>
+         </button>`;
+    }
+  }
+
   if (data.originalTweet) {
     newData = data.originalTweet;
     retweetedHtml = `
-      <P class="retweet_tag">
+      <p class="retweet_tag">
       <i class="fas fa-retweet"></i>
       ${
         data.tweetedBy.username === user.username
           ? `<a href=/profile/${data.tweetedBy.username}> You </a>retweeted`
           : `Retweeted by @<a href='/profile/${data.tweetedBy.username}'>${data.tweetedBy.username}</a>`
       }
-      </P>
+      </p>
       `;
   }
 
-  if (data.replayTo?.tweetedBy?.username) {
-    replayToHtml = `<div class="replayingFlag">
-       <p>Replaying to @<a href="/profile/${data.replayTo.tweetedBy.username}">${data.replayTo.tweetedBy.username}</a>
+  if (data.replyTo?.tweetedBy?.username) {
+    replyToHtml = `<div class="replyingFlag">
+       <p>replying to @<a href="/profile/${data.replyTo.tweetedBy.username}">${data.replyTo.tweetedBy.username}</a>
        </div>`;
   }
 
@@ -32,15 +51,8 @@ function createTweet(data) {
     tweetedBy: { _id, firstName, lastName, username, userAvatar },
     likes,
     retweetedUsers,
-
-    replayedTweets,
+    repliedTweets,
   } = newData;
-
-  if (data.tweetedBy?._id === user._id) {
-    deleteButton = `<button class="deleteButton btn btn-light" onclick="deleteTweet('${data._id}')">
-       <i class="fas fa-xmark"></i>
-       </button>`;
-  }
 
   const cratedTime = new Date(createdAt).getTime();
   const time = timeSince(cratedTime);
@@ -50,9 +62,19 @@ function createTweet(data) {
     ? `/uploads/${_id}/profile/${userAvatar}`
     : `/uploads/profile/avatar.png`;
 
+  let pinFlag = '';
+  if (pinned) {
+    // div.classList.add('pinTweet');
+    pinFlag = `
+        <div class="ms-2 mt-3 ">
+          <i class="fas fa-thumbtack"></i>
+          <i class="bg-dark text-light p-1 rounded-3">Pin Tweet</i>
+        </div>`;
+  }
   div.innerHTML = `
+    ${pinFlag}
     ${retweetedHtml}
-    <div class='tweet'>
+    <div class='tweet ${pinned ? 'pinTweet' : ''}'>
     <div class="tweet_profile_img">
     <div class="img">
         <img src="${avatarURL}" , alt="avatar" class="avatar">
@@ -69,10 +91,13 @@ function createTweet(data) {
             <span class="time">${time}</span>
             
         </div>
+      <div class="btns_wrapper">
+        ${pinButton}
         ${deleteButton}
+      </div>  
   
     </div>
-    ${replayToHtml}
+    ${replyToHtml}
     <div class="tweet_content">
         ${content}
     </div>
@@ -80,11 +105,11 @@ function createTweet(data) {
   
     </div>
     <div class="tweet_activities">
-        <button class="replay_tweet" data-tweet='${JSON.stringify(
+        <button class="reply_tweet" data-tweet='${JSON.stringify(
           data
-        )}' onclick="replayTweet(event, '${tweetId}')" data-tag="Replay" data-bs-toggle='modal' data-bs-target='#replayModal'>
+        )}' onclick="replyTweet(event, '${tweetId}')" data-tag="reply" data-bs-toggle='modal' data-bs-target='#replyModal'>
           <i class="fas fa-comment"></i> 
-          <span>${replayedTweets.length || ''}</span>
+          <span>${repliedTweets.length || ''}</span>
         </button>
         <button onclick="retweetHandler(event, '${tweetId}')" data-tag="Retweet" class="retweet ${
     retweetedUsers.includes(user._id) ? 'active' : ''
@@ -160,14 +185,14 @@ function clearTweetField() {
   tweetBtn.classList.add('dis_btn');
 }
 
-// clear replay field
-function clearReplayField() {
-  replayText.value = '';
-  replayImageContainer.innerHTML = '';
-  replayImages = [];
-  replayBtn.setAttribute('disabled', true);
-  replayBtn.classList.add('dis_btn');
-  replayBtn.style.backgroundColor = '#a3cff0';
+// clear reply field
+function clearreplyField() {
+  replyText.value = '';
+  replyImageContainer.innerHTML = '';
+  replyImages = [];
+  replyBtn.setAttribute('disabled', true);
+  replyBtn.classList.add('dis_btn');
+  replyBtn.style.backgroundColor = '#a3cff0';
 }
 
 // tweet like handler
@@ -212,28 +237,28 @@ function retweetHandler(event, tweetId) {
     });
 }
 
-// replay tweet
-function replayTweet(event, tweetId) {
-  const replayButton = event.target;
-  const tweetObj = JSON.parse(replayButton.dataset?.tweet);
-  const modal = document.querySelector('#replayModal');
+// reply tweet
+function replyTweet(event, tweetId) {
+  const replyButton = event.target;
+  const tweetObj = JSON.parse(replyButton.dataset?.tweet);
+  const modal = document.querySelector('#replyModal');
   const modalBody = modal.querySelector('.modal-body');
   modalBody.innerHTML = '';
   const tweetEl = createTweet(tweetObj);
   modalBody.appendChild(tweetEl);
 
-  // post replay data
-  replayBtn.addEventListener('click', function (e) {
-    const content = replayText.value;
-    if (!(replayImages.length || content)) return;
+  // post reply data
+  replyBtn.addEventListener('click', function (e) {
+    const content = replyText.value;
+    if (!(replyImages.length || content)) return;
     const formData = new FormData();
     formData.append('content', content);
 
-    replayImages.forEach((file) => {
+    replyImages.forEach((file) => {
       formData.append(file.name, file);
     });
 
-    const url = `${window.location.origin}/tweets/replay/${tweetId}`;
+    const url = `${window.location.origin}/tweets/reply/${tweetId}`;
     fetch(url, {
       method: 'POST',
       body: formData,
@@ -249,7 +274,7 @@ function replayTweet(event, tweetId) {
         console.log(err);
       });
   });
-  // $('#replayModal').modal('toggle');
+  // $('#replyModal').modal('toggle');
 }
 
 // viewSingleTweet
@@ -308,3 +333,38 @@ document.addEventListener('click', function (e) {
     logoutBtn.classList.add('d-none');
   }
 });
+
+// pin tweet handler
+function pinTweet(tweetId, pinned) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: pinned
+      ? 'You are going to unpin this tweet!'
+      : 'You can only pin one tweet at a time !',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: 'green',
+    cancelButtonColor: 'gray',
+    confirmButtonText: pinned ? 'Yes, unpin it!' : 'Yes, pin it!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const url = `${window.location.origin}/tweets/${tweetId}/pin`;
+      fetch(url, {
+        method: 'PUT',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data._id) {
+            window.location.reload();
+            console.log(data);
+          } else {
+            location.href = '/';
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
+}

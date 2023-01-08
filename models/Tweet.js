@@ -38,12 +38,13 @@ const tweetSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Tweet',
     },
-    replayedTweets: [
+    repliedTweets: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tweet',
       },
     ],
+    pinned: Boolean,
   },
   {
     timestamps: true,

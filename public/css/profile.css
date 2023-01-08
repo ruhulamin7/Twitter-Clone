@@ -171,3 +171,22 @@
 #coverPreview {
   width: 100%;
 }
+
+.btns_wrapper {
+  display: flex;
+}
+
+.pinButton {
+  margin-right: 10px;
+}
+
+.pin_active i {
+  color: blue;
+}
+
+.pinTweet {
+  border: 5px solid #eff1f1;
+  border-radius: 10px;
+  margin: 5px;
+  margin-bottom: 15px;
+}

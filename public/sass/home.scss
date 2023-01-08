@@ -288,7 +288,7 @@ a {
           }
         }
       }
-      .replay_tweet {
+      .reply_tweet {
         display: flex;
         align-items: center;
         padding-bottom: 12px;
@@ -395,6 +395,7 @@ a {
         color: gray;
       }
     }
+
     .tweet_content {
       margin-bottom: 15px;
       font-size: 18px;
@@ -478,10 +479,10 @@ a {
 }
 
 // .modal-footer {
-.create_replay_wrapper {
+.create_reply_wrapper {
   padding: 0 15px 15px;
   display: flex;
-  .replay_area {
+  .reply_area {
     flex: 1;
   }
 
@@ -498,8 +499,8 @@ a {
       }
     }
   }
-  .replay_area {
-    .create_replay {
+  .reply_area {
+    .create_reply {
       textarea {
         width: 100%;
         border: 0;
@@ -511,12 +512,12 @@ a {
         border-bottom: 1px solid #eee;
       }
     }
-    .replay_options_wrapper {
+    .reply_options_wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 15px 0 15px;
-      .replay_btn {
+      .reply_btn {
         button {
           border: none;
           outline: none;
@@ -537,9 +538,9 @@ a {
 // }
 
 // modal image container
-.replay_image_container {
+.reply_image_container {
   width: 100%;
-  .replay_image_inner_container {
+  .reply_image_inner_container {
     display: flex;
     // grid-template-columns: auto auto;
     gap: 10px;
@@ -579,8 +580,8 @@ a {
   }
 }
 
-// replayingFlag
-.replayingFlag {
+// replyingFlag
+.replyingFlag {
   border-bottom: 1px solid rgb(188, 188, 188);
   padding-bottom: 5px;
 }

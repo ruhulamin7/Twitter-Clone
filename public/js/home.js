@@ -6,15 +6,15 @@ let outputImageContainer = document.querySelector(
   '.output_image_inner_container'
 );
 let tweetContainer = document.querySelector('.tweet_container');
-const replayBtn = document.querySelector('#replay_btn');
-const replayText = document.querySelector('#replay_text');
-const replayImgInput = document.querySelector('#replay_img');
-const replayImageContainer = document.querySelector(
-  '.replay_image_inner_container'
+const replyBtn = document.querySelector('#reply_btn');
+const replyText = document.querySelector('#reply_text');
+const replyImgInput = document.querySelector('#reply_img');
+const replyImageContainer = document.querySelector(
+  '.reply_image_inner_container'
 );
 
 let tweetImages = [];
-let replayImages = [];
+let replyImages = [];
 
 // tweet button disable/enable function
 tweetInputEl.addEventListener('input', function (e) {
@@ -29,16 +29,16 @@ tweetInputEl.addEventListener('input', function (e) {
 });
 
 // reply button disable/enable function
-replayText.addEventListener('input', function (e) {
+replyText.addEventListener('input', function (e) {
   const value = this.value.trim();
-  if (value || replayImages.length) {
-    replayBtn.removeAttribute('disabled');
-    replayBtn.classList.remove('dis_btn');
-    replayBtn.style.backgroundColor = '#50abf1';
+  if (value || replyImages.length) {
+    replyBtn.removeAttribute('disabled');
+    replyBtn.classList.remove('dis_btn');
+    replyBtn.style.backgroundColor = '#50abf1';
   } else {
-    replayBtn.setAttribute('disabled', true);
-    replayBtn.classList.add('dis_btn');
-    replayBtn.style.backgroundColor = '#a3cff0';
+    replyBtn.setAttribute('disabled', true);
+    replyBtn.classList.add('dis_btn');
+    replyBtn.style.backgroundColor = '#a3cff0';
   }
 });
 
@@ -107,8 +107,8 @@ tweetImgInputEl.addEventListener('change', function (e) {
   }
 });
 
-// handle replay image upload
-replayImgInput.addEventListener('change', function (e) {
+// handle reply image upload
+replyImgInput.addEventListener('change', function (e) {
   const files = this.files;
   if (files.length) {
     [...files].forEach((file) => {
@@ -124,11 +124,11 @@ replayImgInput.addEventListener('change', function (e) {
         }
 
         // collect image for store
-        replayImages.push(file);
+        replyImages.push(file);
         // remove disable style
-        replayBtn.removeAttribute('disabled');
-        replayBtn.classList.remove('dis_btn');
-        replayBtn.style.backgroundColor = '#50abf1';
+        replyBtn.removeAttribute('disabled');
+        replyBtn.classList.remove('dis_btn');
+        replyBtn.style.backgroundColor = '#50abf1';
 
         // create div for contain image
         const div = document.createElement('div');
@@ -143,7 +143,7 @@ replayImgInput.addEventListener('change', function (e) {
         `;
         const img = div.querySelector('img');
         img.src = fr.result;
-        replayImageContainer.appendChild(div);
+        replyImageContainer.appendChild(div);
       };
       fr.readAsDataURL(file);
     });
@@ -171,23 +171,23 @@ outputImageContainer.addEventListener('click', function (e) {
   }
 });
 
-// remove image from replay Ui and stored variable
-replayImageContainer.addEventListener('click', function (e) {
+// remove image from reply Ui and stored variable
+replyImageContainer.addEventListener('click', function (e) {
   const closeBtn = e.target.className === 'close_btn' ? e.target : null;
   if (!closeBtn) {
     return;
   } else {
-    // replayImages = [];
+    // replyImages = [];
     const imgEl = closeBtn.parentElement;
     const fileName = imgEl.dataset.name;
-    replayImages.forEach((img, i) => {
+    replyImages.forEach((img, i) => {
       if (img.name === fileName) {
-        replayImages.splice(i, 1);
+        replyImages.splice(i, 1);
         imgEl.remove();
-        if (!replayImages.length && !replayText.value.trim()) {
-          replayBtn.setAttribute('disabled', true);
-          replayBtn.classList.add('dis_btn');
-          replayBtn.style.backgroundColor = '#a3cff0';
+        if (!replyImages.length && !replyText.value.trim()) {
+          replyBtn.setAttribute('disabled', true);
+          replyBtn.classList.add('dis_btn');
+          replyBtn.style.backgroundColor = '#a3cff0';
         }
       }
     });

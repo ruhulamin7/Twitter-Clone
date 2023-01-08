@@ -2,7 +2,7 @@ const Tweet = require('../../models/Tweet');
 const { updateCacheData } = require('../../utils/cacheManager');
 const { tweetPopulate } = require('../../utils/populator');
 
-async function replayController(req, res, next) {
+async function replyController(req, res, next) {
   try {
     const tweetId = req.params.id;
     const userId = req.userId;
@@ -16,8 +16,8 @@ async function replayController(req, res, next) {
       likes: [],
       retweetedUsers: [],
       originalTweet: null,
-      replayTo: tweetId,
-      replayedTweets: [],
+      replyTo: tweetId,
+      repliedTweets: [],
     };
 
     files.forEach((file) => {
@@ -28,21 +28,21 @@ async function replayController(req, res, next) {
     const tweetObj = await tweet.save();
 
     // update original tweet
-    const replayToTweet = await Tweet.findOneAndUpdate(
+    const replyToTweet = await Tweet.findOneAndUpdate(
       { _id: tweetId },
       {
-        $addToSet: { replayedTweets: tweetObj._id },
+        $addToSet: { repliedTweets: tweetObj._id },
       },
       { new: true }
     );
 
     // populate data
     await tweetPopulate(tweetObj);
-    await tweetPopulate(replayToTweet);
+    await tweetPopulate(replyToTweet);
     // update new tweets cache data
     updateCacheData(`tweets:${tweetObj._id}`, tweetObj);
     // update existing tweets cache data
-    updateCacheData(`tweets:${replayToTweet._id}`, replayToTweet);
+    updateCacheData(`tweets:${replyToTweet._id}`, replyToTweet);
 
     res.send(tweetObj);
   } catch (error) {
@@ -50,4 +50,4 @@ async function replayController(req, res, next) {
   }
 }
 
-module.exports = replayController;
+module.exports = replyController;

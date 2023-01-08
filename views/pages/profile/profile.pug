@@ -68,8 +68,6 @@ block bodyContent
 
             - profileAvatarURL = userProfile.userAvatar? `/uploads/${userProfile._id}/profile/${userProfile.userAvatar}`: `/uploads/profile/avatar.png`
 
-           
-
             - profileCoverURL = userProfile.coverPhoto? `/uploads/${userProfile._id}/cover/${userProfile.coverPhoto}`: `/uploads/cover/avatar.png`
 
             .left_bottom
@@ -83,8 +81,7 @@ block bodyContent
                         i.fas.fa-ellipsis-h
                 a#logout_btn.btn.btn-light.m-2.d-none(href="/logout")
                     |Logout  
-                 
-               
+                       
                                 
         .middle_container
             .tweet_heading_wrapper
@@ -141,40 +138,40 @@ block bodyContent
             
 
 
-    //- Replay Modal
-    #replayModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+    //- reply Modal
+    #replyModal.modal.fade(tabindex='-1' aria-labelledby='replyModalTitle' aria-hidden='true')
         .modal-dialog
             .modal-content
                 .modal-header
-                    h5#replayModalTitle.modal-title.fs-5 Replay
-                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close' onclick='clearReplayField()')
+                    h5#replyModalTitle.modal-title.fs-5 reply
+                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close' onclick='clearreplyField()')
                         span(aria-hidden='true') &times;
 
                 .modal-body.p-0
                 //- .modal-footer
-                .create_replay_wrapper
+                .create_reply_wrapper
                     .avatar_area
                         .img
                             img(src=avatarURL, alt="user avatar")
-                    .replay_area
-                        .create_replay 
-                            textarea#replay_text(name="replay",  placeholder="What's happening?" )
-                            .replay_image_container
-                                .replay_image_inner_container
+                    .reply_area
+                        .create_reply 
+                            textarea#reply_text(name="reply",  placeholder="What's happening?" )
+                            .reply_image_container
+                                .reply_image_inner_container
                                 if error.multerError
                                     span.error #{error.multerError.msg}
                 
-                        .replay_options_wrapper
-                            .replay_options
-                                label(for="replay_img")
+                        .reply_options_wrapper
+                            .reply_options
+                                label(for="reply_img")
                                     i.fas.fa-images   
                                     
-                                input#replay_img(type="file", multiple alt="replay" style="display: none")
-                            .replay_btn 
-                                button.dis_btn(disabled="" id="replay_btn") Replay 
+                                input#reply_img(type="file", multiple alt="reply" style="display: none")
+                            .reply_btn 
+                                button.dis_btn(disabled="" id="reply_btn") reply 
 
     //- update avatar Modal
-    #updateAvatarModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+    #updateAvatarModal.modal.fade(tabindex='-1' aria-labelledby='replyModalTitle' aria-hidden='true')
         .modal-dialog
             .modal-content
                 .modal-header
@@ -192,7 +189,7 @@ block bodyContent
 
 
                     //- update avatar Modal
-    #updateCoverModal.modal.fade(tabindex='-1' aria-labelledby='replayModalTitle' aria-hidden='true')
+    #updateCoverModal.modal.fade(tabindex='-1' aria-labelledby='replyModalTitle' aria-hidden='true')
         .modal-dialog
             .modal-content
                 .modal-header
