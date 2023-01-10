@@ -74,12 +74,12 @@ function createTweet(data, pinned) {
   div.innerHTML = `
     ${pinFlag}
     ${retweetedHtml}
-    <div class='tweet ${pinned ? 'pinTweet' : ''}'>
+  <div class='tweet ${pinned ? 'pinTweet' : ''}'>
     <div class="tweet_profile_img">
-    <div class="img">
-        <img src="${avatarURL}" , alt="avatar" class="avatar">
+      <div class="img">
+          <img src="${avatarURL}" , alt="avatar" class="avatar">
+      </div>
     </div>
-  </div>
   
   <div class="tweet_content_wrapper" onclick="viewSingleTweet(event, '${tweetId}')">
     <div class="tweet_user">

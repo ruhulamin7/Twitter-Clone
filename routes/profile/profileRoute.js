@@ -1,6 +1,5 @@
 const followController = require('../../controllers/APIs/followController');
 const updateAvatarController = require('../../controllers/APIs/updateAvatarController');
-const updateAvatar = require('../../controllers/APIs/updateAvatarController');
 const updateCoverController = require('../../controllers/APIs/updateCoverController');
 const getFollowers = require('../../controllers/follow/getFollowers');
 const getFollowing = require('../../controllers/follow/getFollowing');

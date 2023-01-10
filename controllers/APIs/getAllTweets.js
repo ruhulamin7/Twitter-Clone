@@ -8,6 +8,7 @@ const getAllTweets = async (req, res, next) => {
     const filterObj = {};
     req.query.tweetedBy && (filterObj.tweetedBy = req.query?.tweetedBy);
 
+    // replayTo
     req.query.replyTo &&
       (filterObj.replyTo =
         req.query?.replyTo === 'false'
@@ -25,14 +26,20 @@ const getAllTweets = async (req, res, next) => {
       const followingUsers = [...user.following];
       followingUsers.push(user._id);
 
+      // following users tweets
       req.query.followingOnly &&
         req.query.followingOnly === 'true' &&
         (filterObj.tweetedBy = { $in: followingUsers });
     }
-    // tweet pin or not
+    // load pin tweet
     req.query.pinned &&
       req.query.pinned === 'true' &&
       (filterObj.pinned = true);
+
+    // search tweet
+    if (req.query.searchText) {
+      filterObj.content = { $regex: new RegExp(req.query.searchText, 'ig') };
+    }
 
     const result = await Tweet.find(filterObj);
 

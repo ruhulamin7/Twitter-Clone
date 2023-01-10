@@ -1,0 +1,19 @@
+.search_container {
+  align-items: center;
+  display: flex;
+  background-color: #eff1f1;
+  border-radius: 50px;
+  padding: 5px;
+  margin: 15px;
+}
+.search_container i {
+  margin-left: 15px;
+}
+.search_container .search_input {
+  border: 0;
+  outline: 0;
+  background-color: unset;
+  width: 100%;
+  margin: 5px 5px 5px 10px;
+  font-size: 20px;
+}

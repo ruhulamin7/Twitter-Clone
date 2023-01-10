@@ -1,0 +1,24 @@
+$lightColor: #eff1f1;
+$primaryColor: #50abf1;
+$whiteColor: #ffffff;
+$grayColor: gray;
+
+.search_container {
+  i {
+    margin-left: 15px;
+  }
+  .search_input {
+    border: 0;
+    outline: 0;
+    background-color: unset;
+    width: 100%;
+    margin: 5px 5px 5px 10px;
+    font-size: 20px;
+  }
+  align-items: center;
+  display: flex;
+  background-color: $lightColor;
+  border-radius: 50px;
+  padding: 5px;
+  margin: 15px;
+}
