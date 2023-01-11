@@ -1,4 +1,5 @@
 const getTweetSearch = require('../../controllers/search/getTweetSearch');
+const getUsers = require('../../controllers/APIs/getUsers');
 const getUserSearch = require('../../controllers/search/getUserSearch');
 const authChecker = require('../../middlewares/common/authChecker');
 const decorateHTMLResponse = require('../../middlewares/common/decorateHTMLResponse');

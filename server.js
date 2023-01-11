@@ -21,6 +21,7 @@ const tweetRoute = require('./routes/APIs/tweetRoute');
 const connectDb = require('./config/connectDb');
 const profileRoute = require('./routes/profile/profileRoute');
 const searchRoute = require('./routes/search/searchRoute');
+const usersRoute = require('./routes/users/usersRoute');
 
 // init app
 const app = express();
@@ -56,10 +57,10 @@ app.use(logoutRoute);
 app.use(newPasswordRoute);
 
 // post tweet
-app.use('/tweets', tweetRoute);
-// profile route
-app.use('/profile', profileRoute);
-app.use('/search', searchRoute);
+app.use('/tweets', tweetRoute); // tweets route
+app.use('/profile', profileRoute); // profile route
+app.use('/search', searchRoute); // search route
+app.use('/users', usersRoute); // users route
 
 // check router
 app.use('/check', (req, res) => {

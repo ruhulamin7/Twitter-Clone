@@ -459,3 +459,79 @@ replyText.addEventListener('input', function (e) {
     replyBtn.style.backgroundColor = '#a3cff0';
   }
 });
+
+// following users list
+function createFollowingElement(data) {
+  const name = data.firstName + ' ' + data.lastName;
+  const isFollowing = data?.followers?.includes(user._id);
+  const avatarURL = data.userAvatar
+    ? `/uploads/${data._id}/profile/${data.userAvatar}`
+    : `/uploads/profile/avatar.png`;
+
+  let followDiv = '';
+  if (data._id !== user._id) {
+    followDiv = `
+    <button class="fl_btn ${
+      isFollowing ? 'following_btn' : ''
+    }" onclick="followHandler(event, '${data._id}')">
+    ${isFollowing ? 'Following' : 'Follow'}
+    </button>
+    `;
+  }
+
+  let div = document.createElement('div');
+  div.classList.add('follow_list');
+
+  div.innerHTML = `
+    <div class="follow_profile">
+      <div class="avatar">
+        <img src="${avatarURL}">
+      </div>
+      <div class="follow_name">
+        <a href="/profile/${data.username}">
+          <h6>${name}</h6>
+        </a>
+        <span>@${data.username}</span>
+      </div>
+    </div>
+    <div>
+      ${followDiv}
+    </div>
+  `;
+
+  return div;
+}
+
+function followHandler(event, userId) {
+  const url = `${window.location.origin}/profile/${userId}/follow`;
+  fetch(url, {
+    method: 'PUT',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const followBtn = event.target;
+      const isFollowing = data.followers.includes(user._id);
+
+      const following = document.querySelector('a.following span');
+      const followers = document.querySelector('a.followers span');
+
+      if (isFollowing) {
+        if (profileUser._id === user._id) {
+          following.textContent = parseInt(following.textContent) + 1 + ' ';
+        }
+        followBtn.textContent = 'Following';
+        followBtn.classList.add('following_btn');
+      } else {
+        if (profileUser._id === user._id) {
+          following.textContent = parseInt(following.textContent) - 1 + ' ';
+        }
+        followBtn.textContent = 'Follow';
+        followBtn.classList.remove('following_btn');
+      }
+
+      if (data._id === profileUser._id) {
+        following.textContent = data.following.length + ' ';
+        followers.textContent = data.followers.length + ' ';
+      }
+    });
+}

@@ -40,7 +40,6 @@ const getAllTweets = async (req, res, next) => {
     if (req.query.searchText) {
       filterObj.content = { $regex: new RegExp(req.query.searchText, 'ig') };
     }
-
     const result = await Tweet.find(filterObj);
 
     // data populate

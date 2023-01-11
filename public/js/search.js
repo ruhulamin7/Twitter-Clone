@@ -1,6 +1,5 @@
 const searchField = document.querySelector('.search_input');
 const userContainer = document.querySelector('.follow_list_container');
-console.log(user);
 tweetContainer.innerHTML = `     
             <h5 class="nothing text-center mt-5"> Please, search with a keyword. <i class="fab fa-searchengin"></i></h5> 
             `;
@@ -11,7 +10,7 @@ searchField.addEventListener('input', function (e) {
   const searchText = e.target.value.trim();
   if (searchText) {
     timer = setTimeout(function () {
-      const url = `${window.location.origin}/${tab}?searchText=${searchText}?searchUser=${searchText}`;
+      const url = `${window.location.origin}/${tab}?searchText=${searchText}`;
       tweetContainer.innerHTML = `
         <div class="text-center mt-5">
             <div class="spinner-border text-info text-center" role="status">
@@ -38,9 +37,9 @@ searchField.addEventListener('input', function (e) {
               if (!data.length) {
                 return (tweetContainer.innerHTML = `<h5 class="nothing text-center mt-5">Oops! No user found!! 😞</h5>`);
               } else {
-                data.forEach((tweet) => {
-                  const tweetEl = createTweet(tweet);
-                  userContainer.insertAdjacentElement('afterbegin', tweetEl);
+                data.forEach((user) => {
+                  const userEl = createFollowingElement(user);
+                  userContainer.insertAdjacentElement('afterbegin', userEl);
                 });
               }
             }
@@ -49,5 +48,8 @@ searchField.addEventListener('input', function (e) {
         console.log(error);
       }
     }, 500);
+  } else {
+    tweetContainer.innerHTML = `<h5 class="nothing text-center mt-5"> Please, search with a keyword. <i class="fab fa-searchengin"></i></h5>`;
+    userContainer.innerHTML = '';
   }
 });
