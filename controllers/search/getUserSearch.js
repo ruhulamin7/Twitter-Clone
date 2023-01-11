@@ -14,6 +14,7 @@ const getUserSearch = async (req, res, next) => {
 
     return res.render('pages/search/search', {
       user: user ? user : {},
+      error: {},
       userJs,
       tab: 'users',
     });

@@ -10,7 +10,6 @@ const getSingleTweet = async (req, res, next) => {
       await tweetPopulate(result);
       return result;
     });
-    console.log({ tweet: tweet });
     res.send(tweet);
   } catch (error) {
     next(createHttpError(500, error));

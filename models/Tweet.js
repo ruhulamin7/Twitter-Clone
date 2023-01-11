@@ -34,7 +34,7 @@ const tweetSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Tweet',
     },
-    replayTo: {
+    replyTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Tweet',
     },

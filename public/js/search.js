@@ -1,9 +1,7 @@
 const searchField = document.querySelector('.search_input');
-const tweetContainer = document.querySelector('.tweet_container');
 const userContainer = document.querySelector('.follow_list_container');
-
-tweetContainer.innerHTML = `
-           
+console.log(user);
+tweetContainer.innerHTML = `     
             <h5 class="nothing text-center mt-5"> Please, search with a keyword. <i class="fab fa-searchengin"></i></h5> 
             `;
 let timer;
@@ -13,7 +11,7 @@ searchField.addEventListener('input', function (e) {
   const searchText = e.target.value.trim();
   if (searchText) {
     timer = setTimeout(function () {
-      const url = `${window.location.origin}/${tab}?searchText=${searchText}`;
+      const url = `${window.location.origin}/${tab}?searchText=${searchText}?searchUser=${searchText}`;
       tweetContainer.innerHTML = `
         <div class="text-center mt-5">
             <div class="spinner-border text-info text-center" role="status">
@@ -29,7 +27,7 @@ searchField.addEventListener('input', function (e) {
             userContainer.innerHTML = '';
             if (tab === 'tweets') {
               if (!data.length) {
-                return (tweetContainer.innerHTML = `<h5 class="nothing">Oops! No Tweet found!! :(</h5>`);
+                return (tweetContainer.innerHTML = `<h5 class="nothing text-center mt-5">Oops! No Tweet found!! 😞</h5>`);
               } else {
                 data.forEach((tweet) => {
                   const tweetEl = createTweet(tweet);
@@ -38,7 +36,7 @@ searchField.addEventListener('input', function (e) {
               }
             } else {
               if (!data.length) {
-                return (tweetContainer.innerHTML = `<h5 class="nothing">Oops! No user found!! :(</h5>`);
+                return (tweetContainer.innerHTML = `<h5 class="nothing text-center mt-5">Oops! No user found!! 😞</h5>`);
               } else {
                 data.forEach((tweet) => {
                   const tweetEl = createTweet(tweet);

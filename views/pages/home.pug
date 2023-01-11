@@ -6,6 +6,7 @@ block css
     link(rel="stylesheet", href="/css/home.css")
 
 block js 
+    script(src="/js/app.js" defer)
     script(src="/js/home.js" defer)
     
 block bodyContent
@@ -126,8 +127,8 @@ block bodyContent
         .modal-dialog
             .modal-content
                 .modal-header
-                    h5#replyModalTitle.modal-title.fs-5 reply
-                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close' onclick='clearreplyField()')
+                    h5#replyModalTitle.modal-title.fs-5 Reply
+                    button.btn.btn-light.close(type='button' data-bs-dismiss='modal' aria-label='Close' onclick='clearReplyField()')
                         span(aria-hidden='true') &times;
 
                 .modal-body.p-0
@@ -151,11 +152,9 @@ block bodyContent
                                     
                                 input#reply_img(type="file", multiple alt="reply" style="display: none")
                             .reply_btn 
-                                button.dis_btn(disabled="" id="reply_btn") reply 
+                                button.dis_btn(disabled="" id="reply_btn") Reply 
                                 
                                     
-           
- 
     script.
        const user = !{userJs};
 

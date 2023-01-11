@@ -8,7 +8,7 @@ const getAllTweets = async (req, res, next) => {
     const filterObj = {};
     req.query.tweetedBy && (filterObj.tweetedBy = req.query?.tweetedBy);
 
-    // replayTo
+    // replyTo
     req.query.replyTo &&
       (filterObj.replyTo =
         req.query?.replyTo === 'false'

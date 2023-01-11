@@ -21,7 +21,7 @@ async function deleteTweet(req, res, next) {
       return next(createHttpError(500, error));
     }
 
-    // remove form replyed data form main tweet if it exists
+    // remove form replied data form main tweet if it exists
     if (deletedTweet?.replyTo) {
       const updatedTweet = await Tweet.findOneAndUpdate(
         { _id: deletedTweet.replyTo },
