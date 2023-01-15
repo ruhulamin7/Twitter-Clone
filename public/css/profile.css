@@ -5,20 +5,65 @@
   background-color: #50abf1;
   height: 150px;
   width: 100%;
+  position: relative;
+}
+.profile_container .cover img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile_container .cover .updateCover {
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  border: none;
+  outline: none;
+  display: none;
+  background-color: rgba(117, 116, 116, 0.4235294118);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+.profile_container .cover .updateCover i {
+  color: #fff;
+  font-size: 24px;
+}
+.profile_container .cover:hover .updateCover {
+  display: block;
 }
 .profile_container .avatar {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   border: 2px solid #ffffff;
   border-radius: 50%;
   position: absolute;
   bottom: -50px;
   left: 15px;
   overflow: hidden;
+  transition: 0.3s;
 }
 .profile_container .avatar img {
   width: 100%;
   height: 100%;
+}
+.profile_container .avatar .updateAvatar {
+  position: absolute;
+  left: 42px;
+  top: 42px;
+  border: none;
+  outline: none;
+  display: none;
+  background-color: rgba(86, 85, 85, 0.393);
+  border-radius: 50%;
+}
+.profile_container .avatar .updateAvatar i {
+  font-size: 24px;
+  color: #fff;
+  padding: 8px;
+}
+.profile_container .avatar:hover .updateAvatar {
+  display: block;
 }
 
 .action_btns {
@@ -112,60 +157,8 @@
   color: #ffffff;
 }
 
-.avatar {
-  position: relative;
-  transition: 0.3s;
-}
-
-.updateAvatar {
-  position: absolute;
-  left: 37px;
-  top: 40px;
-  border: none;
-  outline: none;
-  display: none;
-  background-color: unset;
-}
-.updateAvatar i {
-  font-size: 24px;
-}
-
-.avatar:hover .updateAvatar {
-  display: block;
-}
-
 #avatarPreview {
   width: 100%;
-}
-
-.cover {
-  position: relative;
-}
-.cover img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.updateCover {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: none;
-  outline: none;
-  display: none;
-  background-color: unset;
-  font-size: 24px;
-  padding: 5px;
-  background-color: rgba(35, 34, 34, 0.2509803922);
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-}
-
-.cover:hover .updateCover {
-  display: block;
 }
 
 #coverPreview {
@@ -189,4 +182,9 @@
   border-radius: 10px;
   margin: 5px;
   margin-bottom: 15px;
+}
+
+#updateAvatarInput,
+#updateCoverInput {
+  margin: 15px;
 }

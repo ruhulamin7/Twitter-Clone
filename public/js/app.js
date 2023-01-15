@@ -117,7 +117,7 @@ function createTweet(data, pinned) {
     <div class="tweet_activities">
         <button class="reply_tweet" data-tweet='${JSON.stringify(
           data
-        )}' onclick="replyTweet(event, '${tweetId}')" data-tag="reply" data-bs-toggle='modal' data-bs-target='#replyModal'>
+        )}' onclick="replyTweet(event, '${tweetId}')" data-tag="Reply" data-bs-toggle='modal' data-bs-target='#replyModal'>
           <i class="fas fa-comment"></i> 
           <span>${repliedTweets.length || ''}</span>
         </button>
@@ -535,3 +535,14 @@ function followHandler(event, userId) {
       }
     });
 }
+
+// socket
+const socket = io('http://localhost:3005');
+let isConnected = false;
+// socket setup
+socket.emit('setup', user);
+
+// connection confirmation
+socket.on('connected', () => {
+  isConnected = true;
+});

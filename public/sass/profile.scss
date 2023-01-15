@@ -9,19 +9,64 @@ $grayColor: gray;
     background-color: $primaryColor;
     height: 150px;
     width: 100%;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .updateCover {
+      position: absolute;
+      top: 45%;
+      left: 48%;
+      border: none;
+      outline: none;
+      display: none;
+      background-color: #7574746c;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      i {
+        color: #fff;
+        font-size: 24px;
+      }
+    }
+    &:hover .updateCover {
+      display: block;
+    }
   }
+
   .avatar {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     border: 2px solid $whiteColor;
     border-radius: 50%;
     position: absolute;
     bottom: -50px;
     left: 15px;
     overflow: hidden;
+    transition: 0.3s;
     img {
       width: 100%;
       height: 100%;
+    }
+    .updateAvatar {
+      position: absolute;
+      left: 42px;
+      top: 42px;
+      border: none;
+      outline: none;
+      display: none;
+      background-color: rgba(86, 85, 85, 0.393);
+      border-radius: 50%;
+      i {
+        font-size: 24px;
+        color: #fff;
+        padding: 8px;
+      }
+    }
+    &:hover .updateAvatar {
+      display: block;
     }
   }
 }
@@ -35,7 +80,6 @@ $grayColor: gray;
   padding: 15px;
   i {
     color: $primaryColor;
-
     font-size: 20px;
     border: 1px solid $primaryColor;
     padding: 5px 15px;
@@ -126,62 +170,11 @@ $grayColor: gray;
   color: $whiteColor;
 }
 
-.avatar {
-  position: relative;
-  transition: 0.3s;
-}
-.updateAvatar {
-  position: absolute;
-  left: 37px;
-  top: 40px;
-  border: none;
-  outline: none;
-  display: none;
-  background-color: unset;
-
-  i {
-    font-size: 24px;
-  }
-}
-
-.avatar:hover .updateAvatar {
-  display: block;
-}
-
 #avatarPreviewContainer {
   // width: 100%;
 }
 #avatarPreview {
   width: 100%;
-}
-
-// cover photo
-.cover {
-  position: relative;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-.updateCover {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: none;
-  outline: none;
-  display: none;
-  background-color: unset;
-  font-size: 24px;
-  padding: 5px;
-  background-color: #23222240;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-}
-
-.cover:hover .updateCover {
-  display: block;
 }
 
 #coverPreviewContainer {
@@ -209,4 +202,9 @@ $grayColor: gray;
   border-radius: 10px;
   margin: 5px;
   margin-bottom: 15px;
+}
+
+#updateAvatarInput,
+#updateCoverInput {
+  margin: 15px;
 }

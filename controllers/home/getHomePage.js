@@ -2,7 +2,7 @@
 const createHttpError = require('http-errors');
 const User = require('../../models/User');
 const { cacheSetAndGet } = require('../../utils/cacheManager');
-
+const url = require('url');
 // get home page
 const getHomePage = async (req, res, next) => {
   try {
