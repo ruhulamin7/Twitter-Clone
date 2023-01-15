@@ -81,7 +81,7 @@ block bodyContent
                         i.fas.fa-ellipsis-h
                 a#logout_btn.btn.btn-light.m-2.d-none(href="/logout")
                     |Logout  
-                       
+                    
                                 
         .middle_container
             .tweet_heading_wrapper
@@ -97,6 +97,18 @@ block bodyContent
                             button.updateCover(data-bs-toggle="modal" data-bs-target="#updateCoverModal" class="") 
                                 i.fas.fa-camera
                     .avatar
+                        - activeText = userProfile.activeStatus ? "Active Now" : userProfile.lastSeen ? "Last Seen: " + userProfile.lastSeen.toUTCString() : "Not Recently Seen"
+                       
+                        - isActive = (user._id.toString() == userProfile._id.toString())
+                        if isActive 
+                            - activeText = "Active Now"
+
+                        - console.log(isActive, activeText)
+
+
+                        .active_status(data-active_status=activeText, class=isActive && "online")
+                        //-  .active_status(data-active_status=activeText class=userProfile.activeStatus && "online")
+
                         img(src=profileAvatarURL, alt="avatar")
                         if userProfile._id == user._id 
                             button.updateAvatar(data-bs-toggle="modal" data-bs-target="#updateAvatarModal" class="") 

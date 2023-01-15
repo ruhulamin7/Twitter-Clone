@@ -34,17 +34,17 @@
 .profile_container .avatar {
   height: 120px;
   width: 120px;
-  border: 2px solid #ffffff;
+  border: 3px solid #ffffff;
   border-radius: 50%;
   position: absolute;
   bottom: -50px;
   left: 15px;
-  overflow: hidden;
   transition: 0.3s;
 }
 .profile_container .avatar img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .profile_container .avatar .updateAvatar {
   position: absolute;

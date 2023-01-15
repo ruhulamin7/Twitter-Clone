@@ -38,16 +38,17 @@ $grayColor: gray;
   .avatar {
     height: 120px;
     width: 120px;
-    border: 2px solid $whiteColor;
+    border: 3px solid $whiteColor;
     border-radius: 50%;
     position: absolute;
     bottom: -50px;
     left: 15px;
-    overflow: hidden;
+    // overflow: hidden;
     transition: 0.3s;
     img {
       width: 100%;
       height: 100%;
+      border-radius: 50%;
     }
     .updateAvatar {
       position: absolute;
