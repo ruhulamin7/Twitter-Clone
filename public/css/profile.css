@@ -3,7 +3,7 @@
 }
 .profile_container .cover {
   background-color: #50abf1;
-  height: 150px;
+  height: 180px;
   width: 100%;
   position: relative;
 }
@@ -22,12 +22,11 @@
   display: none;
   background-color: rgba(117, 116, 116, 0.4235294118);
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
 }
 .profile_container .cover .updateCover i {
   color: #fff;
   font-size: 24px;
+  padding: 10px;
 }
 .profile_container .cover:hover .updateCover {
   display: block;
@@ -60,7 +59,7 @@
 .profile_container .avatar .updateAvatar i {
   font-size: 24px;
   color: #fff;
-  padding: 8px;
+  padding: 5px;
 }
 .profile_container .avatar:hover .updateAvatar {
   display: block;

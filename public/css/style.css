@@ -9,3 +9,7 @@
 a {
   text-decoration: none;
 }
+
+#logout_btn {
+  color: #eff1f1;
+}

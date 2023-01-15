@@ -12,7 +12,6 @@ const io = new Server(httpServer, {
 
 // user connection
 io.on('connection', (socket) => {
-  // console.log('New user connected');
   // new user setup
   socket.on('setup', (user) => {
     console.log(user.firstName + ' connected');
@@ -49,10 +48,8 @@ io.on('connection', (socket) => {
 });
 
 let roomIds = [];
-// let socketIds = [];
 setInterval(async () => {
   roomIds = [...io.sockets.adapter.rooms.keys()];
-  // socketIds = [...io.sockets.adapter.sids.keys()];
 
   roomIds.forEach((id) => {
     if (mongoose.isValidObjectId(id)) {
@@ -64,8 +61,7 @@ setInterval(async () => {
         .then((result) => {
           if (result) {
             updateCacheData(`users:${result._id}`, result);
-            console.log('result');
-            console.log(roomIds);
+            // console.log(roomIds);
           }
         })
         .catch((err) => {
@@ -74,5 +70,5 @@ setInterval(async () => {
     }
   });
 }, 10000);
-
+// module exports
 module.exports = httpServer;

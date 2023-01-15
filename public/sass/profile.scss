@@ -7,7 +7,7 @@ $grayColor: gray;
   position: relative;
   .cover {
     background-color: $primaryColor;
-    height: 150px;
+    height: 180px;
     width: 100%;
     position: relative;
     img {
@@ -24,11 +24,10 @@ $grayColor: gray;
       display: none;
       background-color: #7574746c;
       border-radius: 50%;
-      height: 40px;
-      width: 40px;
       i {
         color: #fff;
         font-size: 24px;
+        padding: 10px;
       }
     }
     &:hover .updateCover {
@@ -62,7 +61,7 @@ $grayColor: gray;
       i {
         font-size: 24px;
         color: #fff;
-        padding: 8px;
+        padding: 5px;
       }
     }
     &:hover .updateAvatar {
