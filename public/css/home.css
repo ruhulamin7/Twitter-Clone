@@ -138,12 +138,12 @@ a {
 .left_container .left_bottom .user_area .user_avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+  position: relative;
 }
 .left_container .left_bottom .user_area .user_avatar img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .left_container .left_bottom .user_area .user_name {
   flex: 1;
@@ -183,12 +183,12 @@ a {
   width: 40px;
   height: 40px;
   margin-right: 15px;
-  border-radius: 50%;
-  overflow: hidden;
+  position: relative;
 }
 .middle_container .create_tweet_wrapper .avatar_area .img img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .middle_container .create_tweet_wrapper .tweet_area {
   flex-grow: 1;
@@ -328,12 +328,11 @@ a {
   width: 40px;
   height: 40px;
   margin-right: 15px;
-  border-radius: 50%;
-  overflow: hidden;
 }
 .tweet .tweet_profile_img .img img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .tweet .tweet_content_wrapper {
   width: 100%;
@@ -445,12 +444,12 @@ a {
 .create_reply_wrapper .avatar_area .img {
   width: 27px;
   height: 27px;
-  overflow: hidden;
-  border-radius: 50%;
+  position: relative;
 }
 .create_reply_wrapper .avatar_area .img img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .create_reply_wrapper .reply_area .create_reply textarea {
   width: 100%;

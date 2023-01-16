@@ -151,11 +151,11 @@ a {
       .user_avatar {
         width: 40px;
         height: 40px;
-        border-radius: 50%;
-        overflow: hidden;
+        position: relative;
         img {
           width: 100%;
           height: 100%;
+          border-radius: 50%;
         }
       }
       .user_name {
@@ -209,11 +209,11 @@ a {
         width: 40px;
         height: 40px;
         margin-right: 15px;
-        border-radius: 50%;
-        overflow: hidden;
+        position: relative;
         img {
           width: 100%;
           height: 100%;
+          border-radius: 50%;
         }
       }
     }
@@ -361,11 +361,10 @@ a {
       width: 40px;
       height: 40px;
       margin-right: 15px;
-      border-radius: 50%;
-      overflow: hidden;
       img {
         width: 100%;
         height: 100%;
+        border-radius: 50%;
       }
     }
   }
@@ -491,11 +490,11 @@ a {
     .img {
       width: 27px;
       height: 27px;
-      overflow: hidden;
-      border-radius: 50%;
+      position: relative;
       img {
         width: 100%;
         height: 100%;
+        border-radius: 50%;
       }
     }
   }

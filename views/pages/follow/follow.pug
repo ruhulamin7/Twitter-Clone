@@ -73,6 +73,7 @@ block bodyContent
             .left_bottom
                 .user_area
                     .user_avatar
+                        .active_status.tweet_active_status(data-active_status="Active Now", class="online")
                         img(src=avatarURL, alt="user avatar") 
                     .user_name
                         h6 #{user.firstName} #{user.lastName}
@@ -95,6 +96,13 @@ block bodyContent
                 .cover 
                     img(src=coverURL alt="")
                 .avatar
+                    - activeText = userProfile.activeStatus ? "Active Now" : userProfile.lastSeen ? "Last Seen: " + userProfile.lastSeen.toDateString() : "Not Recently Seen"
+                       
+                    - isActive = (user._id.toString() == userProfile._id.toString()) | activeText == 'Active Now'
+                        
+                    - activeText = isActive ? "Active Now" : activeText
+
+                    .active_status(data-active_status=activeText, class=isActive && "online")
                     img(src=profileAvatarURL, alt="avatar")
 
 

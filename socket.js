@@ -19,7 +19,6 @@ io.on('connection', (socket) => {
     io.to(user._id).emit('connected');
 
     // user disconnection
-    let isUserBack = true;
     socket.on('disconnect', () => {
       setTimeout(() => {
         let isActive = [...io.sockets.adapter.rooms.keys()].includes(user._id);

@@ -58,7 +58,15 @@ function createTweet(data, pinned) {
     content,
     createdAt,
     images: tweetImages,
-    tweetedBy: { _id, firstName, lastName, username, userAvatar },
+    tweetedBy: {
+      _id,
+      firstName,
+      lastName,
+      username,
+      userAvatar,
+      activeStatus,
+      lastSeen,
+    },
     likes,
     retweetedUsers,
     repliedTweets,
@@ -81,12 +89,26 @@ function createTweet(data, pinned) {
           <i class="bg-dark text-light p-1 rounded-3">Pin Tweet</i>
         </div>`;
   }
+
+  let activeText = activeStatus
+    ? 'Active Now'
+    : new Date(lastSeen)?.toString() !== 'Invalid Date'
+    ? 'Last Seen: ' + new Date(lastSeen)?.toDateString()
+    : 'Not Recently Seen';
+
+  let isActive =
+    user._id.toString() == _id.toString() || activeText == 'Active Now';
+  activeText = isActive ? 'Active Now' : activeText;
+
   div.innerHTML = `
     ${pinFlag}
     ${retweetedHtml}
   <div class='tweet ${pinned ? 'pinTweet' : ''}'>
     <div class="tweet_profile_img">
       <div class="img">
+          <div class="active_status tweet_active_status ${
+            isActive && 'online'
+          }" data-active_status="${activeText}"></div>
           <img src="${avatarURL}" , alt="avatar" class="avatar">
       </div>
     </div>
@@ -469,6 +491,16 @@ function createFollowingElement(data) {
     : `/uploads/profile/avatar.png`;
 
   let followDiv = '';
+  let activeText = data.activeStatus
+    ? 'Active Now'
+    : new Date(data.lastSeen)?.toString() !== 'Invalid Date'
+    ? 'Last Seen: ' + new Date(data.lastSeen)?.toDateString()
+    : 'Not Recently Seen';
+
+  let isActive =
+    user._id.toString() == data._id.toString() || activeText == 'Active Now';
+  activeText = isActive ? 'Active Now' : activeText;
+
   if (data._id !== user._id) {
     followDiv = `
     <button class="fl_btn ${
@@ -484,7 +516,10 @@ function createFollowingElement(data) {
 
   div.innerHTML = `
     <div class="follow_profile">
-      <div class="avatar">
+      <div class="avatar img">
+      <div class="active_status tweet_active_status ${
+        isActive && 'online'
+      }" data-active_status="${activeText}"></div>
         <img src="${avatarURL}">
       </div>
       <div class="follow_name">
