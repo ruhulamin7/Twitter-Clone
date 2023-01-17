@@ -99,7 +99,7 @@ block bodyContent
                                 i.fas.fa-camera
                     .avatar
                         - activeText = userProfile.activeStatus ? "Active Now" : userProfile.lastSeen ? "Last Seen: " + userProfile.lastSeen.toDateString() : "Not Recently Seen"
-                        - console.log(userProfile)
+                        
                         - isActive = (user._id.toString() == userProfile._id.toString()) | activeText == 'Active Now'
                         
                         - activeText = isActive ? "Active Now" : activeText

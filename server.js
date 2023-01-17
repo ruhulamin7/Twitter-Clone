@@ -21,6 +21,8 @@ const connectDb = require('./config/connectDb');
 const profileRoute = require('./routes/profile/profileRoute');
 const searchRoute = require('./routes/search/searchRoute');
 const usersRoute = require('./routes/users/usersRoute');
+const messageRoute = require('./routes/messages/messageRoute');
+const chatRoute = require('./routes/chat/chatRoute');
 
 // init app
 const app = express();
@@ -60,6 +62,8 @@ app.use('/tweets', tweetRoute); // tweets route
 app.use('/profile', profileRoute); // profile route
 app.use('/search', searchRoute); // search route
 app.use('/users', usersRoute); // users route
+app.use('/messages', messageRoute); // messages route
+app.use('/chat', chatRoute); // chat route
 
 // check router
 app.use('/check', (req, res) => {

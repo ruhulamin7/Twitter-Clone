@@ -538,3 +538,8 @@ a {
   top: -25px;
   background-color: rgb(243, 101, 101);
 }
+
+.dis_btn {
+  background-color: #a3cff0;
+  cursor: not-allowed;
+}

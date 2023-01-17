@@ -25,6 +25,13 @@ const registerHandler = async (req, res, next) => {
       });
       const user = await userObj.save();
       if (user.userAvatar) {
+        fs.mkdirSync(
+          path.join(__dirname, `../../public/uploads/${user._id}/profile/`),
+          {
+            recursive: true,
+          }
+        );
+
         fs.renameSync(
           path.join(__dirname, `../../temp/${user.userAvatar}`),
           path.join(

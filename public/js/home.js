@@ -116,7 +116,6 @@ tweetBtn.addEventListener('click', function () {
   tweetImages.forEach((file) => {
     formData.append(file.name, file);
   });
-  // const url = window.location.protocol + '//' + window.location.host;
   const url = `${window.location.origin}/tweets`;
   fetch(url, {
     method: 'POST',

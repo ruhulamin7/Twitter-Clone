@@ -4,10 +4,22 @@ const httpServer = http.createServer();
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const { updateCacheData } = require('./utils/cacheManager');
+const { instrument } = require('@socket.io/admin-ui');
 
 const io = new Server(httpServer, {
-  cors: ['http://localhost:3000', 'https://127.0.0.1:3000'],
+  cors: {
+    origin: [
+      'http://localhost:3000',
+      'https://127.0.0.1:3000',
+      'https://admin.socket.io',
+    ],
+    credentials: true,
+  },
   headers: ['POST', 'GET', 'PUT', 'DELETE'],
+});
+
+instrument(io, {
+  auth: false,
 });
 
 // user connection
@@ -16,7 +28,7 @@ io.on('connection', (socket) => {
   socket.on('setup', (user) => {
     console.log(user.firstName + ' connected');
     socket.join(user._id);
-    io.to(user._id).emit('connected');
+    socket.emit('connected');
 
     // user disconnection
     socket.on('disconnect', () => {
@@ -60,7 +72,7 @@ setInterval(async () => {
         .then((result) => {
           if (result) {
             updateCacheData(`users:${result._id}`, result);
-            // console.log(roomIds);
+            console.log(roomIds);
           }
         })
         .catch((err) => {

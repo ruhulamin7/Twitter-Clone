@@ -4,6 +4,12 @@ $whiteColor: #ffffff;
 $grayColor: gray;
 
 .search_container {
+  display: flex;
+  align-items: center;
+  background-color: $lightColor;
+  border-radius: 50px;
+  padding: 5px;
+  margin: 15px;
   i {
     margin-left: 15px;
   }
@@ -15,10 +21,4 @@ $grayColor: gray;
     margin: 5px 5px 5px 10px;
     font-size: 20px;
   }
-  align-items: center;
-  display: flex;
-  background-color: $lightColor;
-  border-radius: 50px;
-  padding: 5px;
-  margin: 15px;
 }
