@@ -17,17 +17,17 @@ $grayColor: gray;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid rgb(213, 211, 211);
+  padding: 10px;
+  transition: 0.1s;
+}
+.follow_list:hover {
+  background-color: #b2d8f53d;
 }
 
 .follow_profile {
   display: flex;
   align-items: center;
-}
-
-.follow_list {
-  border-top: 1px solid rgb(213, 211, 211);
-  padding: 10px;
-  margin-top: 10px;
 }
 
 .follow_name {

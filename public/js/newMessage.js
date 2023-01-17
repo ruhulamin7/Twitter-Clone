@@ -34,10 +34,9 @@ searchField.addEventListener('input', function (e) {
               data.forEach((userData) => {
                 if (
                   selectedUsers.some(
-                    (selectedUser) =>
-                      selectedUser._id === userData._id ||
-                      selectedUser._id === user._id
-                  )
+                    (selectedUser) => selectedUser._id === userData._id
+                  ) ||
+                  userData._id === user._id
                 ) {
                   return;
                 }
@@ -96,11 +95,13 @@ function displaySelectedUsers(selectedUsers) {
 
 // disSelect users
 function disSelectUser(event, userId) {
+  //   console.log(selectedUsers);
+  //   console.log(selectedUsers instanceof Array);
   selectedUsers = selectedUsers.filter((selectedUser) => {
-    selectedUser._id !== userId;
+    return selectedUser._id !== userId;
   });
 
-  event.target.remove();
+  selectedUsersContainer.innerHTML = '';
   displaySelectedUsers(selectedUsers);
 }
 

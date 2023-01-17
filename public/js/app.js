@@ -403,7 +403,7 @@ function pinTweet(tweetId, pinned) {
 }
 
 // remove image from reply Ui and stored variable
-replyImageContainer.addEventListener('click', function (e) {
+replyImageContainer?.addEventListener('click', function (e) {
   const closeBtn = e.target.className === 'close_btn' ? e.target : null;
   if (!closeBtn) {
     return;
@@ -426,7 +426,7 @@ replyImageContainer.addEventListener('click', function (e) {
 });
 
 // handle reply image upload
-replyImgInput.addEventListener('change', function (e) {
+replyImgInput?.addEventListener('change', function (e) {
   const files = this.files;
   if (files.length) {
     [...files].forEach((file) => {
@@ -469,7 +469,7 @@ replyImgInput.addEventListener('change', function (e) {
 });
 
 // reply button disable/enable function
-replyText.addEventListener('input', function (e) {
+replyText?.addEventListener('input', function (e) {
   const value = this.value.trim();
   if (value || replyImages.length) {
     replyBtn.removeAttribute('disabled');
@@ -483,7 +483,7 @@ replyText.addEventListener('input', function (e) {
 });
 
 // following users list
-function createFollowingElement(data) {
+function createFollowingElement(data, hideFollowing) {
   const name = data.firstName + ' ' + data.lastName;
   const isFollowing = data?.followers?.includes(user._id);
   const avatarURL = data.userAvatar
@@ -513,6 +513,7 @@ function createFollowingElement(data) {
 
   let div = document.createElement('div');
   div.classList.add('follow_list');
+  hideFollowing ? (div.style.cursor = 'pointer') : '';
 
   div.innerHTML = `
     <div class="follow_profile">
@@ -530,7 +531,7 @@ function createFollowingElement(data) {
       </div>
     </div>
     <div>
-      ${followDiv}
+      ${hideFollowing ? '' : followDiv}
     </div>
   `;
 

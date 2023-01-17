@@ -5,6 +5,7 @@
   border-radius: 50px;
   padding: 5px;
   margin: 15px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.176);
 }
 .create_chat_container label {
   margin-left: 15px;
@@ -42,6 +43,7 @@
   display: flex;
   align-items: center;
   margin: 5px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.347);
 }
 .selected_user img {
   height: 20px;
@@ -52,7 +54,7 @@
 .selected_user button {
   border: none;
   outline: none;
-  background-color: rgba(32, 31, 31, 0.311);
+  background-color: rgba(32, 31, 31, 0.509);
   height: 16px;
   width: 16px;
   border-radius: 50%;

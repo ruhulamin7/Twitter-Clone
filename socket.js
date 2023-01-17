@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   // new user setup
   socket.on('setup', (user) => {
     console.log(user.firstName + ' connected');
-    socket.join(user._id);
+    // socket.join(user._id);
     socket.emit('connected');
 
     // user disconnection
