@@ -27,13 +27,10 @@
   color: #eff1f1;
 }
 
-#select_users {
-  border-bottom: 1px solid #eff1f1;
-}
-
 #selected_users {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .selected_user {

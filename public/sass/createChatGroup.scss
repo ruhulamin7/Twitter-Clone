@@ -32,13 +32,10 @@ $grayColor: gray;
   }
 }
 
-#select_users {
-  border-bottom: 1px solid $lightColor;
-}
-
 #selected_users {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 .selected_user {
   padding: 3px 5px;

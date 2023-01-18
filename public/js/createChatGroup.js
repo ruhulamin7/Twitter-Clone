@@ -72,7 +72,6 @@ function displaySelectedUsers(selectedUsers) {
     createChatBtn.classList.add('dis_btn');
   }
   selectedUsersContainer.innerHTML = '';
-
   selectedUsers.forEach((selectedUser) => {
     const fullName = selectedUser.firstName + ' ' + selectedUser.lastName;
     const avatarSrc = selectedUser.userAvatar
@@ -95,14 +94,12 @@ function displaySelectedUsers(selectedUsers) {
 
 // disSelect users
 function disSelectUser(event, userId) {
-  //   console.log(selectedUsers);
-  //   console.log(selectedUsers instanceof Array);
   selectedUsers = selectedUsers.filter((selectedUser) => {
     return selectedUser._id !== userId;
   });
-
   selectedUsersContainer.innerHTML = '';
   displaySelectedUsers(selectedUsers);
+  searchField.focus();
 }
 
 createChatBtn.addEventListener('click', function (e) {
@@ -117,7 +114,6 @@ createChatBtn.addEventListener('click', function (e) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data._id) {
           location.href = `${window.location.origin}/messages/${data._id}`;
         } else {

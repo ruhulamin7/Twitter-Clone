@@ -1,10 +1,7 @@
-const getTweetSearch = require('../../controllers/search/getTweetSearch');
-const getUsers = require('../../controllers/APIs/getUsers');
-const getUserSearch = require('../../controllers/search/getUserSearch');
 const authChecker = require('../../middlewares/common/authChecker');
 const decorateHTMLResponse = require('../../middlewares/common/decorateHTMLResponse');
 const getMessagePage = require('../../controllers/messages/getMessagePage');
-const getNewMessagePage = require('../../controllers/messages/getNewMessagePage');
+const createChatGroupPage = require('../../controllers/messages/getChatGroupPage');
 
 const messageRoute = require('express').Router();
 
@@ -16,12 +13,19 @@ messageRoute.get(
   getMessagePage
 );
 
-// get new message page
+// get create chat group page
 messageRoute.get(
-  '/new',
+  '/create-chat-group',
   decorateHTMLResponse(`Message - ${process.env.APP_NAME}`),
   authChecker,
-  getNewMessagePage
+  createChatGroupPage
+);
+// get chat page
+messageRoute.get(
+  '/:chatId',
+  decorateHTMLResponse(`Message - ${process.env.APP_NAME}`),
+  authChecker,
+  createChatGroupPage
 );
 
 module.exports = messageRoute;
