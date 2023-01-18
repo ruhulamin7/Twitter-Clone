@@ -91,7 +91,7 @@ block bodyContent
                         button Everyone
                             i.fas.fa-angle-down
                     .create_tweet 
-                        textarea#create_tweet(name="tweet",  placeholder="What's happening?" )
+                        textarea#create_tweet(name="tweet", oninput="auto_grow(this)"  placeholder="What's happening?" )
                         .output_image_container
                             .output_image_inner_container
                             if error.multerError

@@ -2,6 +2,7 @@ const authChecker = require('../../middlewares/common/authChecker');
 const decorateHTMLResponse = require('../../middlewares/common/decorateHTMLResponse');
 const getMessagePage = require('../../controllers/messages/getMessagePage');
 const createChatGroupPage = require('../../controllers/messages/getChatGroupPage');
+const getChatPage = require('../../controllers/messages/getChatPage');
 
 const messageRoute = require('express').Router();
 
@@ -25,7 +26,7 @@ messageRoute.get(
   '/:chatId',
   decorateHTMLResponse(`Message - ${process.env.APP_NAME}`),
   authChecker,
-  createChatGroupPage
+  getChatPage
 );
 
 module.exports = messageRoute;

@@ -111,10 +111,6 @@ block bodyContent
                     a.msg_btn(href="")
                         i.fas.fa-envelope
                     - isFollowing = user.following && user.following.includes(userProfile._id.toString())
-
-                    //- - isFollowing = userProfile.followers && userProfile.followers.includes(user._id.toString())
-
-                    //- - console.log(isFollowing)
             
                     button.follow_btn(class = isFollowing ? "following_btn" :  "" onclick=`followHandler(event, "${userProfile._id}")`) #{isFollowing ? 'Following' : 'Follow'}
                     

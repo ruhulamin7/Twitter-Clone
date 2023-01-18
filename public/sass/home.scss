@@ -241,10 +241,11 @@ a {
           width: 100%;
           outline: 0;
           border: 0;
-          padding: 5px;
           font-size: 20px;
           resize: unset;
-          height: 50px;
+          background-color: $lightColor;
+          border-radius: 10px;
+          padding: 10px;
         }
         .output_image_container {
           width: 100%;

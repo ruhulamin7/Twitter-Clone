@@ -120,7 +120,6 @@ updateAvatarBtn.addEventListener('click', function (e) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data._id) {
             location.reload();
           }
@@ -185,7 +184,6 @@ updateCoverBtn.addEventListener('click', function (e) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data._id) {
             location.reload();
           }

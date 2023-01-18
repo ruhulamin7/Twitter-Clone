@@ -7,7 +7,6 @@ const newPasswordValidationResult = (req, res, next) => {
   try {
     const errors = validationResult(req);
     const mappedErrors = errors.mapped();
-    console.log(mappedErrors);
 
     if (Object.keys(mappedErrors).length === 0) {
       next();

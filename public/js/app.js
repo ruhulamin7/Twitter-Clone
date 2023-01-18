@@ -298,7 +298,6 @@ function replyTweet(event, tweetId) {
       .then((res) => res.json())
       .then((data) => {
         if (data._id) {
-          console.log(data);
           window.location.reload();
         }
       })

@@ -43,7 +43,6 @@ io.on('connection', (socket) => {
             .then((result) => {
               if (result) {
                 updateCacheData(`users:${result._id}`, result);
-                console.log(result);
                 console.log(user.firstName + ' disconnected');
               }
             })
