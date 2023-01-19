@@ -7,11 +7,9 @@ const chatSchema = new Schema(
       type: String,
       trim: true,
     },
-    chatImage: [
-      {
-        type: String,
-      },
-    ],
+    chatImage: {
+      type: String,
+    },
     isGroupChat: {
       type: Boolean,
       default: false,

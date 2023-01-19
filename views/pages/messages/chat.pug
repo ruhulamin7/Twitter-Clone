@@ -11,7 +11,7 @@ block css
 
 
 block js 
-    //- script(src="/js/app.js" defer)
+    script(src="/js/app.js" defer)
     //- script(src="/js/home.js" defer)
     //- script(src="/js/profile.js" defer)
     script(src="/js/chat.js" defer)
@@ -94,9 +94,9 @@ block bodyContent
             .chat_container.chat_page
                 .chat_header 
                     .chat_image
-                        img(src="/uploads/profile/avatar.png", alt="")
+                        //- img(src="/uploads/profile/avatar.png", alt="")
                     .chat_name 
-                        span Ruhul Amin
+                        //- span Ruhul Amin
                 .chat_message
                     h4 This is message area
                 .chat_footer 

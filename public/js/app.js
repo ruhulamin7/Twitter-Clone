@@ -571,7 +571,17 @@ function followHandler(event, userId) {
     });
 }
 
-// socket
+// get chat room's name
+function getChatName(otherUsers) {
+  const userNames = otherUsers.map(
+    (user) => user.firstName + ' ' + user.lastName
+  );
+
+  const chatName = userNames.join(', ');
+  return chatName;
+}
+
+// socket connection
 const socket = io('http://localhost:3005');
 let isConnected = false;
 // socket setup
