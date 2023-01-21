@@ -2,11 +2,8 @@ const chatHeader = document.querySelector('.chat_header');
 const chatImageEl = document.querySelector('.chat_image');
 const chatNameEl = document.querySelector('.chat_name');
 
-// console.log(chatImage.src);
-
-const url = `${location.origin}/chat/${chatId}`;
-
 try {
+  const url = `${location.origin}/chat/${chatId}`;
   fetch(url)
     .then((res) => res.json())
     .then((chatData) => {
@@ -15,9 +12,7 @@ try {
       }
       displayChatDetails(chatData);
     });
-} catch (error) {
-  console.log(error);
-}
+} catch (error) {}
 
 // display chat details
 function displayChatDetails(chatData) {
@@ -26,13 +21,14 @@ function displayChatDetails(chatData) {
   // get chat room's name
   let chatName = chatData.chatName;
   chatName = chatName ? chatName : getChatName(otherUsers);
-
   // get chat room's image
   let chatImage = chatData.chatImage;
   let remainingUsers =
     otherUsers.length <= 2
       ? ''
-      : `<span class="remainingUsers">${otherUsers.length - 2}</span>`;
+      : `<span class="remainingUsers other_image"">+${
+          otherUsers.length - 2
+        }</span>`;
 
   chatImage = chatImage
     ? `<img src = '/uploads/chats/${chatImage}'></img>`
@@ -45,7 +41,7 @@ function displayChatDetails(chatData) {
             otherUsers[0].userAvatar
           : '/uploads/profile/avatar.png'
       }'>`
-    : `<img src ='${
+    : `<img class="" src ='${
         otherUsers[0].userAvatar
           ? '/uploads/' +
             otherUsers[0]._id +
@@ -53,7 +49,7 @@ function displayChatDetails(chatData) {
             otherUsers[0].userAvatar
           : '/uploads/profile/avatar.png'
       }'>
-      <img src ='${
+      <img class="other_image" src ='${
         otherUsers[otherUsers.length - 1].userAvatar
           ? '/uploads/' +
             otherUsers[otherUsers.length - 1]._id +
@@ -64,7 +60,7 @@ function displayChatDetails(chatData) {
       `;
 
   chatImageEl.innerHTML = chatImage;
-  chatNameEl.innerHTML = `<h4>${chatName}</h4>`;
+  chatNameEl.innerHTML = `<h6>${chatName}</h6>`;
 }
 
 // auto height textarea
