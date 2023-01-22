@@ -27,9 +27,8 @@ io.on('connection', (socket) => {
   // new user setup
   socket.on('setup', (user) => {
     console.log(user.firstName + ' connected');
-    // socket.join(user._id);
+    socket.join(user._id);
     socket.emit('connected');
-
     // user disconnection
     socket.on('disconnect', () => {
       setTimeout(() => {
@@ -71,7 +70,7 @@ setInterval(async () => {
         .then((result) => {
           if (result) {
             updateCacheData(`users:${result._id}`, result);
-            console.log(roomIds);
+            // console.log(roomIds);
           }
         })
         .catch((err) => {

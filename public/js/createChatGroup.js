@@ -28,19 +28,22 @@ searchField.addEventListener('input', function (e) {
           .then((res) => res.json())
           .then((data) => {
             userContainer.innerHTML = '';
-            if (!data.length) {
+            // check user is already selected or not
+            const notSelectedUsers = data.filter((dt) => {
+              if (
+                selectedUsers.some((su) => su._id === dt._id) ||
+                dt._id === user._id
+              ) {
+                return false;
+              } else {
+                return true;
+              }
+            });
+
+            if (!notSelectedUsers.length) {
               return (userContainer.innerHTML = `<h5 class="nothing text-center mt-5">Oops! No users found!! 😞</h5>`);
             } else {
-              data.forEach((userData) => {
-                if (
-                  selectedUsers.some(
-                    (selectedUser) => selectedUser._id === userData._id
-                  ) ||
-                  userData._id === user._id
-                ) {
-                  return;
-                }
-
+              notSelectedUsers.forEach((userData) => {
                 const userEl = createFollowingElement(userData, true);
                 userEl.addEventListener('click', function () {
                   selectedUsers.push(userData);

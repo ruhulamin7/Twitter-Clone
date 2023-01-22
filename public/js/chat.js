@@ -61,6 +61,26 @@ function displayChatDetails(chatData) {
 
   chatImageEl.innerHTML = chatImage;
   chatNameEl.innerHTML = `<h6>${chatName}</h6>`;
+
+  let isActive = otherUsers.some((member) => member.activeStatus);
+  let isGroupChat = chatData.isGroupChat;
+
+  let activeText;
+  if (!isGroupChat) {
+    activeText = isActive
+      ? 'Active Now'
+      : new Date(otherUsers[0]?.lastSeen)?.toString() !== 'Invalid Date'
+      ? 'Last Seen: ' + new Date(otherUsers[0]?.lastSeen)?.toDateString()
+      : 'Not Recently Seen';
+  } else {
+    activeText = isActive ? 'Active Now' : 'Away';
+  }
+
+  const activeStatusEl = document.createElement('div');
+  activeStatusEl.classList.add('active_status', 'tweet_active_status');
+  activeStatusEl.classList.add(isActive && 'online');
+  chatImageEl.prepend(activeStatusEl);
+  activeStatusEl.dataset.active_status = activeText;
 }
 
 // auto height textarea
