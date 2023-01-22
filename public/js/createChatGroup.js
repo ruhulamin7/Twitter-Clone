@@ -67,7 +67,7 @@ searchField.addEventListener('input', function (e) {
 
 // display selected users
 function displaySelectedUsers(selectedUsers) {
-  if (selectedUsers.length) {
+  if (selectedUsers.length >= 2) {
     createChatBtn.disabled = false;
     createChatBtn.classList.remove('dis_btn');
   } else {

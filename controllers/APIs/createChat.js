@@ -12,15 +12,19 @@ const createChat = async (req, res, next) => {
     const users = req.body;
     users.push(user);
 
-    const chat = new Chat({
-      chatName: '',
-      chatImage: '',
-      isGroupChat: true,
-      users,
-      latestMessage: null,
-    });
-    const result = await chat.save();
-    res.send(result);
+    if (users.length >= 3) {
+      const chat = new Chat({
+        chatName: '',
+        chatImage: '',
+        isGroupChat: true,
+        users,
+        latestMessage: null,
+      });
+      const result = await chat.save();
+      res.send(result);
+    } else {
+      res.send({ message: 'Error saving chat' });
+    }
   } catch (error) {
     next(error);
   }

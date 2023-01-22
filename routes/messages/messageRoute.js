@@ -3,6 +3,7 @@ const decorateHTMLResponse = require('../../middlewares/common/decorateHTMLRespo
 const getMessagePage = require('../../controllers/messages/getMessagePage');
 const createChatGroupPage = require('../../controllers/messages/getChatGroupPage');
 const getChatPage = require('../../controllers/messages/getChatPage');
+const getAllChat = require('../../controllers/APIs/getAllChat');
 
 const messageRoute = require('express').Router();
 

@@ -31,7 +31,7 @@ function displayChatDetails(chatData) {
         }</span>`;
 
   chatImage = chatImage
-    ? `<img src = '/uploads/chats/${chatImage}'></img>`
+    ? `<img src ='/uploads/chats/${chatImage}'></img>`
     : otherUsers.length === 1
     ? `<img src ='${
         otherUsers[0].userAvatar
